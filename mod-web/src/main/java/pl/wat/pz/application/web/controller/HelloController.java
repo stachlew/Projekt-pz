@@ -9,7 +9,7 @@ public class HelloController {
 
     @RequestMapping("/")
     public String dowolneWitaj(Model model) {
-        model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilek dzięki modelowi!");
+        model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilk dzięki modelowi!");
         return "hello";
     }
 
