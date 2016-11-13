@@ -9,6 +9,10 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>WEB-INF/spring/webcontext/DispatcherServlet.xml</param-value>
         </init-param>
+        <init-param>
+            <param-name>contextConfingLocation</param-name>
+            <param-value>pl.wat.pz.application.dao.jpaConfiguration.JpaConfiguration</param-value>
+        </init-param>
     </servlet>
 
     <servlet-mapping>
@@ -16,4 +20,5 @@
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 
+    
 </web-app>
