@@ -15,7 +15,9 @@ public class HelloController {
 
     @RequestMapping("/")
     public String dowolneWitaj(Model model) {
-        model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
+        // wersja pierwotna
+        // model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
+        model.addAttribute("wiadomosc", "Hello frok work-branch!");
         userRepository.addUser(new User("aa","bb"));
         userRepository.downloadAllUsers();
         return "hello";
