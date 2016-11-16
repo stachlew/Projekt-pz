@@ -1,0 +1,43 @@
+body
+{
+	background-image: url("../image/background.png") !important;
+	font-family: 'Lato', sans-serif !important;
+	
+}
+
+.well{
+	background-color: rgba(234, 234, 234, 0.52) !important;
+    border-radius: 3px !important;
+	box-shadow: inset 0 1px 1px rgb(0, 0, 0)!important;
+}
+
+
+.userInfo{
+	text-align: right;	
+	font-weight: bold !important;
+}
+
+.reserved{
+		text-align: center;
+}
+
+.btn-default {
+    background-color: rgba(243, 255, 59, 0.82) !important;
+    border-color: #ccc;	
+	border-color: #7f9222 !important;
+	font-weight: bold !important;
+	font-size: 20 !important;
+}
+
+.form-control{
+	background-color: rgba(243, 255, 59, 0.82) !important;
+	border-color: #7f9222 !important;
+	font-weight: bold !important;
+	font-size: 20 !important;
+	height: auto !important;
+}
+
+.myLabel{
+	font-weight: bold !important;
+	font-size: 20 !important;	
+}

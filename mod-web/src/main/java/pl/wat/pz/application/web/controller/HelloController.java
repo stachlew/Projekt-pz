@@ -16,10 +16,21 @@ public class HelloController {
     @RequestMapping("/")
     public String dowolneWitaj(Model model) {
         model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
-
         userRepository.addUser(new User("aa","bb"));
         userRepository.downloadAllUsers();
         return "hello";
+    }
+
+    @RequestMapping("/guest")
+    public String mainPageGuest(Model model) {
+        //model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
+        return "homeGuest";
+    }
+
+    @RequestMapping("/user")
+    public String mainPageUser(Model model) {
+        //model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
+        return "homeUser";
     }
 
 }

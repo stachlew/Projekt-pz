@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="baseLayout" template="/WEB-INF/tiles/template/baseLayout.jsp">
+        <put-attribute name="title" value="Borroom" />
+        <put-attribute name="heading" value="/WEB-INF/tiles/template/heading.jsp" />
+        <put-attribute name="userHeader" value="" />
+        <put-attribute name="searchBar" value="/WEB-INF/tiles/template/searchBar.jsp" />
+        <put-attribute name="content" value="" />
+        <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+    </definition>
+
+    <definition name="tileGuest" extends="baseLayout">
+        <put-attribute name="title" value="Borroom - zarejestruj się by dodać przedmiot" />
+    </definition>
+
+    <definition name="tileUser" extends="baseLayout">
+        <put-attribute name="userHeader" value="/WEB-INF/tiles/template/userHeader.jsp" />
+    </definition>
+
+    <definition name="homeGuest" extends="tileGuest">
+        <put-attribute name="content" value="/WEB-INF/jsp/main.jsp" />
+    </definition>
+
+    <definition name="homeUser" extends="tileUser">
+        <put-attribute name="content" value="/WEB-INF/jsp/main.jsp" />
+    </definition>
+
+
+
+</tiles-definitions>
