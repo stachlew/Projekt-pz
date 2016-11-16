@@ -17,7 +17,7 @@ public class HelloController {
     public String dowolneWitaj(Model model) {
         // wersja pierwotna
         // model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
-        model.addAttribute("wiadomosc", "Hello frok work-branch again!");
+        model.addAttribute("wiadomosc", "Hello frok work-branch again 123!");
         userRepository.addUser(new User("aa","bb"));
         userRepository.downloadAllUsers();
         return "hello";
