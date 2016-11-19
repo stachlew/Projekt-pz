@@ -1,6 +1,5 @@
 package pl.wat.pz.application.dao.repositoryImpl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.wat.pz.application.dao.domain.User;
 import pl.wat.pz.application.dao.repository.UserRepository;
@@ -17,16 +16,13 @@ import java.util.List;
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 
-    @Autowired
+    @PersistenceContext
     private EntityManager entityManager;
 
-
     @Override
-    //Tymczasowe rozwiazenie, w przyszłości adnotacja transactional
+    @Transactional
     public void addUser(User user) {
-        entityManager.getTransaction().begin();
         entityManager.persist(user);
-        entityManager.getTransaction().commit();
     }
 
     @Override

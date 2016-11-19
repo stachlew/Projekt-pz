@@ -2,6 +2,8 @@ package pl.wat.pz.application.dao.jpaConfiguration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.persistence.*;
 import javax.persistence.criteria.CriteriaBuilder;
@@ -15,14 +17,16 @@ import java.util.Map;
 public class JpaConfiguration {
 
     @Bean
-    public EntityManagerFactory entityManagerFactory (){
-        EntityManagerFactory entityManagerFactory= Persistence.createEntityManagerFactory("jpaHibernate");
-        return entityManagerFactory;
+    public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean(){
+        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        localContainerEntityManagerFactoryBean.setPersistenceUnitName("jpaHibernate");
+        return localContainerEntityManagerFactoryBean;
     }
 
     @Bean
-    public EntityManager entityManager (){
-        EntityManager entityManager = entityManagerFactory().createEntityManager();
-        return entityManager;
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
+        JpaTransactionManager transactionManager= new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
     }
 }
