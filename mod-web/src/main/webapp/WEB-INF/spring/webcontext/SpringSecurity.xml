@@ -11,7 +11,14 @@ http://www.springframework.org/schema/security/spring-security.xsd
 
 
     <security:http auto-config="true">
-        <security:intercept-url pattern="/user" access="hasRole('ROLE_USER')"/>
+
+
+        <!--To do: sprawdzic po dodaniu id uzytkownika do metod zwracania widokow osobistych-->
+        <security:intercept-url pattern="/loaned" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/myAds" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/notifications" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/observed" access="hasRole('ROLE_USER')"/>
+
         <security:form-login login-page="/login" default-target-url="/"
                              authentication-failure-url="/loginfailed"/>
         <security:logout logout-success-url="/"/>

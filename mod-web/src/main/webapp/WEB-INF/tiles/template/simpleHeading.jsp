@@ -7,11 +7,10 @@
         <li role="presentation"><h4><a href="/#"><img src="<c:url value="/resource/image/logoBorroomMini.png"></c:url>" class="img-rounded"></a></h4></li>
         <li role="presentation"> </li>
         <li role="presentation"> </li>
-        <li role="presentation"><a href="/#" class="btn btn-default btn-sm btn-block" role="button">DODAJ PRZEDMIOT</a></li>
-
         <li role="presentation"> </li>
         <li role="presentation"> </li>
-        <li role="presentation"><a href="/#" class="btn btn-default btn-sm btn-block" role="button">Rejestracja</a></li>
-        <li role="presentation"><a href="/login" class="btn btn-default btn-sm btn-block" role="button">Zaloguj</a></li>
+        <li role="presentation"> </li>
+        <li role="presentation"> </li>
+        <li role="presentation"> </li>
     </ul>
 </div>

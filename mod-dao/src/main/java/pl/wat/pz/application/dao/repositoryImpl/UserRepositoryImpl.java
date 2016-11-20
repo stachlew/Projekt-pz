@@ -12,9 +12,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
-/**
- * Created by DELL on 2016-11-13.
- */
+
 @Repository
 public class UserRepositoryImpl implements UserRepository {
 

@@ -1,6 +1,8 @@
 package pl.wat.pz.application.web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,23 +16,38 @@ public class HelloController {
     UserRepository userRepository;
 
     @RequestMapping("/")
-    public String dowolneWitaj(Model model) {
-        // wersja pierwotna
-        // model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
-        model.addAttribute("wiadomosc", "Hello frok work-branch Malgorzataa");
-        return "hello";
+    public String mainPage(Model model) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String role = auth.getAuthorities().toString();
+        String targetUrl = "";
+        if(role.contains("ROLE_USER")) {
+            model.addAttribute("username", auth.getName());
+            targetUrl = "homeUser";
+        }
+        else {
+            targetUrl = "homeGuest"; //ROLE_ANONYMOUS
+        }
+        return targetUrl;
     }
 
-    @RequestMapping("/guest")
-    public String mainPageGuest(Model model) {
-        //model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
-        return "homeGuest";
+    @RequestMapping("/loaned")
+    public String userLoaned(Model model) {
+        return "loaned";
     }
 
-    @RequestMapping("/user")
-    public String mainPageUser(Model model) {
-        //model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
-        return "homeUser";
+    @RequestMapping("/myAds")
+    public String userMyAds(Model model) {
+        return "myAds";
+    }
+
+    @RequestMapping("/notifications")
+    public String userNotifications(Model model) {
+        return "notifications";
+    }
+
+    @RequestMapping("/observed")
+    public String userObserved(Model model) {
+        return "observed";
     }
 
 }
