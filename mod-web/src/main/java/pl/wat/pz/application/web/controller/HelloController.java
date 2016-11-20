@@ -18,8 +18,6 @@ public class HelloController {
         // wersja pierwotna
         // model.addAttribute("wiadomosc", "Wiadomość przesłana Kamilzzak dzięki modelowi!");
         model.addAttribute("wiadomosc", "Hello frok work-branch Malgorzataa");
-        userRepository.addUser(new User("aa","bb"));
-        userRepository.downloadAllUsers();
         return "hello";
     }
 

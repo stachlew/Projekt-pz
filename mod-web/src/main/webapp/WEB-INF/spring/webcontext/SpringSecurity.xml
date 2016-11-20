@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/security
+http://www.springframework.org/schema/security/spring-security.xsd
+        ">
+
+
+
+    <security:http auto-config="true">
+        <security:intercept-url pattern="/user" access="hasRole('ROLE_USER')"/>
+        <security:form-login login-page="/login" default-target-url="/"
+                             authentication-failure-url="/loginfailed"/>
+        <security:logout logout-success-url="/"/>
+        <security:csrf></security:csrf>
+    </security:http>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userDetailsService">
+        </security:authentication-provider>
+    </security:authentication-manager>
+    <bean id="userDetailsService" class="pl.wat.pz.application.logic.serviceImpl.UserDetailsServiceImpl">    </bean>
+</beans>
