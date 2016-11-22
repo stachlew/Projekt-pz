@@ -19,9 +19,13 @@ http://www.springframework.org/schema/security/spring-security.xsd
         <security:intercept-url pattern="/notifications" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/observed" access="hasRole('ROLE_USER')"/>
 
-        <security:form-login login-page="/login" default-target-url="/"
-                             authentication-failure-url="/loginfailed"/>
-        <security:logout logout-success-url="/"/>
+        <security:form-login login-page="/login"
+                             default-target-url="/"
+                             authentication-failure-url="/loginfailed"
+                             authentication-success-handler-ref="myAuthenticationSuccessHandler"
+        />
+        <security:logout logout-url="/"/>
+
         <security:csrf></security:csrf>
     </security:http>
 
@@ -29,5 +33,8 @@ http://www.springframework.org/schema/security/spring-security.xsd
         <security:authentication-provider user-service-ref="userDetailsService">
         </security:authentication-provider>
     </security:authentication-manager>
-    <bean id="userDetailsService" class="pl.wat.pz.application.logic.serviceImpl.UserDetailsServiceImpl">    </bean>
+
+    <bean id="userDetailsService"               class="pl.wat.pz.application.logic.serviceImpl.UserDetailsServiceImpl"/>
+    <bean id="myAuthenticationSuccessHandler"   class="pl.wat.pz.application.web.handler.MyAuthenticationSuccessHandler"/>
+
 </beans>

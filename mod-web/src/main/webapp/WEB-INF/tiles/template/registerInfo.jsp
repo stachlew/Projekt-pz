@@ -4,6 +4,8 @@
 
 <div class="well well-sm">
     <p class="text-primary text-center">
-        <a href="/register" style="text-decorations:none; color:inherit;">Jeśli nie posiadasz jeszcze konta możesz się zarejestrować klikając tutaj.</a>
+        <a href="/register" style="text-decorations:none; color:inherit;">
+            <spring:message code="registerInfo.content"/>
+        </a>
     </p>
 </div>

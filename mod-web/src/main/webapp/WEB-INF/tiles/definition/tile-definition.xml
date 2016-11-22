@@ -3,58 +3,47 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <definition name="plainLayout" template="/WEB-INF/tiles/template/baseLayout.jsp">
+    <definition name="plainLayout" template="/WEB-INF/tiles/template/plainLayout.jsp">
         <put-attribute name="title" value="Borroom" />
-        <put-attribute name="heading" value="/WEB-INF/tiles/template/simpleHeading.jsp" />
+        <put-attribute name="headingGuest" value="/WEB-INF/tiles/template/headingGuest.jsp" />
+        <put-attribute name="headingUser" value="/WEB-INF/tiles/template/headingUser.jsp" />
         <put-attribute name="searchBar" value="" />
-        <put-attribute name="userHeader" value="" />
+        <put-attribute name="menuUser" value="" />
         <put-attribute name="content" value="" />
         <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
     </definition>
 
-    <definition name="baseLayout" extends="plainLayout">
-        <put-attribute name="heading" value="/WEB-INF/tiles/template/heading.jsp" />
+    <definition name="baseTile" extends="plainLayout">
+        <put-attribute name="menuUser" value="/WEB-INF/tiles/template/menuUser.jsp" />
+    </definition>
+
+    <definition name="homeTile" extends="baseTile">
         <put-attribute name="searchBar" value="/WEB-INF/tiles/template/searchBar.jsp" />
-    </definition>
-
-    <definition name="tileGuest" extends="baseLayout">
-        <put-attribute name="title" value="Borroom - zarejestruj się by dodać przedmiot" />
-    </definition>
-
-    <definition name="tileUser" extends="baseLayout">
-        <put-attribute name="userHeader" value="/WEB-INF/tiles/template/userHeader.jsp" />
-    </definition>
-
-    <definition name="homeGuest" extends="tileGuest">
-        <put-attribute name="content" value="/WEB-INF/jsp/main.jsp" />
-    </definition>
-
-    <definition name="homeUser" extends="tileUser">
-        <put-attribute name="content" value="/WEB-INF/jsp/main.jsp" />
+        <put-attribute name="content" value="/WEB-INF/jsp/main.jsp"/>
     </definition>
 
     <definition name="login" extends="plainLayout">
         <put-attribute name="title" value="Borroom - logowanie" />
-        <put-attribute name="userHeader" value="/WEB-INF/tiles/template/registerInfo.jsp" />
+        <put-attribute name="searchBar" value="/WEB-INF/tiles/template/registerInfo.jsp" />
         <put-attribute name="content" value="/WEB-INF/jsp/login.jsp" />
     </definition>
 
-    <definition name="loaned" extends="tileUser">
+    <definition name="loaned" extends="baseTile">
         <put-attribute name="title" value="Wypożyczane" />
         <put-attribute name="content" value="/WEB-INF/jsp/loaned.jsp" />
     </definition>
 
-    <definition name="myAds" extends="tileUser">
+    <definition name="myAds" extends="baseTile">
         <put-attribute name="title" value="Moje ogłoszenia" />
         <put-attribute name="content" value="/WEB-INF/jsp/myAds.jsp" />
     </definition>
 
-    <definition name="notifications" extends="tileUser">
+    <definition name="notifications" extends="baseTile">
         <put-attribute name="title" value="Notyfikacje" />
         <put-attribute name="content" value="/WEB-INF/jsp/notifications.jsp" />
     </definition>
 
-    <definition name="observed" extends="tileUser">
+    <definition name="observed" extends="baseTile">
         <put-attribute name="title" value="Obserwowane" />
         <put-attribute name="content" value="/WEB-INF/jsp/observed.jsp" />
     </definition>

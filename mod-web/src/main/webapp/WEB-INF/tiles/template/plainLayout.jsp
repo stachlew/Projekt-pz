@@ -2,6 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+
 <!DOCTYPE html>
 
 <html>
@@ -27,12 +29,25 @@
 <body>
 
 <div class="container">
-    <div id="header" class="row ">
-        <tiles:insertAttribute name="heading" />
+    <div id="i18Bar" class="row ">
+        <div class="pull-right" style="padding-right: 10px">
+            <a href="?language=pl">
+                <img src="<c:url value="/resource/image/icon/flag_pl.png"></c:url>" class="img-rounded">
+            </a>
+            |
+            <a href="?language=en">
+                <img src="<c:url value="/resource/image/icon/flag_en.png"></c:url>" class="img-rounded">
+            </a>
+        </div>
     </div>
 
-    <div id="userHeader " class="row">
-        <tiles:insertAttribute name="userHeader" />
+    <div id="header" class="row ">
+        <sec:authorize access="hasRole('ROLE_USER')"><tiles:insertAttribute name="headingUser" /></sec:authorize>
+        <sec:authorize access="hasRole('ROLE_ANONYMOUS')"><tiles:insertAttribute name="headingGuest" /></sec:authorize>
+    </div>
+
+    <div id="menuUser " class="row">
+        <sec:authorize access="hasRole('ROLE_USER')"><tiles:insertAttribute name="menuUser" /></sec:authorize>
     </div>
 
     <div id="searchBar" class="row">
@@ -55,4 +70,3 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
 </html>
-

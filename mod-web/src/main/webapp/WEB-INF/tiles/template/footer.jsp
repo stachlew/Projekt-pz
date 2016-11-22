@@ -3,8 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="well well-sm">
-    Treść stopki strony
+    <spring:message code="footer.content"/>
 </div>
 <div class="reserved">
-    2016 Reserved
+    <spring:message code="footer.bottom"/>
 </div>

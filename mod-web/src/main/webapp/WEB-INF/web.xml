@@ -7,7 +7,11 @@
         <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
         <init-param>
             <param-name>contextConfigLocation</param-name>
-            <param-value>WEB-INF/spring/webcontext/DispatcherServlet.xml , WEB-INF/spring/webcontext/SpringSecurity.xml , WEB-INF/spring/webcontext/JpaConfiguration.xml </param-value>
+            <param-value>
+                WEB-INF/spring/webcontext/DispatcherServlet.xml
+                WEB-INF/spring/webcontext/SpringSecurity.xml
+                WEB-INF/spring/webcontext/JpaConfiguration.xml
+            </param-value>
         </init-param>
     </servlet>
 
@@ -15,6 +19,7 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
