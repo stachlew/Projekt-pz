@@ -6,7 +6,7 @@
     <ul class="nav nav-justified">
         <li role="presentation">
             <h4>
-                <a href="/#">
+                <a href="#/">
                     <img src="<c:url value="/resource/image/logoBorroomMini.png"></c:url>" class="img-rounded">
                 </a>
             </h4>

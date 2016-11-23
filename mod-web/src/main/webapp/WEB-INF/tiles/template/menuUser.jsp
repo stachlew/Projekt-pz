@@ -9,7 +9,7 @@
     </div>
     <ul class="nav nav-justified">
         <li role="presentation">
-            <a href="#" class="btn btn-default" role="button">
+            <a href="#/" class="btn btn-default" role="button">
                 <spring:message code="userHeader.search"/>
             </a>
         </li>

@@ -16,6 +16,11 @@ public class HelloController {
         return "homePage";
     }
 
+    @RequestMapping("/errorPage")
+    public String errorPage( Model model){
+        return "errorPage";
+    }
+
     @RequestMapping("/main")
     public String mainContent( Model model){
         return "main";

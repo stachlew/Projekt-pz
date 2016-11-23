@@ -49,6 +49,8 @@ myApp.config(function($routeProvider){
             controller: 'registerController'
         })
 
+        .otherwise({templateUrl:'errorPage'});
+
 });
 
 myApp.controller('siteController',['$scope','$log','$cookies',function ($scope,$log,$cookies) {
