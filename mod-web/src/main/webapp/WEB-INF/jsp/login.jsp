@@ -2,6 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"  %>
+<script type="text/javascript">
+    if(typeof appModule === 'undefined'){
+        document.location.href="/";
+    }
+</script>
 
 <div class="well well-sm">
     <p class="text-primary text-center">

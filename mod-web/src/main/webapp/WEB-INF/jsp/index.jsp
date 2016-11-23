@@ -8,8 +8,9 @@
 
 <html>
 <head>
-    <title><tiles:insertAttribute name="title" /></title>
     <meta charset="utf-8" />
+    <title><tiles:insertAttribute name="title" /></title>
+    <base href="/">
     <link rel="stylesheet" href="resource/css/style.css" type="text/css" />
     <link rel="stylesheet" href="resource/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>

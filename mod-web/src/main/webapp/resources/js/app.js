@@ -1,9 +1,8 @@
 var myApp = angular.module('myApp',['ngRoute','ngCookies']);
 
-myApp.config(function($routeProvider){
+myApp.config(function($routeProvider, $locationProvider){
 
     $routeProvider
-
         .when('/',{
             templateUrl: 'main',
             controller: 'mainController'
@@ -50,6 +49,7 @@ myApp.config(function($routeProvider){
         })
 
         .otherwise({templateUrl:'errorPage'});
+
 
 });
 
