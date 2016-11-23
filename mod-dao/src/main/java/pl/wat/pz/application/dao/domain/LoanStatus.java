@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Status wypożyczenia
  */
 @Entity
+@Table(name = "loan_status")
 public class LoanStatus {
     @Id
     @Column(name = "id_loan_status",length = 3)

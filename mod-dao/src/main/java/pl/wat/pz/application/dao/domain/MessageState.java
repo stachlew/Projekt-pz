@@ -6,6 +6,7 @@ import javax.persistence.*;
  * Created by DELL on 2016-11-23.
  */
 @Entity
+@Table(name = "message_state")
 public class MessageState {
 
     @Id
