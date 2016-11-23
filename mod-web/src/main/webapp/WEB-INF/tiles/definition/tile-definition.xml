@@ -3,49 +3,13 @@
         "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-    <definition name="plainLayout" template="/WEB-INF/tiles/template/plainLayout.jsp">
+    <definition name="homePage" template="/WEB-INF/jsp/index.jsp">
         <put-attribute name="title" value="Borroom" />
         <put-attribute name="headingGuest" value="/WEB-INF/tiles/template/headingGuest.jsp" />
         <put-attribute name="headingUser" value="/WEB-INF/tiles/template/headingUser.jsp" />
-        <put-attribute name="searchBar" value="" />
-        <put-attribute name="menuUser" value="" />
+        <put-attribute name="menuUser" value="/WEB-INF/tiles/template/menuUser.jsp" />
         <put-attribute name="content" value="" />
         <put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
-    </definition>
-
-    <definition name="baseTile" extends="plainLayout">
-        <put-attribute name="menuUser" value="/WEB-INF/tiles/template/menuUser.jsp" />
-    </definition>
-
-    <definition name="homeTile" extends="baseTile">
-        <put-attribute name="searchBar" value="/WEB-INF/tiles/template/searchBar.jsp" />
-        <put-attribute name="content" value="/WEB-INF/jsp/main.jsp"/>
-    </definition>
-
-    <definition name="login" extends="plainLayout">
-        <put-attribute name="title" value="Borroom - logowanie" />
-        <put-attribute name="searchBar" value="/WEB-INF/tiles/template/registerInfo.jsp" />
-        <put-attribute name="content" value="/WEB-INF/jsp/login.jsp" />
-    </definition>
-
-    <definition name="loaned" extends="baseTile">
-        <put-attribute name="title" value="Wypożyczane" />
-        <put-attribute name="content" value="/WEB-INF/jsp/loaned.jsp" />
-    </definition>
-
-    <definition name="myAds" extends="baseTile">
-        <put-attribute name="title" value="Moje ogłoszenia" />
-        <put-attribute name="content" value="/WEB-INF/jsp/myAds.jsp" />
-    </definition>
-
-    <definition name="notifications" extends="baseTile">
-        <put-attribute name="title" value="Notyfikacje" />
-        <put-attribute name="content" value="/WEB-INF/jsp/notifications.jsp" />
-    </definition>
-
-    <definition name="observed" extends="baseTile">
-        <put-attribute name="title" value="Obserwowane" />
-        <put-attribute name="content" value="/WEB-INF/jsp/observed.jsp" />
     </definition>
 
 

@@ -11,14 +11,39 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class HelloController {
 
-       @RequestMapping("/")
-    public String mainPage( Model model, HttpServletResponse response,
+    @RequestMapping("/")
+    public String homePage( Model model, HttpServletResponse response,
                             @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername
                             )
     {
         model.addAttribute("username", cookieUsername);
-        return "homeTile";
+        return "homePage";
     }
+
+    @RequestMapping("/main")
+    public String mainContent( Model model, HttpServletResponse response,
+                            @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername
+    )
+    {
+        model.addAttribute("username", cookieUsername);
+        return "main";
+    }
+
+    @RequestMapping("/addItem")
+    public String userAddItem( Model model, HttpServletResponse response,
+                               @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername
+    )
+    {
+        model.addAttribute("username", cookieUsername);
+        return "addItem";
+    }
+
+    @RequestMapping("/register")
+    public String register(Model model)
+    {
+        return "register";
+    }
+
 
     @RequestMapping("/loaned")
     public String userLoaned(Model model,

@@ -34,7 +34,7 @@ public class LoginController {
     @RequestMapping(value="/loginfailed", method = RequestMethod.GET)
     public String loginerror(Model model) {
         model.addAttribute("error", "true");
-        return "login";
+        return "redirect:/#login";
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
@@ -44,7 +44,7 @@ public class LoginController {
             new SecurityContextLogoutHandler().logout(request, response, auth);
             deleteCookiesFromList(request,response);
         }
-        return "redirect:/login";
+        return "redirect:/#login";
     }
 
     private void deleteCookiesFromList(HttpServletRequest request, HttpServletResponse response) {

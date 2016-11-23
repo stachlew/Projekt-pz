@@ -3,6 +3,32 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="well well-sm">
+    <div style="overflow: hidden">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-5">
+                    <label class ="myLabel" for="what">
+                        <spring:message code="searchBar.what"/>
+                    </label>
+                    <input class="form-control" id="what" type="text">
+                </div>
+                <div class="col-sm-5">
+                    <label class ="myLabel" for="where">
+                        <spring:message code="searchBar.where"/>
+                    </label>
+                    <input class="form-control" id="where" type="text">
+                </div>
+                <div class="col-sm-2">
+                    <label class ="myLabel" for="search"> &nbsp </label>
+                    <button type="submit" class="btn btn-default btn-block"  id="search">
+                        <spring:message code="searchBar.search"/>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="well well-sm">
 
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi lacus metus, ultrices at ante at, volutpat tincidunt metus. Suspendisse sed enim est. Donec consequat nibh ut eros condimentum, sit amet suscipit justo maximus. Donec luctus, ligula in eleifend luctus, ex mauris mattis metus, sed laoreet mauris sapien vitae nisl. Nulla quis venenatis tortor. Praesent venenatis id arcu eu lacinia. Curabitur nec sodales augue, ut consequat eros. Mauris dui nulla, gravida a ex ut, fringilla hendrerit nisl. Aenean pharetra mi a mi ultrices rutrum. Nullam nibh nisi, pulvinar ac tempus vitae, eleifend nec nulla. Donec at vestibulum ipsum, quis bibendum quam. Suspendisse laoreet lacus vel viverra tempor. Proin id luctus arcu, non dignissim risus. Etiam non blandit erat. Maecenas aliquet, libero vitae pharetra tristique, sapien lorem sodales sapien, et hendrerit lectus justo eu purus.
 

@@ -3,9 +3,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="well well-sm">
-    <p class="text-primary text-center">
-        <a href="/register" style="text-decorations:none; color:inherit;">
-            <spring:message code="registerInfo.content"/>
-        </a>
-    </p>
+    Do przycisku Rejestracja
 </div>

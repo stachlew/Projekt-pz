@@ -17,7 +17,7 @@
         <li role="presentation"> </li>
 
         <li role="presentation">
-            <a href="/#" class="btn btn-default btn-block" role="button">
+            <a href="#/addItem" class="btn btn-default btn-block" role="button">
                 <spring:message code="heading.button.addItem"/>
             </a>
         </li>
@@ -31,7 +31,7 @@
         </li>
 
         <li role="presentation">
-            <a href="/login" class="btn btn-default btn-block" role="button">
+            <a href="#/login" class="btn btn-default btn-block" role="button">
                 <spring:message code="heading.button.login"/>
             </a>
         </li>
