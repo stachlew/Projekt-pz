@@ -31,10 +31,11 @@ http://www.springframework.org/schema/security/spring-security.xsd
 
     <security:authentication-manager>
         <security:authentication-provider user-service-ref="userDetailsService">
+            <security:password-encoder ref="passwordEncoder" />
         </security:authentication-provider>
     </security:authentication-manager>
 
     <bean id="userDetailsService"               class="pl.wat.pz.application.logic.serviceImpl.UserDetailsServiceImpl"/>
     <bean id="myAuthenticationSuccessHandler"   class="pl.wat.pz.application.web.handler.MyAuthenticationSuccessHandler"/>
-
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </beans>

@@ -1,10 +1,11 @@
 package pl.wat.pz.application.dao.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import pl.wat.pz.application.dao.domain.User;
 
 /**
- * Created by DELL on 2016-11-13.
+ * Interfejs opart na JpaRepository dzięki czemu Spring Data sam dostarcza implementacji interfejsu
  */
-public interface UserRepository  {
-    User findByUsername(String username);
+public interface UserRepository extends JpaRepository<User,String> {
+
 }
