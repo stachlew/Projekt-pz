@@ -1,5 +1,7 @@
 package pl.wat.pz.application.dao.domain;
 
+import org.hibernate.annotations.ColumnDefault;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,10 +11,17 @@ import java.util.Set;
 public class User {
 
     @Id
+    @Column(length = 50)
     private String username;
+
+    @Column(length = 255, nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    @ColumnDefault(value = "1")
     private boolean enabled;
-    @ManyToMany
+
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "username"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<Role>(0);
 
@@ -35,10 +44,6 @@ public class User {
 
     public String getUsername() {
         return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getPassword() {

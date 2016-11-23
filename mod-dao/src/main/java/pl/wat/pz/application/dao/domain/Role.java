@@ -10,13 +10,25 @@ import java.util.Set;
 @Entity
 @Table(name = "role")
 public class Role {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(length = 2)
     private Long id;
+
+    @Column(length = 50, unique = true , nullable = false)
     private String name;
+
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
 
+    public Role() {
+    }
+
+    public Role(String name, Set<User> users) {
+        this.name = name;
+        this.users = users;
+    }
 
     public Long getId() {
         return id;
