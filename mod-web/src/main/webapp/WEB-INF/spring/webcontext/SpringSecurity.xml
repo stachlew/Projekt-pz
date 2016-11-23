@@ -22,7 +22,7 @@ http://www.springframework.org/schema/security/spring-security.xsd
 
         <security:form-login login-page="/login"
                              default-target-url="/"
-                             authentication-failure-url="/loginfailed"
+                             authentication-failure-url="/#/loginfailed"
                              authentication-success-handler-ref="myAuthenticationSuccessHandler"
         />
         <security:logout logout-url="/"/>

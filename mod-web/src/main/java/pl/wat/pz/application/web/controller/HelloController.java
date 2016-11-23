@@ -12,29 +12,17 @@ import javax.servlet.http.HttpServletResponse;
 public class HelloController {
 
     @RequestMapping("/")
-    public String homePage( Model model, HttpServletResponse response,
-                            @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername
-                            )
-    {
-        model.addAttribute("username", cookieUsername);
+    public String homePage( Model model){
         return "homePage";
     }
 
     @RequestMapping("/main")
-    public String mainContent( Model model, HttpServletResponse response,
-                            @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername
-    )
-    {
-        model.addAttribute("username", cookieUsername);
+    public String mainContent( Model model){
         return "main";
     }
 
     @RequestMapping("/addItem")
-    public String userAddItem( Model model, HttpServletResponse response,
-                               @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername
-    )
-    {
-        model.addAttribute("username", cookieUsername);
+    public String userAddItem( Model model){
         return "addItem";
     }
 
@@ -46,34 +34,22 @@ public class HelloController {
 
 
     @RequestMapping("/loaned")
-    public String userLoaned(Model model,
-           @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername)
-    {
-        model.addAttribute("username", cookieUsername);
+    public String userLoaned(Model model){
         return "loaned";
     }
 
     @RequestMapping("/myAds")
-    public String userMyAds(Model model,
-           @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername)
-    {
-        model.addAttribute("username", cookieUsername);
+    public String userMyAds(Model model){
         return "myAds";
     }
 
     @RequestMapping("/notifications")
-    public String userNotifications(Model model,
-           @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername)
-    {
-        model.addAttribute("username", cookieUsername);
+    public String userNotifications(Model model){
         return "notifications";
     }
 
     @RequestMapping("/observed")
-    public String userObserved(Model model,
-           @CookieValue(value = "cookieUsername", defaultValue = "Guest") String cookieUsername)
-    {
-        model.addAttribute("username", cookieUsername);
+    public String userObserved(Model model)    {
         return "observed";
     }
 

@@ -34,8 +34,9 @@ public class LoginController {
     @RequestMapping(value="/loginfailed", method = RequestMethod.GET)
     public String loginerror(Model model) {
         model.addAttribute("error", "true");
-        return "redirect:/#login";
+        return "login";
     }
+
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logout (HttpServletRequest request, HttpServletResponse response) {

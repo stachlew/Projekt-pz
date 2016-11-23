@@ -5,7 +5,7 @@
 <div class="well well-sm">
     <div class ="userInfo">
         <spring:message code="userHeader.loggedAs"/>
-        ${username}
+        {{userName}}
     </div>
     <ul class="nav nav-justified">
         <li role="presentation">

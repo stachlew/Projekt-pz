@@ -1,4 +1,4 @@
-var myApp = angular.module('myApp',['ngRoute']);
+var myApp = angular.module('myApp',['ngRoute','ngCookies']);
 
 myApp.config(function($routeProvider){
 
@@ -39,6 +39,11 @@ myApp.config(function($routeProvider){
             controller: 'loginController'
         })
 
+        .when('/loginfailed',{
+            templateUrl: 'loginfailed',
+            controller: 'loginController'
+        })
+
         .when('/register',{
             templateUrl: 'register',
             controller: 'registerController'
@@ -46,9 +51,13 @@ myApp.config(function($routeProvider){
 
 });
 
+myApp.controller('siteController',['$scope','$log','$cookies',function ($scope,$log,$cookies) {
+    $log.info("siteController");
+    $scope.userName = $cookies.get('cookieUsername');
+}]);
+
 myApp.controller('mainController',['$scope','$location', '$log', function($scope,$location,$log){
     $log.info("mainController");
-
 }]);
 
 myApp.controller('myAdsController',['$scope','$location', '$log', function($scope,$location,$log){
