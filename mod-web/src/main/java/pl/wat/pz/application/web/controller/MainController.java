@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
-public class HelloController {
+public class MainController {
 
     @RequestMapping("/")
     public String homePage( Model model){
@@ -21,9 +21,9 @@ public class HelloController {
         return "errorPage";
     }
 
-    @RequestMapping("/main")
+    @RequestMapping("/home")
     public String mainContent( Model model){
-        return "main";
+        return "home";
     }
 
     @RequestMapping("/addItem")
@@ -36,7 +36,6 @@ public class HelloController {
     {
         return "register";
     }
-
 
     @RequestMapping("/loaned")
     public String userLoaned(Model model){

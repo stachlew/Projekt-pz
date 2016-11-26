@@ -19,19 +19,32 @@
     <script	src="//code.angularjs.org/1.4.1/angular.min.js"></script>
     <script	src="//code.angularjs.org/1.4.1/angular-route.js"></script>
     <script src="//code.angularjs.org/1.4.1/angular-cookies.js"></script>
-    <script src="/resource/js/app.js"></script>
+    <script src="/resource/js/mainModule.js"></script>
+    <script src="/resource/js/controller/siteController.js"></script>
+    <script src="/resource/js/controller/addItemController.js"></script>
+    <script src="/resource/js/controller/homeController.js"></script>
+    <script src="/resource/js/controller/loanedController.js"></script>
+    <script src="/resource/js/controller/loginController.js"></script>
+    <script src="/resource/js/controller/myAdsController.js"></script>
+    <script src="/resource/js/controller/notificationsController.js"></script>
+    <script src="/resource/js/controller/observedController.js"></script>
+    <script src="/resource/js/controller/registerController.js"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+
     <![endif]-->
 </head>
 
 <body>
 
-<div class="container" ng-app="myApp" ng-controller="siteController">
+<div class="container" ng-app="mainModule" ng-controller="siteController">
     <div id="i18Bar" class="row ">
         <div class="pull-right" style="padding-right: 10px">
             <a href="?language=pl">
