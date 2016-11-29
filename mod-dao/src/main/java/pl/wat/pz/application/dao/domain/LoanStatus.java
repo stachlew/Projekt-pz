@@ -13,14 +13,18 @@ public class LoanStatus {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idLoanStatus;
 
-    @Column(length = 40,nullable = false)
-    private String name;
+    @Column(name = "name_pl",length = 40,nullable = false)
+    private String namePL;
+
+    @Column(name = "name_eng",length = 40,nullable = false)
+    private String nameENG;
 
     public LoanStatus() {
     }
 
-    public LoanStatus(String name) {
-        this.name = name;
+    public LoanStatus(String namePL, String nameENG) {
+        this.namePL = namePL;
+        this.nameENG = nameENG;
     }
 
     public long getIdLoanStatus() {
@@ -28,11 +32,19 @@ public class LoanStatus {
     }
 
 
-    public String getName() {
-        return name;
+    public String getNamePL() {
+        return namePL;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNamePL(String namePL) {
+        this.namePL = namePL;
+    }
+
+    public String getNameENG() {
+        return nameENG;
+    }
+
+    public void setNameENG(String nameENG) {
+        this.nameENG = nameENG;
     }
 }

@@ -46,6 +46,8 @@ public class Loan {
         this.idBorrower = idBorrower;
     }
 
+
+
     public long getIdLoan() {
         return idLoan;
     }

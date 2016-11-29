@@ -16,6 +16,9 @@ public class Advertisement {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idAdvertisement;
 
+    @Column(nullable = false)
+    private String title;
+
     @Column(name = "date_added",nullable = false)
     @ColumnDefault(value = "sysdate")
     private Timestamp dateAdded;
@@ -48,7 +51,8 @@ public class Advertisement {
     @JoinColumn(name = "id_Item_Category")
     private ItemCategory idItemCategory;
 
-    public Advertisement(Timestamp dateAdded, double bailValue, double chargePerDay, String description, byte[] image, String city, Region idRegion, User idUser, ItemCategory idItemCategory) {
+    public Advertisement(String title,Timestamp dateAdded, double bailValue, double chargePerDay, String description, byte[] image, String city, Region idRegion, User idUser, ItemCategory idItemCategory) {
+        this.title=title;
         this.dateAdded = dateAdded;
         this.bailValue = bailValue;
         this.chargePerDay = chargePerDay;
@@ -121,6 +125,25 @@ public class Advertisement {
         return idUser;
     }
 
+    public void setIdAdvertisement(long idAdvertisement) {
+        this.idAdvertisement = idAdvertisement;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setDateAdded(Timestamp dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
+    }
 
     public ItemCategory getIdItemCategory() {
         return idItemCategory;

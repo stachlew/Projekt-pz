@@ -13,26 +13,39 @@ public class ItemCategory {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long idItemCategory;
 
-    @Column(length = 20,nullable = false,unique = true)
-    private String name;
+    @Column(name = "name_pl",length = 20,nullable = false,unique = true)
+    private String namePL;
+
+    @Column(name = "name_eng",length = 20,nullable = false,unique = true)
+    private String nameENG;
+
 
     public ItemCategory() {
     }
 
-    public ItemCategory(String name) {
-        this.name = name;
+    public ItemCategory(String namePL, String nameENG) {
+        this.namePL = namePL;
+        this.nameENG = nameENG;
     }
 
     public long getIdItemCategory() {
         return idItemCategory;
     }
 
-
-    public String getName() {
-        return name;
+    public String getNamePL() {
+        return namePL;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNamePL(String namePL) {
+        this.namePL = namePL;
     }
+
+    public String getNameENG() {
+        return nameENG;
+    }
+
+    public void setNameENG(String nameENG) {
+        this.nameENG = nameENG;
+    }
+
 }

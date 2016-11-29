@@ -104,6 +104,8 @@ public class UserDetailsServiceImpl implements UserDetailsService,pl.wat.pz.appl
         role.setName("ROLE_USER");
         roles.add(role);
         pl.wat.pz.application.dao.domain.User user = new pl.wat.pz.application.dao.domain.User(username,passwordEncoder.encode(password),true,roles);
+        pl.wat.pz.application.dao.domain.UserDetails details = new pl.wat.pz.application.dao.domain.UserDetails();
+        user.setDetails(details);
 
         return userRepository.save(user);
     }
