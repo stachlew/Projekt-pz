@@ -1,6 +1,7 @@
 package pl.wat.pz.application.logic.service;
 
 import pl.wat.pz.application.dao.domain.Advertisement;
+import pl.wat.pz.application.logic.intermediateClass.AdvertisementHeader;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
  */
 public interface AdvertisementService {
     List<Advertisement> findAll();
-    List<Advertisement> findAllAndSortOfLatest();
+    List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader();
     List<Advertisement> findAllByUsername(String username);
 
     Advertisement saveAdvertisement(Advertisement newAdvertisement);

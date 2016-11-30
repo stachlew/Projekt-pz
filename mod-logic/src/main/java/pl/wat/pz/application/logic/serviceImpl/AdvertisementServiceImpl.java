@@ -5,8 +5,10 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.repository.AdvertisementRepository;
+import pl.wat.pz.application.logic.intermediateClass.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -25,10 +27,15 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<Advertisement> findAllAndSortOfLatest() {
+    public List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader() {
         List<Advertisement> advertisementListSorted = advertisementRepository.findAll(new Sort(Sort.Direction.DESC, "dateAdded"));
-        return advertisementListSorted;
+        List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
+        for (Advertisement adv:advertisementListSorted) {
+            advertisementHeaders.add(new AdvertisementHeader(adv));
+        }
+        return advertisementHeaders;
     }
+
 
     @Override
     public List<Advertisement> findAllByUsername(String username) {
