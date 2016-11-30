@@ -10,9 +10,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.wat.pz.application.dao.domain.Role;
-import org.springframework.security.core.userdetails.UserDetailsService;
+
 
 import pl.wat.pz.application.dao.repository.UserRepository;
+import pl.wat.pz.application.logic.service.UserDetailsService;
 
 
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ import java.util.Set;
  * Serwis umożliający komunikacje z bazą w celu pobrania lub dodania użytkownika
  */
 @Service("userDetailsService")
-public class UserDetailsServiceImpl implements UserDetailsService,pl.wat.pz.application.logic.service.UserDetailsService {
+public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
