@@ -1,4 +1,4 @@
-package pl.wat.pz.application.logic.intermediateClass;
+package pl.wat.pz.application.logic.intermediateClass.Advertisement;
 
 import pl.wat.pz.application.dao.domain.Advertisement;
 
@@ -13,6 +13,7 @@ public class AdvertisementHeader {
     private Timestamp dateAdded;
     private String username;
     private String regionName;
+    private byte[] image;
     private String categoryNamePL;
     private String categoryNameENG;
 
@@ -22,6 +23,7 @@ public class AdvertisementHeader {
         this.dateAdded=advertisement.getDateAdded();
         this.username=advertisement.getIdUser().getUsername();
         this.regionName=advertisement.getIdRegion().getName();
+        this.image=advertisement.getImage();
         this.categoryNamePL=advertisement.getIdItemCategory().getNamePL();
         this.categoryNameENG=advertisement.getIdItemCategory().getNameENG();
     }
@@ -52,5 +54,9 @@ public class AdvertisementHeader {
 
     public String getCategoryNameENG() {
         return categoryNameENG;
+    }
+
+    public byte[] getImage() {
+        return image;
     }
 }

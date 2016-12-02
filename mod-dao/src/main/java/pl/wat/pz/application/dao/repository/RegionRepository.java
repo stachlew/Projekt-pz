@@ -7,4 +7,5 @@ import pl.wat.pz.application.dao.domain.Region;
  * Created by DELL on 2016-11-23.
  */
 public interface RegionRepository extends JpaRepository<Region,Long> {
+    Region findOneByName(String name);
 }

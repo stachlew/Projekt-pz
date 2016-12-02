@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.User;
 import pl.wat.pz.application.dao.domain.Role;
+import pl.wat.pz.application.logic.intermediateClass.User.UserAccountDetails;
+import pl.wat.pz.application.logic.intermediateClass.User.UserSecurity;
 
 
 import java.util.List;
@@ -16,5 +18,5 @@ public interface UserDetailsService extends org.springframework.security.core.us
 
     org.springframework.security.core.userdetails.User buildUserForAuthentication(pl.wat.pz.application.dao.domain.User user, List<GrantedAuthority> authorities);
     List<GrantedAuthority> buildUserAuthority(Set<Role> userRoles);
-    pl.wat.pz.application.dao.domain.User registerNewUserAccount(String username,String password);
+    pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserSecurity userSecurity, UserAccountDetails userAccountDetails);
 }

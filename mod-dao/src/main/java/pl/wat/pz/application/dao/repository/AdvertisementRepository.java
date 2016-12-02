@@ -15,6 +15,13 @@ import java.util.List;
 
 @Transactional(readOnly = true)
 public interface AdvertisementRepository extends JpaRepository<Advertisement,Long> {
+
+    //---------------------Selects--------------//
     @Query("select a from Advertisement a where a.idUser.username=?1")
     List<Advertisement> findByUsername(String username);
+
+
+
+    //---------------------Updates============//
+
 }

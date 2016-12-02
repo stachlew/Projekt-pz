@@ -12,7 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.wat.pz.application.dao.domain.Role;
 
 
+import pl.wat.pz.application.dao.repository.RegionRepository;
+import pl.wat.pz.application.dao.repository.RoleRepository;
 import pl.wat.pz.application.dao.repository.UserRepository;
+import pl.wat.pz.application.logic.intermediateClass.User.UserAccountDetails;
+import pl.wat.pz.application.logic.intermediateClass.User.UserSecurity;
 import pl.wat.pz.application.logic.service.UserDetailsService;
 
 
@@ -20,6 +24,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static java.lang.Boolean.TRUE;
 
 /**
  * Serwis umożliający komunikacje z bazą w celu pobrania lub dodania użytkownika
@@ -31,6 +37,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private RegionRepository regionRepository;
+    @Autowired
+    private RoleRepository roleRepository;
 
     /**
      * Implementacja metody pochodzącej z interfejsu UserDetailsService
@@ -86,29 +96,21 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return Result;
     }
 
-    /**
-     * Metoda testowa umożliwiająca zapis użytkownika do bazy z użyciem encodera
-     *
-     *
-     * do zmiany po utworzeniu formularza produkującego obiekty User
-     *
-     *
-     * @param username
-     * @param password
-     * @return
-     */
     @Override
-    public pl.wat.pz.application.dao.domain.User registerNewUserAccount(String username, String password) {
-        Set<Role> roles = new HashSet<>();
-        Role role = new Role();
-        role.setId(1L);
-        role.setName("ROLE_USER");
-        roles.add(role);
-        pl.wat.pz.application.dao.domain.User user = new pl.wat.pz.application.dao.domain.User(username,passwordEncoder.encode(password),true,roles);
-        pl.wat.pz.application.dao.domain.UserDetails details = new pl.wat.pz.application.dao.domain.UserDetails();
-        user.setDetails(details);
+    public pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserSecurity userSecurity, UserAccountDetails userAccountDetails) {
+        pl.wat.pz.application.dao.domain.UserDetails userDetails = new  pl.wat.pz.application.dao.domain.UserDetails();
+        userDetails.setCity(userDetails.getCity());
+        userDetails.setMail(userDetails.getMail());
+        userDetails.setPhone(userDetails.getPhone());
+        userDetails.setIdRegion(regionRepository.findOneByName(userAccountDetails.getRegionName()));
 
+        Role role = roleRepository.findOneByName(userAccountDetails.getRoleName());
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        pl.wat.pz.application.dao.domain.User user = new pl.wat.pz.application.dao.domain.User(userSecurity.getUsername(),passwordEncoder.encode(userSecurity.getPassword()),TRUE,userDetails,roles);
         return userRepository.save(user);
     }
+
+
 
 }
