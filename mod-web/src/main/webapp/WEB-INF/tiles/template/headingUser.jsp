@@ -7,7 +7,7 @@
         <li role="presentation">
             <h4>
                 <a href="#/">
-                    <img src="<c:url value="/resources/image/logoBorroomMini.png"></c:url>" class="img-rounded">
+                    <img src="<c:url value="/resources/image/logoBorroomMiniTrans.png"></c:url>" class="img-rounded">
                 </a>
             </h4>
         </li>

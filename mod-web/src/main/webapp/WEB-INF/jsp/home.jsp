@@ -34,13 +34,13 @@
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
     <div class="flex-row row" ng-init="refreshHome()">
 
-        <div class="col-sm-3"  ng-repeat="ad in adsList" ng-click="goLink(ad.idAdvertisement)">
+        <div class="col-lg-3 col-sm-4 col-xs-6"  ng-repeat="ad in adsList" ng-click="goLink(ad.idAdvertisement)">
             <div class="thumbnail borromColour">
                 <div class="caption">
                     <img src="<c:url value="/resources/image/150.png"></c:url>" class="img-rounded">
-                    <h3>
+                    <h3><b>
                         {{ad.title}}
-                    </h3>
+                    </b></h3>
                     <p class="flex-text text-muted">
                         {{ad.regionName}}
                         </br>
