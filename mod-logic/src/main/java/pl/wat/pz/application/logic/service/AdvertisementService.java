@@ -11,11 +11,14 @@ import java.util.List;
  */
 public interface AdvertisementService {
     List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader();
+    List<AdvertisementHeader> findTopTenOfLatestAndConvertToAdvertisementHeader();
     List<AdvertisementHeader> findAllByUsernameAndConvertToAdvertisementHeader(String username);
     AdvertisementDetails findOneByIdAdvertisementAndConvertToAdvertisementDetails(Long idAdvertisement);
+
 
     void modifyAdvertisementWithAdvertisementDetails(AdvertisementDetails advertisementDetails);
 
     Advertisement saveAdvertisement(Advertisement newAdvertisement);
+
 
 }

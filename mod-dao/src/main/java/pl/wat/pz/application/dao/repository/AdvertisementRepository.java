@@ -20,6 +20,8 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement,Lon
     @Query("select a from Advertisement a where a.idUser.username=?1")
     List<Advertisement> findByUsername(String username);
 
+    @Query("select a from Advertisement a where ROWNUM <=10 order by a.dateAdded desc")
+    List<Advertisement> findTopTenOfLatest();
 
 
     //---------------------Updates============//

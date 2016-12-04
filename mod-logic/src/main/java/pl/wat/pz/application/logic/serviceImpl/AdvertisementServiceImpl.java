@@ -40,6 +40,16 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
+    public List<AdvertisementHeader> findTopTenOfLatestAndConvertToAdvertisementHeader() {
+        List<Advertisement> advertisementsTopTen = advertisementRepository.findTopTenOfLatest();
+        List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
+        for (Advertisement adv:advertisementsTopTen) {
+            advertisementHeaders.add(new AdvertisementHeader(adv));
+        }
+        return advertisementHeaders;
+    }
+
+    @Override
     public List<AdvertisementHeader> findAllByUsernameAndConvertToAdvertisementHeader(String username) {
         List<Advertisement> advertisementListByUsername= advertisementRepository.findByUsername(username);
         List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
