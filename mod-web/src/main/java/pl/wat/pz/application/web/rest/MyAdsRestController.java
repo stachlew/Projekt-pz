@@ -28,7 +28,7 @@ public class MyAdsRestController {
     @RequestMapping(value="/rest/usr/getMyAll", method= RequestMethod.GET)
     public @ResponseBody List<AdvertisementHeader> getMyAll(Authentication auth) {
         String username = auth.getName();
-        return advertisementService.findAllByUsernameAndConvertToAdvertisementHeader(username);
+        return advertisementService.findAllByUsername(username);
     }
 
 

@@ -34,25 +34,25 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     private ItemCategoryRepository itemCategoryRepository;
 
     @Override
-    public List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader() {
+    public List<AdvertisementHeader> findAllAndSortOfLatest() {
         List<Advertisement> advertisementListSorted = advertisementRepository.findAll(new Sort(Sort.Direction.DESC, "dateAdded"));
         return this.advertisementConvertToAdvertisementHeader(advertisementListSorted);
     }
 
     @Override
-    public List<AdvertisementHeader> findPageAndSortOfLatestAndConvertToAdvertisementHeader(int nrPage) {
+    public List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage) {
         Page<Advertisement> advertisementPage = advertisementRepository.findAll(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
         return this.advertisementConvertToAdvertisementHeader(advertisementPage.getContent());
     }
 
     @Override
-    public List<AdvertisementHeader> findAllByUsernameAndConvertToAdvertisementHeader(String username) {
+    public List<AdvertisementHeader> findAllByUsername(String username) {
         List<Advertisement> advertisementListByUsername= advertisementRepository.findByUsername(username);
         return this.advertisementConvertToAdvertisementHeader(advertisementListByUsername);
     }
 
     @Override
-    public AdvertisementDetails findOneByIdAdvertisementAndConvertToAdvertisementDetails(Long idAdvertisement) {
+    public AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement) {
         return new AdvertisementDetails(advertisementRepository.findOne(idAdvertisement));
 
     }

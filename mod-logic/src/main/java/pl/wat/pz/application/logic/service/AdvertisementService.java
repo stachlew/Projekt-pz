@@ -10,10 +10,10 @@ import java.util.List;
  * Created by DELL on 2016-11-30.
  */
 public interface AdvertisementService {
-    List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader();
-    List<AdvertisementHeader> findPageAndSortOfLatestAndConvertToAdvertisementHeader(int nrPage);
-    List<AdvertisementHeader> findAllByUsernameAndConvertToAdvertisementHeader(String username);
-    AdvertisementDetails findOneByIdAdvertisementAndConvertToAdvertisementDetails(Long idAdvertisement);
+    List<AdvertisementHeader> findAllAndSortOfLatest();
+    List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage);
+    List<AdvertisementHeader> findAllByUsername(String username);
+    AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement);
 
 
     void modifyAdvertisementWithAdvertisementDetails(AdvertisementDetails advertisementDetails);

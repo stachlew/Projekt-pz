@@ -18,7 +18,7 @@ public class HomeController {
 
     @RequestMapping(value="/rest/getLatest", method= RequestMethod.GET)
     public @ResponseBody List<AdvertisementHeader> getAll() {
-        return advertisementService.findPageAndSortOfLatestAndConvertToAdvertisementHeader(1);
+        return advertisementService.findPageAndSortOfLatest(1);
     }
 
 
