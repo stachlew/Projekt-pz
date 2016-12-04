@@ -40,12 +40,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<AdvertisementHeader> findTopTenOfLatestAndConvertToAdvertisementHeader() {
-        List<Advertisement> advertisementsTopTen = advertisementRepository.findTopEightOfLatest();
-        return this.advertisementConvertToAdvertisementHeader(advertisementsTopTen);
-    }
-
-    @Override
     public List<AdvertisementHeader> findPageAndSortOfLatestAndConvertToAdvertisementHeader(int nrPage) {
         Page<Advertisement> advertisementPage = advertisementRepository.findAll(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
         return this.advertisementConvertToAdvertisementHeader(advertisementPage.getContent());
