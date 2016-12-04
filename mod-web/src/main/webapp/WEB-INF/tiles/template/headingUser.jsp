@@ -7,7 +7,7 @@
         <li role="presentation">
             <h4>
                 <a href="#/">
-                    <img src="<c:url value="/resource/image/logoBorroomMini.png"></c:url>" class="img-rounded">
+                    <img src="<c:url value="/resources/image/logoBorroomMini.png"></c:url>" class="img-rounded">
                 </a>
             </h4>
         </li>
@@ -17,7 +17,7 @@
         <li role="presentation"> </li>
 
         <li role="presentation">
-            <a href="#/addItem" class="btn btn-default btn-block" role="button">
+            <a href="#/addItem" class="btn btn-default btn-block borromColour" role="button">
                 <spring:message code="heading.button.addItem"/>
             </a>
         </li>
@@ -31,7 +31,7 @@
         </li>
 
         <li role="presentation">
-            <a href="/logout" class="btn btn-default btn-block" role="button">
+            <a href="/logout" class="btn btn-default btn-block borromColour" role="button">
                 <spring:message code="heading.button.logout"/>
             </a>
         </li>

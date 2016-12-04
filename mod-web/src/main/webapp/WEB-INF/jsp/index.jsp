@@ -10,25 +10,26 @@
 <head>
     <meta charset="utf-8" />
     <title><tiles:insertAttribute name="title" /></title>
+    <link href="favicon.ico" rel="shortcut icon" >
     <base href="/">
-    <link rel="stylesheet" href="resource/css/style.css" type="text/css" />
-    <link rel="stylesheet" href="resource/css/font-awesome.min.css">
+    <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
+    <link rel="stylesheet" href="resources/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     <script	src="//code.angularjs.org/1.4.1/angular.min.js"></script>
     <script	src="//code.angularjs.org/1.4.1/angular-route.js"></script>
     <script src="//code.angularjs.org/1.4.1/angular-cookies.js"></script>
-    <script src="/resource/js/mainModule.js"></script>
-    <script src="/resource/js/controller/siteController.js"></script>
-    <script src="/resource/js/controller/addItemController.js"></script>
-    <script src="/resource/js/controller/homeController.js"></script>
-    <script src="/resource/js/controller/loanedController.js"></script>
-    <script src="/resource/js/controller/loginController.js"></script>
-    <script src="/resource/js/controller/myAdsController.js"></script>
-    <script src="/resource/js/controller/notificationsController.js"></script>
-    <script src="/resource/js/controller/observedController.js"></script>
-    <script src="/resource/js/controller/registerController.js"></script>
+    <script src="/resources/js/mainModule.js"></script>
+    <script src="/resources/js/controller/siteController.js"></script>
+    <script src="/resources/js/controller/addItemController.js"></script>
+    <script src="/resources/js/controller/homeController.js"></script>
+    <script src="/resources/js/controller/loanedController.js"></script>
+    <script src="/resources/js/controller/loginController.js"></script>
+    <script src="/resources/js/controller/myAdsController.js"></script>
+    <script src="/resources/js/controller/notificationsController.js"></script>
+    <script src="/resources/js/controller/observedController.js"></script>
+    <script src="/resources/js/controller/registerController.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -48,11 +49,11 @@
     <div id="i18Bar" class="row ">
         <div class="pull-right" style="padding-right: 10px">
             <a href="?language=pl">
-                <img src="<c:url value="/resource/image/icon/flag_pl.png"></c:url>" class="img-rounded">
+                <img src="<c:url value="/resources/image/icon/flag_pl.png"></c:url>" class="img-rounded">
             </a>
             |
             <a href="?language=en">
-                <img src="<c:url value="/resource/image/icon/flag_en.png"></c:url>" class="img-rounded">
+                <img src="<c:url value="/resources/image/icon/flag_en.png"></c:url>" class="img-rounded">
             </a>
         </div>
     </div>

@@ -11,7 +11,7 @@ function observedController($scope,$location,$log,$http){
     }
 
     $scope.refreshMyAds = function () {
-        $http.get('/rest/usr/getAll')
+        $http.get('/rest/usr/getMyAll')
             .then(
                 function (response) {
                     $scope.adsList=response.data;

@@ -25,9 +25,10 @@ public class MyAdsRestController {
         System.out.println("Jakies dzialanie, rowniez dla goscia");
     }
 
-    @RequestMapping(value="/rest/usr/getAll", method= RequestMethod.GET)
-    public @ResponseBody List<AdvertisementHeader> getAll() {
-        return advertisementService.findAllAndSortOfLatestAndConvertToAdvertisementHeader();
+    @RequestMapping(value="/rest/usr/getMyAll", method= RequestMethod.GET)
+    public @ResponseBody List<AdvertisementHeader> getMyAll(Authentication auth) {
+        String username = auth.getName();
+        return advertisementService.findAllByUsernameAndConvertToAdvertisementHeader(username);
     }
 
 

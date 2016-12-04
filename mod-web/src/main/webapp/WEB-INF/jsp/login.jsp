@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"  %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"  %>
-<script src="/resource/js/homeRedirect.js/"></script>
+<script src="/resources/js/homeRedirect.js/"></script>
 
 <div class="well well-sm">
     <p class="text-primary text-center">
@@ -36,7 +36,7 @@
                             <input class="form-control" placeholder="${loginPassword}" name='password'  type="password" value="">
                         </div>
                         <spring:message code="login.button.login" var="loginButtonLogin"/>
-                        <input class="btn btn-lg btn-default btn-block" type="submit" value="${loginButtonLogin}">
+                        <input class="btn btn-lg btn-default btn-block borromColour" type="submit" value="${loginButtonLogin}">
                         <input type="hidden" name="${_csrf.parameterName}"
                                value="${_csrf.token}" />
                     </fieldset>

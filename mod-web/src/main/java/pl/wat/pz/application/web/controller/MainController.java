@@ -57,4 +57,9 @@ public class MainController {
         return "observed";
     }
 
+    @RequestMapping("favicon.ico")
+    public String favicon(){
+        return "forward:/resources/image/icon/favicon.ico";
+    }
+
 }
