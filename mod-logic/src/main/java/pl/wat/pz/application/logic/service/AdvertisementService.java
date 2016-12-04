@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface AdvertisementService {
     List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader();
-    List<AdvertisementHeader> findTopTenOfLatestAndConvertToAdvertisementHeader();
+    List<AdvertisementHeader> findTopEightOfLatestAndConvertToAdvertisementHeader();
     List<AdvertisementHeader> findAllByUsernameAndConvertToAdvertisementHeader(String username);
     AdvertisementDetails findOneByIdAdvertisementAndConvertToAdvertisementDetails(Long idAdvertisement);
 

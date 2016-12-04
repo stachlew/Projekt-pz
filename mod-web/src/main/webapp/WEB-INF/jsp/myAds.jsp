@@ -4,9 +4,8 @@
 <script src="/resources/js/homeRedirect.js/"></script>
 
 <div class="well well-sm">
-    <a class="btn btn-default" role="button" ng-click="duplicate()">
-        Jakaś angularowa akcja związana z przyciskiem.
-    </a>
+    <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
+    <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
         <div class="list-group" ng-init="refreshMyAds()">
             <a class="list-group-item borromColour" ng-repeat="ad in adsList" ng-click="goLink(ad.idAdvertisement)" >
                 <div class="row">
