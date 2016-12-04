@@ -1,6 +1,8 @@
 package pl.wat.pz.application.logic.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Advertisement;
@@ -22,6 +24,8 @@ import java.util.List;
  */
 @Service("AdvertisementService")
 public class AdvertisementServiceImpl implements AdvertisementService {
+    static final int sizeOfPage = 8;
+
     @Autowired
     private AdvertisementRepository advertisementRepository;
     @Autowired
@@ -32,31 +36,25 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader() {
         List<Advertisement> advertisementListSorted = advertisementRepository.findAll(new Sort(Sort.Direction.DESC, "dateAdded"));
-        List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
-        for (Advertisement adv:advertisementListSorted) {
-            advertisementHeaders.add(new AdvertisementHeader(adv));
-        }
-        return advertisementHeaders;
+        return this.advertisementConvertToAdvertisementHeader(advertisementListSorted);
     }
 
     @Override
-    public List<AdvertisementHeader> findTopEightOfLatestAndConvertToAdvertisementHeader() {
+    public List<AdvertisementHeader> findTopTenOfLatestAndConvertToAdvertisementHeader() {
         List<Advertisement> advertisementsTopTen = advertisementRepository.findTopEightOfLatest();
-        List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
-        for (Advertisement adv:advertisementsTopTen) {
-            advertisementHeaders.add(new AdvertisementHeader(adv));
-        }
-        return advertisementHeaders;
+        return this.advertisementConvertToAdvertisementHeader(advertisementsTopTen);
+    }
+
+    @Override
+    public List<AdvertisementHeader> findPageAndSortOfLatestAndConvertToAdvertisementHeader(int nrPage) {
+        Page<Advertisement> advertisementPage = advertisementRepository.findAll(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
+        return this.advertisementConvertToAdvertisementHeader(advertisementPage.getContent());
     }
 
     @Override
     public List<AdvertisementHeader> findAllByUsernameAndConvertToAdvertisementHeader(String username) {
         List<Advertisement> advertisementListByUsername= advertisementRepository.findByUsername(username);
-        List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
-        for (Advertisement adv:advertisementListByUsername) {
-            advertisementHeaders.add(new AdvertisementHeader(adv));
-        }
-        return advertisementHeaders;
+        return this.advertisementConvertToAdvertisementHeader(advertisementListByUsername);
     }
 
     @Override
@@ -94,6 +92,24 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public Advertisement saveAdvertisement(Advertisement newAdvertisement) {
         return advertisementRepository.save(newAdvertisement);
+    }
+
+    @Override
+    public List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements) {
+        List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
+        for (Advertisement adv:advertisements) {
+            advertisementHeaders.add(new AdvertisementHeader(adv));
+        }
+        return advertisementHeaders;
+    }
+
+    @Override
+    public List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements) {
+        List<AdvertisementDetails> advertisementDetailses = new LinkedList<>();
+        for (Advertisement adv:advertisements) {
+            advertisementDetailses.add(new AdvertisementDetails(adv));
+        }
+        return advertisementDetailses;
     }
 
 

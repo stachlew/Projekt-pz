@@ -11,7 +11,8 @@ import java.util.List;
  */
 public interface AdvertisementService {
     List<AdvertisementHeader> findAllAndSortOfLatestAndConvertToAdvertisementHeader();
-    List<AdvertisementHeader> findTopEightOfLatestAndConvertToAdvertisementHeader();
+    List<AdvertisementHeader> findTopTenOfLatestAndConvertToAdvertisementHeader();
+    List<AdvertisementHeader> findPageAndSortOfLatestAndConvertToAdvertisementHeader(int nrPage);
     List<AdvertisementHeader> findAllByUsernameAndConvertToAdvertisementHeader(String username);
     AdvertisementDetails findOneByIdAdvertisementAndConvertToAdvertisementDetails(Long idAdvertisement);
 
@@ -19,6 +20,9 @@ public interface AdvertisementService {
     void modifyAdvertisementWithAdvertisementDetails(AdvertisementDetails advertisementDetails);
 
     Advertisement saveAdvertisement(Advertisement newAdvertisement);
+
+    List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements);
+    List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements);
 
 
 }

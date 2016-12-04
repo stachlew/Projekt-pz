@@ -25,6 +25,7 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement,Lon
     List<Advertisement> findTopEightOfLatest();
 
 
+
     //---------------------Updates============//
 
 }
