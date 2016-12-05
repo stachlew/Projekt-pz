@@ -30,6 +30,7 @@
     <script src="/resources/js/controller/notificationsController.js"></script>
     <script src="/resources/js/controller/observedController.js"></script>
     <script src="/resources/js/controller/registerController.js"></script>
+    <script src="/resources/js/controller/offerController.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

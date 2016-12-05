@@ -6,13 +6,10 @@ observedController.$inject=['$scope','$location', '$log','$http'];
 function observedController($scope,$location,$log,$http){
     $log.info("myAdsController");
     $scope.noAds = false;
-    $scope.goLink = function(linkId){
-        $location.path("/"+linkId);
-    }
 
     $scope.refreshMyAds = function () {
         $scope.loading = true;
-        $http.get('/rest/usr/getMyAll')
+        $http.get('/rest/usr/myOffer/getMyAll')
             .then(
                 function (response) {
                     $scope.loading = false;
@@ -28,6 +25,7 @@ function observedController($scope,$location,$log,$http){
             )
     }
 
+    /*
     $scope.duplicate = function () {
         $http.get('/rest/duplicate')
             .then(
@@ -39,5 +37,6 @@ function observedController($scope,$location,$log,$http){
                 }
             )
     }
+    */
 }
 

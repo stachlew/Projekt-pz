@@ -6,14 +6,9 @@ observedController.$inject=['$scope','$location', '$log','$http'];
 function observedController($scope,$location,$log,$http){
     $log.info("homeController");
 
-
-    $scope.goLink = function(linkId){
-        $location.path("/"+linkId);
-    }
-
     $scope.refreshHome = function () {
         $scope.loading = true;
-        $http.get('/rest/getLatest')
+        $http.get('/rest/pub/home/getLatest')
             .then(
                 function (response) {
                     $scope.loading = false;

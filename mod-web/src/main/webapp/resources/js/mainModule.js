@@ -48,6 +48,11 @@ mainModule.config(function($routeProvider, $locationProvider){
             controller: 'registerController'
         })
 
+        .when('/offer/:idOffer',{
+            templateUrl: 'offer',
+            controller: 'offerController'
+        })
+
         .otherwise({templateUrl:'errorPage'});
 
 

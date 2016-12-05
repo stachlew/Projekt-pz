@@ -53,7 +53,12 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement) {
-        return new AdvertisementDetails(advertisementRepository.findOne(idAdvertisement));
+        AdvertisementDetails advertisementDetails = null;
+        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        if(advertisement!=null)
+            advertisementDetails = new AdvertisementDetails(advertisement);
+
+        return advertisementDetails;
 
     }
 

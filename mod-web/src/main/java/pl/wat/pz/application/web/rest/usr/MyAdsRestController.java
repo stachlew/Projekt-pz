@@ -1,4 +1,4 @@
-package pl.wat.pz.application.web.rest;
+package pl.wat.pz.application.web.rest.usr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,18 +14,21 @@ import java.util.List;
 
 
 @Controller
+@RequestMapping(value = "rest/usr/myOffer")
 public class MyAdsRestController {
 
     @Autowired
     AdvertisementService advertisementService;
 
+    /*
     @RequestMapping(value="/rest/duplicate", method= RequestMethod.GET)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)   //wyslane zadanie, nie oczekujemy odpowiedzi
     public void duplicate(Authentication auth){
         System.out.println("Jakies dzialanie, rowniez dla goscia");
     }
+    */
 
-    @RequestMapping(value="/rest/usr/getMyAll", method= RequestMethod.GET)
+    @RequestMapping(value="/getMyAll", method= RequestMethod.GET)
     public @ResponseBody List<AdvertisementHeader> getMyAll(Authentication auth) {
         String username = auth.getName();
         return advertisementService.findAllByUsername(username);

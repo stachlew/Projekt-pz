@@ -7,7 +7,7 @@
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
     <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
         <div class="list-group" ng-init="refreshMyAds()">
-            <a class="list-group-item borromColour" ng-repeat="ad in adsList" ng-click="goLink(ad.idAdvertisement)" >
+            <a class="list-group-item borromColour" ng-repeat="ad in adsList" ng-click="goOffer(ad.idAdvertisement)" >
                 <div class="row">
                     <div class="col-md-1">
                         <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
@@ -27,7 +27,7 @@
                                 {{ad.categoryNamePL}}
                             </div>
                             <div class="col-md-2">
-                                {{ad.dateAdded}}
+                                {{ad.dateAdded | date: 'yyyy-MM-dd HH:mm'}}
                             </div>
                             <div class="col-md-1">
                                 {{ad.idAdvertisement}}

@@ -4,6 +4,7 @@ package pl.wat.pz.application.web.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,48 +13,51 @@ import javax.servlet.http.HttpServletResponse;
 public class MainController {
 
     @RequestMapping("/")
-    public String homePage( Model model){
+    public String homePage(){
         return "homePage";
     }
 
     @RequestMapping("/errorPage")
-    public String errorPage( Model model){
+    public String errorPage(){
         return "errorPage";
     }
 
     @RequestMapping("/home")
-    public String mainContent( Model model){
+    public String mainContent(){
         return "home";
     }
 
+    @RequestMapping("/offer")
+    public String offer(){ return "offer";    }
+
     @RequestMapping("/addItem")
-    public String userAddItem( Model model){
+    public String userAddItem(){
         return "addItem";
     }
 
     @RequestMapping("/register")
-    public String register(Model model)
+    public String register()
     {
         return "register";
     }
 
     @RequestMapping("/loaned")
-    public String userLoaned(Model model){
+    public String userLoaned(){
         return "loaned";
     }
 
     @RequestMapping("/myAds")
-    public String userMyAds(Model model){
+    public String userMyAds(){
         return "myAds";
     }
 
     @RequestMapping("/notifications")
-    public String userNotifications(Model model){
+    public String userNotifications(){
         return "notifications";
     }
 
     @RequestMapping("/observed")
-    public String userObserved(Model model)    {
+    public String userObserved()    {
         return "observed";
     }
 
