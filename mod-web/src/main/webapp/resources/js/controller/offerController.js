@@ -1,4 +1,4 @@
-angular.module('mainModule')
+angular.module('app')
     .controller('offerController',offerController);
 
 offerController.$inject=['$scope','$location', '$log','$routeParams','$http'];

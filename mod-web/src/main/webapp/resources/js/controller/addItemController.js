@@ -1,4 +1,4 @@
-angular.module('mainModule')
+angular.module('app')
     .controller('addItemController',observedController);
 
 observedController.$inject=['$scope','$location', '$log'];

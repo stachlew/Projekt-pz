@@ -12,6 +12,8 @@ public class UserAccountDetails {
     String city;
     String regionName;
 
+    public UserAccountDetails(){};
+
     public String getRoleName() {
         return roleName;
     }

@@ -1,4 +1,4 @@
-angular.module('mainModule')
+angular.module('app')
     .controller('myAdsController',observedController);
 
 observedController.$inject=['$scope','$location', '$log','$http'];

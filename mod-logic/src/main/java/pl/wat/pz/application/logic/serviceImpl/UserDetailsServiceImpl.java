@@ -91,13 +91,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             setAuths.add(new SimpleGrantedAuthority(userRole.getName()));
         }
 
-        List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
+        List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(setAuths);
 
-        return Result;
+        return result;
     }
 
     @Override
     public pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserSecurity userSecurity, UserAccountDetails userAccountDetails) {
+        //eksport atrybutow na bazodanowe
         pl.wat.pz.application.dao.domain.UserDetails userDetails = new  pl.wat.pz.application.dao.domain.UserDetails();
         userDetails.setCity(userDetails.getCity());
         userDetails.setMail(userDetails.getMail());
@@ -107,7 +108,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Role role = roleRepository.findOneByName(userAccountDetails.getRoleName());
         Set<Role> roles = new HashSet<>();
         roles.add(role);
+
+        //tworzenie usera wg atrybutow bazy
         pl.wat.pz.application.dao.domain.User user = new pl.wat.pz.application.dao.domain.User(userSecurity.getUsername(),passwordEncoder.encode(userSecurity.getPassword()),TRUE,userDetails,roles);
+
+        //zapis usera w bazie
         return userRepository.save(user);
     }
 

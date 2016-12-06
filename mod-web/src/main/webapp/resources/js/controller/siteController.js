@@ -1,4 +1,4 @@
-angular.module('mainModule')
+angular.module('app')
     .controller('siteController',observedController);
 
 observedController.$inject=['$scope','$location', '$log','$cookies'];

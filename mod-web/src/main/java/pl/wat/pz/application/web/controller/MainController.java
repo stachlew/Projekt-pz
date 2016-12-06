@@ -6,6 +6,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import javax.servlet.http.HttpServletResponse;
 
 
@@ -33,12 +35,6 @@ public class MainController {
     @RequestMapping("/addItem")
     public String userAddItem(){
         return "addItem";
-    }
-
-    @RequestMapping("/register")
-    public String register()
-    {
-        return "register";
     }
 
     @RequestMapping("/loaned")

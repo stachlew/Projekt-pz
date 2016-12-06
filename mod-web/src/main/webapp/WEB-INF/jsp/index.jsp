@@ -20,7 +20,7 @@
     <script	src="//code.angularjs.org/1.4.1/angular.min.js"></script>
     <script	src="//code.angularjs.org/1.4.1/angular-route.js"></script>
     <script src="//code.angularjs.org/1.4.1/angular-cookies.js"></script>
-    <script src="/resources/js/mainModule.js"></script>
+    <script src="/resources/js/app.js"></script>
     <script src="/resources/js/controller/siteController.js"></script>
     <script src="/resources/js/controller/addItemController.js"></script>
     <script src="/resources/js/controller/homeController.js"></script>
@@ -46,7 +46,7 @@
 
 <body>
 
-<div class="container" ng-app="mainModule" ng-controller="siteController">
+<div class="container" ng-app="app" ng-controller="siteController">
     <div id="i18Bar" class="row ">
         <div class="pull-right" style="padding-right: 10px">
             <a href="?language=pl">

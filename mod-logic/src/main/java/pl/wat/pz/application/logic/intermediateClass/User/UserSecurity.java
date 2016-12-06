@@ -7,6 +7,8 @@ public class UserSecurity {
     String username;
     String password;
 
+    public UserSecurity(){};
+
     public String getUsername() {
         return username;
     }

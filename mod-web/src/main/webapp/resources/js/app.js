@@ -1,6 +1,6 @@
-var mainModule = angular.module('mainModule',['ngRoute','ngCookies']);
+var app = angular.module('app',['ngRoute','ngCookies']);
 
-mainModule.config(function($routeProvider, $locationProvider){
+app.config(function($routeProvider, $locationProvider){
 
     $routeProvider
         .when('/',{
