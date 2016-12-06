@@ -15,8 +15,7 @@ import pl.wat.pz.application.dao.domain.Role;
 import pl.wat.pz.application.dao.repository.RegionRepository;
 import pl.wat.pz.application.dao.repository.RoleRepository;
 import pl.wat.pz.application.dao.repository.UserRepository;
-import pl.wat.pz.application.logic.intermediateClass.User.UserAccountDetails;
-import pl.wat.pz.application.logic.intermediateClass.User.UserSecurity;
+import pl.wat.pz.application.logic.intermediateClass.User.UserRegistered;
 import pl.wat.pz.application.logic.service.UserDetailsService;
 
 
@@ -91,28 +90,23 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             setAuths.add(new SimpleGrantedAuthority(userRole.getName()));
         }
 
-        List<GrantedAuthority> result = new ArrayList<GrantedAuthority>(setAuths);
+        List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 
-        return result;
+        return Result;
     }
 
     @Override
-    public pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserSecurity userSecurity, UserAccountDetails userAccountDetails) {
-        //eksport atrybutow na bazodanowe
+    public pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserRegistered userRegistered) {
         pl.wat.pz.application.dao.domain.UserDetails userDetails = new  pl.wat.pz.application.dao.domain.UserDetails();
-        userDetails.setCity(userDetails.getCity());
-        userDetails.setMail(userDetails.getMail());
-        userDetails.setPhone(userDetails.getPhone());
-        userDetails.setIdRegion(regionRepository.findOneByName(userAccountDetails.getRegionName()));
+        userDetails.setCity(userRegistered.getCity());
+        userDetails.setMail(userRegistered.getMail());
+        userDetails.setPhone(userRegistered.getPhone());
+        userDetails.setIdRegion(regionRepository.findOneByName(userRegistered.getRegionName()));
 
-        Role role = roleRepository.findOneByName(userAccountDetails.getRoleName());
+        Role role = roleRepository.findOneByName(userRegistered.getRoleName());
         Set<Role> roles = new HashSet<>();
         roles.add(role);
-
-        //tworzenie usera wg atrybutow bazy
-        pl.wat.pz.application.dao.domain.User user = new pl.wat.pz.application.dao.domain.User(userSecurity.getUsername(),passwordEncoder.encode(userSecurity.getPassword()),TRUE,userDetails,roles);
-
-        //zapis usera w bazie
+        pl.wat.pz.application.dao.domain.User user = new pl.wat.pz.application.dao.domain.User(userRegistered.getUsername(),passwordEncoder.encode(userRegistered.getPassword()),TRUE,userDetails,roles);
         return userRepository.save(user);
     }
 

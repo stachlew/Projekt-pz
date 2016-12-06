@@ -1,18 +1,45 @@
 package pl.wat.pz.application.logic.intermediateClass.User;
 
-import java.sql.Date;
-
 /**
- * Created by DELL on 2016-12-02.
+ * Created by DELL on 2016-12-06.
  */
-public class UserAccountDetails {
+public class UserRegistered {
+    String username;
+    String password;
     String roleName;
     String mail;
     String phone;
     String city;
     String regionName;
 
-    public UserAccountDetails(){};
+    public UserRegistered() {
+    }
+
+    public UserRegistered(String username, String password, String roleName, String mail, String phone, String city, String regionName) {
+        this.username = username;
+        this.password = password;
+        this.roleName = roleName;
+        this.mail = mail;
+        this.phone = phone;
+        this.city = city;
+        this.regionName = regionName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getRoleName() {
         return roleName;
