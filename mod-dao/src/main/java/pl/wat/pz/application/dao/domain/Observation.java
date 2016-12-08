@@ -21,6 +21,9 @@ public class Observation {
     @JoinColumn(name = "id_user")
     private User idUser;
 
+    public Observation() {
+    }
+
     public Observation(Advertisement idAdvertisement, User idUser) {
         this.idAdvertisement = idAdvertisement;
         this.idUser = idUser;

@@ -5,8 +5,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import pl.wat.pz.application.logic.intermediateClass.User.UserAccountDetails;
-import pl.wat.pz.application.logic.intermediateClass.User.UserSecurity;
 
 
 @Controller

@@ -4,9 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.User;
 import pl.wat.pz.application.dao.domain.Role;
-import pl.wat.pz.application.logic.intermediateClass.User.UserAccountDetails;
 import pl.wat.pz.application.logic.intermediateClass.User.UserRegistered;
-import pl.wat.pz.application.logic.intermediateClass.User.UserSecurity;
+
 
 
 import java.util.List;
