@@ -47,6 +47,7 @@
 <body>
 
 <div class="container" ng-app="app" ng-controller="siteController">
+    <%--<meta name="csrf-token" content="{{ csrf_token() }}">--%>
     <div id="i18Bar" class="row ">
         <div class="pull-right" style="padding-right: 10px">
             <a href="?language=pl">

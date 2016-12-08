@@ -1,9 +1,9 @@
 package pl.wat.pz.application.logic.service;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.User;
+
 import pl.wat.pz.application.dao.domain.Role;
+
 import pl.wat.pz.application.logic.intermediateClass.User.UserRegistered;
 
 

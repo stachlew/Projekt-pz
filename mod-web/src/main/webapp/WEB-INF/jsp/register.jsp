@@ -4,9 +4,10 @@
 <script src="/resources/js/homeRedirect.js/"></script>
 
 
-<div class="well well-sm" style="padding: 25px">
+<div class="well well-sm" ng-init="refresh()" style="padding: 25px">
 
-    <form name="form" ng-submit="register()" role="form" novalidate>
+    <form name="form" ng-submit="register(user)" role="form" novalidate>
+
         <div class="row"><%-- szeroki panel--%>
             <div class="col-md-5"><%-- lewo--%>
                 <h1>Register new account</h1>
@@ -14,21 +15,21 @@
 
                 <div class="form-group">
                     <label for="username">Username*</label>
-                    <input type="text" name="username" id="username" class="form-control" ng-model="username" ng-minlength="4" ng-maxlength="20" required />
+                    <input type="text" name="username" id="username" class="form-control" ng-model="user.username" ng-minlength="4" ng-maxlength="20" required />
                     <span ng-show="form.username.$touched && form.username.$error.required" class="help-block">Username name is required</span>
                     <span ng-show="form.username.$touched && form.username.$error.minlength || form.username.$error.maxlength" class="help-block">Username length 4-20</span>
                 </div>
 
                 <div class="form-group">
                     <label for="mail">E-mail*</label>
-                    <input type="email" name="mail" id="mail" class="form-control" ng-model="mail" required />
+                    <input type="email" name="mail" id="mail" class="form-control" ng-model="user.mail" required />
                     <span ng-show="form.mail.$touched && form.mail.$error.required" class="help-block">E-mail is required</span>
                     <span ng-show="form.mail.$touched && form.mail.$invalid && !form.mail.$error.required" class="help-block">E-mail is invalid</span>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password*</label>
-                    <input type="password" name="password" id="password" class="form-control" ng-model="password" ng-minlength="4" ng-maxlength="20" required />
+                    <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-minlength="4" ng-maxlength="20" required />
                     <span ng-show="form.password.$touched && form.password.$error.required" class="help-block">Password is required</span>
                     <span ng-show="form.password.$touched && form.password.$error.minlength || form.password.$error.maxlength" class="help-block">Password length 4-20</span>
                 </div>
@@ -54,28 +55,21 @@
                 <h4>(You can do this after registration)</h4>
 
                 <div class="form-group">
-                    <label for="region">Region</label>
-                    <input type="text" name="region" id="region" class="form-control" ng-model="region"/>
+                    <label for="reg1">Województwo</label>
+                    <select class="form-control" id="reg1" ng-model="user.region">
+                        <option  ng-repeat="region in regions" value="{{region}}">{{region}}</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
                     <label for="city">City</label>
-                    <input type="text" name="city" id="city" class="form-control" ng-model="city"/>
+                    <input type="text" name="city" id="city" class="form-control" ng-model="user.city"/>
                 </div>
 
                 <div class="form-group">
                     <label for="phone">Phone no</label>
-                    <input type="text" name="phone" id="phone" class="form-control" ng-model="phone"/>
+                    <input type="text" name="phone" id="phone" class="form-control" ng-model="user.phone"/>
                 </div>
-
-
-
-
-
-
-
-
-
 
             </div>
         </div>

@@ -103,7 +103,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         userDetails.setPhone(userRegistered.getPhone());
         userDetails.setIdRegion(regionRepository.findOneByName(userRegistered.getRegionName()));
 
-        Role role = roleRepository.findOneByName(userRegistered.getRoleName());
+        Role role = roleRepository.findOneByName("ROLE_USER");
         Set<Role> roles = new HashSet<>();
         roles.add(role);
         pl.wat.pz.application.dao.domain.User user = new pl.wat.pz.application.dao.domain.User(userRegistered.getUsername(),passwordEncoder.encode(userRegistered.getPassword()),TRUE,userDetails,roles);
