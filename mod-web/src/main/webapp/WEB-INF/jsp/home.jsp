@@ -5,31 +5,23 @@
 
 
 <div class="well well-sm">
-    <div style="overflow: hidden">
         <form class="form-horizontal">
-            <div class="form-group">
-                <div class="col-sm-5">
-                    <label class ="myLabel" for="what">
-                        <spring:message code="searchBar.what"/>
-                    </label>
-                    <input class="form-control" id="what" type="text">
+            <div class="form-group" style="margin-bottom: 0">
+                <div class="col-sm-6">
+                    <input class="form-control" id="what" type="text" placeholder="<spring:message code="searchBar.what"/>">
                 </div>
-                <div class="col-sm-5">
-                    <label class ="myLabel" for="where">
-                        <spring:message code="searchBar.where"/>
-                    </label>
-                    <input class="form-control" id="where" type="text">
+                <div class="col-sm-4">
+                    <input class="form-control" id="where" type="text" placeholder="<spring:message code="searchBar.where"/>">
                 </div>
                 <div class="col-sm-2">
-                    <label class ="myLabel" for="search"> &nbsp </label>
                     <button type="submit" class="btn btn-default btn-block borromColour"  id="search">
-                        <spring:message code="searchBar.search"/>
+                        <i class="glyphicon glyphicon-search"></i>
                     </button>
                 </div>
             </div>
         </form>
-    </div>
 </div>
+
 <div class="well well-sm">
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
     <div class="flex-row row" ng-init="refreshHome()">

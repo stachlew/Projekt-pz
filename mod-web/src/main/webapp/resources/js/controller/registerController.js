@@ -6,6 +6,11 @@ registerController.$inject=['$scope','$location', '$log','$http','$cookies'];
 function registerController($scope,$location,$log,$http,$cookies){
     $log.info("registerController");
     $scope.regions=[""];
+    $scope.formVis=true;
+    $scope.regOk=false;
+    $scope.regError=false;
+
+    $scope.regexNumber = '[0-9]*';
 
     $scope.refresh = function() {
         $http.get('/rest/pub/register/getRegions')
@@ -18,23 +23,20 @@ function registerController($scope,$location,$log,$http,$cookies){
                     console.log("Error: refreshRegister()");
                 }
             )
-    }
+    };
 
     $scope.register = function (user) {
+
         var newUser = {
             username : user.username,
             password : user.password,
             mail : user.mail,
-            region : user.region,
+            regionName : user.region,
             city : user.city,
             phone : user.phone
-        }
-
+        };
 
         $scope.csfr=$cookies.get('XSRF-TOKEN');
-        $log.info("USER"+newUser.username);
-
-
         var res = $http({
             method: 'POST',
             url: '/register/createUser',
@@ -43,13 +45,15 @@ function registerController($scope,$location,$log,$http,$cookies){
                 'X-CSRF-TOKEN': $scope.csfr,
                 'Content-Type': 'application/json'
             }
-        })
+        });
 
         res.success(function () {
-            $log.info("Udane");
+            $scope.regOk=true;
+            $scope.formVis=false;
         });
         res.error(function () {
-            $log.info("Nieudane");
+            $scope.regError=true;
+            $scope.formVis=false;
         });
     }
 }

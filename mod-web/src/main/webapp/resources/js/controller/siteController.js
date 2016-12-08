@@ -10,5 +10,9 @@ function observedController($scope,$location,$log,$cookies){
     $scope.goOffer = function(linkId){
         $location.path("/offer/"+linkId);
     }
+
+    $scope.goLink = function(linkId){
+        $location.path(linkId);
+    }
 }
 

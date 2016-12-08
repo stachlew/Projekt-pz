@@ -13,7 +13,8 @@ body
 
 
 .userInfo{
-	text-align: right;	
+	text-align: right;
+	padding: 3px;
 	font-weight: bold !important;
 }
 
@@ -87,6 +88,16 @@ body
 
 .borromColour:hover{
 	background-color: rgba(216, 230, 0, 0.82) !important;
+	cursor: pointer; cursor: hand; !important;
+}
+
+.linkBorrom{
+	cursor: pointer; cursor: hand; !important;
+	color: #333; !important;
+}
+
+.linkBorrom:hover{
+	color: rgb(152, 139, 26); !important;
 	cursor: pointer; cursor: hand; !important;
 }
 

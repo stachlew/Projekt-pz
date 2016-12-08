@@ -1,6 +1,7 @@
 package pl.wat.pz.application.web.rest.usr;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import pl.wat.pz.application.logic.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -30,6 +32,10 @@ public class MyAdsRestController {
 
     @RequestMapping(value="/getMyAll", method= RequestMethod.GET)
     public @ResponseBody List<AdvertisementHeader> getMyAll(Authentication auth) {
+
+        Locale locale = LocaleContextHolder.getLocale();
+        System.out.println("Language: "+locale.getLanguage());
+
         String username = auth.getName();
         return advertisementService.findAllByUsername(username);
     }

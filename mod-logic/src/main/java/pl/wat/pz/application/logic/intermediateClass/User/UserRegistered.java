@@ -73,9 +73,7 @@ public class UserRegistered {
         this.city = city;
     }
 
-    public String getRegionName() {
-        return regionName;
-    }
+    public String getRegionName() { return regionName;}
 
     public void setRegionName(String regionName) {
         this.regionName = regionName;

@@ -6,8 +6,7 @@
 
 <div class="well well-sm" ng-init="refresh()" style="padding: 25px">
 
-    <form name="form" ng-submit="register(user)" role="form" novalidate>
-
+    <form name="form" ng-show="formVis" ng-submit="register(user)" role="form" novalidate>
         <div class="row"><%-- szeroki panel--%>
             <div class="col-md-5"><%-- lewo--%>
                 <h1>Register new account</h1>
@@ -35,22 +34,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Confirm password* </label>
-                    <input type="password" name="passwordConf" id="passwordConf" class="form-control" ng-model="passwordConf" ng-minlength="4" ng-maxlength="20" required />
-                    <span ng-show="form.passwordConf.$touched && form.passwordConf.$error.required" class="help-block">Password is required</span>
-                    <span ng-show="form.passwordConf.$touched && form.passwordConf.$error.minlength || form.passwordConf.$error.maxlength" class="help-block">Password length 4-20</span>
-                    <%--<span ng-show="form.passwordConf.$touched && form.passwordConf != form.password" class="help-block">Password are different!</span>--%>
-                </div>
-
-                <div class="form-group">
                     <label for="agree">I agree the Borroom terms and conditions.* </label>
                     <input type="checkbox" id="agree" ng-model="agree" name="agree" required />
                     <span ng-show="form.agree.$dirty && form.agree.$error.required" class="help-block">Agree is required</span>
                 </div>
             </div>
             <div class="col-md-4 col-md-offset-3"><%-- prawo--%>
-                </br>
-                </br>
+
                 <h3>Contact info</h3>
                 <h4>(You can do this after registration)</h4>
 
@@ -68,7 +58,9 @@
 
                 <div class="form-group">
                     <label for="phone">Phone no</label>
-                    <input type="text" name="phone" id="phone" class="form-control" ng-model="user.phone"/>
+                    <input type="text" name="phone" id="phone" class="form-control" ng-pattern="regexNumber" ng-model="user.phone" ng-maxlength="20"/>
+                    <span ng-show="form.phone.$error.maxlength" class="help-block">Phone max length 20</span>
+                    <span ng-show="!form.phone.$error.maxlength && form.phone.$invalid" class="help-block">Tylko cyfry!</span>
                 </div>
 
             </div>
@@ -85,9 +77,16 @@
                 </div>
             </div>
         </div>
-
-
-
     </form>
+
+    <div class="text-center linkBorrom" ng-show="regOk" ng-click='goLink("/login")'>
+        <h4>
+            Dziękujemy za rejestrację {{user.username}}. Kliknij tutaj by zalogować się w Borroom.
+        </h4>
+    </div>
+
+    <div class="text-center" ng-show="regError" >
+        Wystąpił błąd rejestracji.
+    </div>
 
 </div>
