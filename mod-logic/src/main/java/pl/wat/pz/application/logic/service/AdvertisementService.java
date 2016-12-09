@@ -20,6 +20,8 @@ public interface AdvertisementService {
 
     Advertisement saveAdvertisement(Advertisement newAdvertisement);
 
+    void delete(Long idAdvertisement);
+
     List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements);
     List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements);
 

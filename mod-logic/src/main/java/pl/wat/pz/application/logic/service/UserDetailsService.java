@@ -16,7 +16,15 @@ import java.util.Set;
  */
 public interface UserDetailsService extends org.springframework.security.core.userdetails.UserDetailsService {
 
+    //--Spring Security--//
     org.springframework.security.core.userdetails.User buildUserForAuthentication(pl.wat.pz.application.dao.domain.User user, List<GrantedAuthority> authorities);
     List<GrantedAuthority> buildUserAuthority(Set<Role> userRoles);
+
+    //--create--//
     pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserRegistered userRegistered);
+
+    //--delete--//
+    void deleteUserAccount(String username);
+
+    boolean exist(String username);
 }

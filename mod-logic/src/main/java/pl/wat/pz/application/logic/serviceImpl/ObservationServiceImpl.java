@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.wat.pz.application.dao.compositeKeys.ObservationId;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.domain.Observation;
 import pl.wat.pz.application.dao.domain.User;
@@ -54,7 +55,10 @@ public class ObservationServiceImpl implements ObservationService {
         User user = userRepository.findOne(username);
         Long idAd = new Long(adId);
         Advertisement advert = advertisementRepository.findOne(idAd);
-       // Observation observation = new Observation(advert,user);
-        observationRepository.addObservation(idAd,username);
+        ObservationId observationId = new ObservationId(advert,user);
+        if(!observationRepository.exists(observationId)){
+            observationRepository.addObservation(idAd,username);
+        }
+
     }
 }

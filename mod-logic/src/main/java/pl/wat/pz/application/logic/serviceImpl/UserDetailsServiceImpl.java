@@ -110,6 +110,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         return userRepository.save(user);
     }
 
+    @Override
+    public void deleteUserAccount(String username) {
+        if (this.exist(username)) {
+            userRepository.delete(username);
+        }
+    }
+
+    @Override
+    public boolean exist(String username) {
+        return userRepository.exists(username);
+    }
 
 
 }

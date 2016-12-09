@@ -94,6 +94,11 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
+    public void delete(Long idAdvertisement) {
+        advertisementRepository.delete(idAdvertisement);
+    }
+
+    @Override
     public List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements) {
         List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
         for (Advertisement adv:advertisements) {
