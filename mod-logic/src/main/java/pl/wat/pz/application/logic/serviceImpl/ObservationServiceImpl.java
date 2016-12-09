@@ -53,9 +53,8 @@ public class ObservationServiceImpl implements ObservationService {
     public void saveObservation(String username, String adId) {
         User user = userRepository.findOne(username);
         Long idAd = new Long(adId);
-        Advertisement advert = advertisementRepository.findOne((long)idAd);
-        Observation observation = new Observation(advert,user);
-        //observationRepository.save(observation);
-
+        Advertisement advert = advertisementRepository.findOne(idAd);
+       // Observation observation = new Observation(advert,user);
+        observationRepository.addObservation(idAd,username);
     }
 }

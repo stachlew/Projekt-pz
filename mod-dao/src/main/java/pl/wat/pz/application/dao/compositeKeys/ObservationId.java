@@ -29,6 +29,14 @@ public class ObservationId implements Serializable {
         return idUser;
     }
 
+    public void setIdAdvertisement(Advertisement idAdvertisement) {
+        this.idAdvertisement = idAdvertisement;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

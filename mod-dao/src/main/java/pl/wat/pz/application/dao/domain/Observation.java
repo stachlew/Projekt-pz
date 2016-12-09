@@ -29,6 +29,14 @@ public class Observation {
         this.idUser = idUser;
     }
 
+    public void setIdAdvertisement(Advertisement idAdvertisement) {
+        this.idAdvertisement = idAdvertisement;
+    }
+
+    public void setIdUser(User idUser) {
+        this.idUser = idUser;
+    }
+
     public Advertisement getIdAdvertisement() {
         return idAdvertisement;
     }
