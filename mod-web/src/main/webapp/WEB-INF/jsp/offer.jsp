@@ -31,10 +31,15 @@
                     <div class="row"><h4>Cena za dzień: {{offer.chargePerDay}} PLN</h4></div>
                     <div class="row"><h4>Kaucja: {{offer.bailValue}} PLN </h4></div>
                     </br>
-                    <div class="row"><h4>
-                        <a class="btn btn-default borromColour" role="button">
-                            Rezerwuj
-                        </a></h4>
+                    <div class="row">
+                        <h4>
+                            <a class="btn btn-default borromColour" role="button">
+                                Rezerwuj
+                            </a>
+                            <a class="btn btn-default borromColour" role="button" ng-click="addObs()">
+                                Dodaj do obserwowanych
+                            </a>
+                        </h4>
                     </div>
                 </div>
             </div>

@@ -37,7 +37,6 @@ function observedController($scope,$log,$http){
                 }
             )
         $scope.refreshObserved();
-
     }
 }
 

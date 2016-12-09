@@ -26,10 +26,19 @@ public class ObservationRestController {
 
     @RequestMapping(value="/deleteObs/{idAdvertisement}", method= RequestMethod.GET)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    void deleteObs(@PathVariable(value = "idAdvertisement") String idAdvertisement, Authentication auth) {
+    public void deleteObs(@PathVariable(value = "idAdvertisement") String idAdvertisement, Authentication auth) {
         String username = auth.getName();
         Long idAd = new Long(idAdvertisement);
         observationService.deleteObservation((long)idAd,username);
+    }
+
+    @RequestMapping(value="/createObs/{idAdvertisement}", method= RequestMethod.GET)
+    @ResponseStatus(value= HttpStatus.NO_CONTENT)
+    public void createObservation(@PathVariable(value = "idAdvertisement") String idAdvertisement, Authentication auth) {
+        if(auth.isAuthenticated()) {
+            String username = auth.getName();
+            observationService.saveObservation(username, idAdvertisement);
+        }
     }
 
 

@@ -28,6 +28,21 @@ function offerController($scope,$location,$log,$routeParams,$http){
                 }
             )
     }
+
+    $scope.addObs= function () {
+        $http.get('rest/usr/observation/createObs/'+$scope.offerId)
+            .then(
+                function () {
+                    console.log("OK: addObs()");
+                },
+                function () {
+                    console.log("Error: addObs()");
+                }
+            );
+    }
+
+
+
 }
 
 
