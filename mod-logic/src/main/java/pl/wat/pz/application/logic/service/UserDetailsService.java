@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import pl.wat.pz.application.dao.domain.Role;
 
+import pl.wat.pz.application.dao.domain.User;
 import pl.wat.pz.application.logic.intermediateClass.User.UserRegistered;
 
 
@@ -27,4 +28,7 @@ public interface UserDetailsService extends org.springframework.security.core.us
     void deleteUserAccount(String username);
 
     boolean exist(String username);
+
+    User getUserByUsername(String username);
+    pl.wat.pz.application.dao.domain.UserDetails getUserDetailsByUsername(String username);
 }

@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="col-md-1">
-                        <span class="glyphicon glyphicon-remove " role="button" style="font-size:1.5em;" ng-click="deleteObs(ob.idAdvertisement)"> </span>
+                        <span class="glyphicon glyphicon-remove " role="button" style="font-size:1.5em;" ng-click="deleteObs(ob.idAdvertisement,$index)"> </span>
                 </div>
 
             </div>

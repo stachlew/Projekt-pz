@@ -83,5 +83,7 @@ public class User implements Serializable {
         this.roles = roles;
     }
 
-
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

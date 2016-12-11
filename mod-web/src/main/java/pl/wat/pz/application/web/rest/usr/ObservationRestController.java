@@ -38,6 +38,7 @@ public class ObservationRestController {
         if(auth.isAuthenticated()) {
             String username = auth.getName();
             observationService.saveObservation(username, idAdvertisement);
+
         }
     }
 

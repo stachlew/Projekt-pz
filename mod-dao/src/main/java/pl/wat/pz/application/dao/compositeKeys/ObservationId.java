@@ -3,18 +3,19 @@ package pl.wat.pz.application.dao.compositeKeys;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.domain.User;
 
+import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 /**
  * Created by DELL on 2016-11-23.
  */
+@Embeddable
 public class ObservationId implements Serializable {
 
     private Advertisement idAdvertisement;
     private User idUser;
 
-    public ObservationId() {
-    }
+    public ObservationId(){ }
 
     public ObservationId(Advertisement idAdvertisement, User idUser) {
         this.idAdvertisement = idAdvertisement;
@@ -56,4 +57,5 @@ public class ObservationId implements Serializable {
         result = 31 * result + (idUser != null ? idUser.hashCode() : 0);
         return result;
     }
+
 }

@@ -5,16 +5,11 @@
 <script src="/resources/js/homeRedirect.js/"></script>
 
 <div class="well well-sm">
-    <div class="text-center linkBorrom" ng-click='goLink("/regist")'>
+    <div class="text-center linkBorrom" ng-click='goLink("/register")'>
         <h4>
             <spring:message code="registerInfo.content"/>
         </h4>
     </div>
-    <%--<p class="text-primary text-center">--%>
-        <%--<a href="#/register" class="linkBorrom" &lt;%&ndash;style="text-decorations:none; color:inherit;"&ndash;%&gt;>--%>
-            <%--<spring:message code="registerInfo.content"/>--%>
-        <%--</a>--%>
-    <%--</p>--%>
 </div>
 <div class="row">
     <div class="col-md-4 col-md-offset-4">

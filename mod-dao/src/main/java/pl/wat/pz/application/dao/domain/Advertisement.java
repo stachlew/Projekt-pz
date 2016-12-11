@@ -51,8 +51,7 @@ public class Advertisement {
     @JoinColumn(name = "id_Item_Category")
     private ItemCategory idItemCategory;
 
-    public Advertisement() {
-    }
+    public Advertisement() { }
 
     public Advertisement(String title, Timestamp dateAdded, double bailValue, double chargePerDay, String description, byte[] image, String city, Region idRegion, User idUser, ItemCategory idItemCategory) {
         this.title=title;

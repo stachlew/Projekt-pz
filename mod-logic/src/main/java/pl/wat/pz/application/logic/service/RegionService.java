@@ -1,5 +1,7 @@
 package pl.wat.pz.application.logic.service;
 
+import pl.wat.pz.application.dao.domain.Region;
+
 import java.util.List;
 
 /**
@@ -7,4 +9,6 @@ import java.util.List;
  */
 public interface RegionService {
     List<String> findAllRegionName();
+    String loadRegionNameById(long regionId);
+    Region loadRegionByName(String name);
 }

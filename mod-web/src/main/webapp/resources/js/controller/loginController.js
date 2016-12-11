@@ -1,9 +1,9 @@
 angular.module('app')
-    .controller('loginController',observedController);
+    .controller('loginController',loginController);
 
-observedController.$inject=['$scope','$location', '$log'];
+loginController.$inject=['$scope','$location', '$log'];
 
-function observedController($scope,$location,$log){
+function loginController($scope,$location,$log){
     $log.info("loginController");
 }
 

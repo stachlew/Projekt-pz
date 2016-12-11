@@ -32,11 +32,6 @@ public class MainController {
     @RequestMapping("/offer")
     public String offer(){ return "offer";    }
 
-    @RequestMapping("/addItem")
-    public String userAddItem(){
-        return "addItem";
-    }
-
     @RequestMapping("/loaned")
     public String userLoaned(){
         return "loaned";

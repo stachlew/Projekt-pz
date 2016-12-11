@@ -44,5 +44,4 @@ public class Observation {
     public User getIdUser() {
         return idUser;
     }
-
 }

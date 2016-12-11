@@ -34,9 +34,9 @@
                         {{ad.title}}
                     </b></h3>
                     <p class="flex-text text-muted">
-                        {{ad.regionName}}
+                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp&nbsp{{ad.regionName}}
                         </br>
-                        {{br.categoryNamePL}}
+                        <i class="glyphicon glyphicon-tag"></i>&nbsp&nbsp{{ad.categoryNamePL}}
                     </p>
 
                 </div>

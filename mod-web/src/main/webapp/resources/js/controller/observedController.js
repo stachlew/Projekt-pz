@@ -1,9 +1,9 @@
 angular.module('app')
 .controller('observedController',observedController);
 
-observedController.$inject=['$scope', '$log','$http'];
+observedController.$inject=['$scope', '$log','$http','$modal'];
 
-function observedController($scope,$log,$http){
+function observedController($scope,$log,$http,$modal){
     $log.info("observedController");
     $scope.noObs=false;
     $scope.loading=false;
@@ -26,17 +26,44 @@ function observedController($scope,$log,$http){
         )
     };
 
-    $scope.deleteObs= function (idAdvertisement) {
+    $scope.open = function (idAdvertisement,idx) {
+        //otwarcie okienka
+        var modalInstance = $modal.open({
+            templateUrl: 'dialogWindow/deleteObservedDialog',
+            controller: dialogObservedController,
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        //funkcja zwroconych rezultatow
+        modalInstance.result.then(
+            function () {
+                $scope.deleteObsRest(idAdvertisement,idx);
+            },
+            function () {
+
+            }
+        );
+    };
+
+    $scope.deleteObsRest = function(idAdvertisement,idx){
         $http.get('rest/usr/observation/deleteObs/'+idAdvertisement)
             .then(
                 function () {
-                    console.log("OK: deleteObs()");
+                    $scope.observationList.splice(idx,1);
                 },
                 function () {
                     console.log("Error: deleteObs()");
                 }
             )
-        $scope.refreshObserved();
+        //$scope.refreshObserved();
+    }
+
+    $scope.deleteObs= function (idAdvertisement,idx) {
+        $scope.open(idAdvertisement,idx);
     }
 }
 

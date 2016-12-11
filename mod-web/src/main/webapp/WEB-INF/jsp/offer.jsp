@@ -11,13 +11,13 @@
     <div ng-show="isOffer">
         <%--kategoria, data--%>
             <div class="row">
-                <div class="col-md-4"><h4>Kategoria: {{offer.categoryNamePL}}</h4></div>
-                <div class="col-md-3 col-md-offset-5"><h4>Data dodania: {{offer.dateAdded | date: 'yyyy-MM-dd HH:mm'}}</h4></div>
+                <div class="col-md-4"><h4><i class="glyphicon glyphicon-tag"></i>&nbspKategoria: {{offer.categoryNamePL}}</h4></div>
+                <div class="col-md-3 col-md-offset-5"><h4><i class="glyphicon glyphicon-calendar"></i>&nbsp Dodane: {{offer.dateAdded | date: 'yyyy-MM-dd HH:mm'}}</h4></div>
             </div>
 
             <%--miasto, region--%>
             <div class="row">
-                <div class="col-md-4"><h4>Lokalizacja: {{offer.city}}, {{offer.regionName}}</h4></div>
+                <div class="col-md-4"><h4><i class="glyphicon glyphicon-map-marker"></i>&nbspLokalizacja: {{offer.city}}, {{offer.regionName}}</h4></div>
             </div>
 
             <%--fota, opis--%>
@@ -28,16 +28,17 @@
                 <div class="col-md-8 col-md-offset-1">
                     <div class="row"><h2>{{offer.title}}</h2></div>
                     </br>
-                    <div class="row"><h4>Cena za dzień: {{offer.chargePerDay}} PLN</h4></div>
-                    <div class="row"><h4>Kaucja: {{offer.bailValue}} PLN </h4></div>
+                    <div class="row"><h4><i class="glyphicon glyphicon-time"></i>&nbspCena za dzień: {{offer.chargePerDay}} PLN</h4></div>
+                    <div class="row"><h4><i class="glyphicon glyphicon-share-alt"></i>&nbspKaucja: {{offer.bailValue}} PLN </h4></div>
                     </br>
                     <div class="row">
                         <h4>
                             <a class="btn btn-default borromColour" role="button">
                                 Rezerwuj
                             </a>
-                            <a class="btn btn-default borromColour" role="button" ng-click="addObs()">
-                                Dodaj do obserwowanych
+                            <a class="btn btn-default borromColour" role="button" ng-show="logged" ng-click="addObs()">
+                                <span ng-show="addFav"><i class="glyphicon glyphicon-star" ></i>&nbspDodano do obserwowanych </span>
+                                <span ng-show="!addFav"><i class="glyphicon glyphicon-star-empty" ></i> &nbspDodaj do obserwowanych </span>
                             </a>
                         </h4>
                     </div>
@@ -60,7 +61,7 @@
             <div class="row">
                 <div class="text-center">
                     <h4>
-                        Więcej ogłoszeń użytkownika {{offer.username}}.
+                        <i class="glyphicon glyphicon-th-list"></i>&nbsp Więcej ogłoszeń użytkownika {{offer.username}}.
                     </h4>
                 </div>
             </div>

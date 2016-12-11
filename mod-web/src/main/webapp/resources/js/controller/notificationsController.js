@@ -1,9 +1,9 @@
 angular.module('app')
-    .controller('notificationsController',observedController);
+    .controller('notificationsController',notificationsController);
 
-observedController.$inject=['$scope','$location', '$log'];
+notificationsController.$inject=['$scope','$location', '$log'];
 
-function observedController($scope,$location,$log){
+function notificationsController($scope,$location,$log){
     $log.info("notificationsController");
 }
 

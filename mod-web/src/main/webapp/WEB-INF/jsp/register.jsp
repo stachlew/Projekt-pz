@@ -10,11 +10,11 @@
         <div class="row"><%-- szeroki panel--%>
             <div class="col-md-5"><%-- lewo--%>
                 <h1>Register new account</h1>
-                <p>* - required</p>
 
                 <div class="form-group">
                     <label for="username">Username*</label>
                     <input type="text" name="username" id="username" class="form-control" ng-model="user.username" ng-minlength="4" ng-maxlength="20" required />
+                    <span ng-show="form.username.$valid" class="help-block"><i class="glyphicon glyphicon-ok"></i>&nbspUsername correct</span>
                     <span ng-show="form.username.$touched && form.username.$error.required" class="help-block">Username name is required</span>
                     <span ng-show="form.username.$touched && form.username.$error.minlength || form.username.$error.maxlength" class="help-block">Username length 4-20</span>
                 </div>
@@ -22,6 +22,7 @@
                 <div class="form-group">
                     <label for="mail">E-mail*</label>
                     <input type="email" name="mail" id="mail" class="form-control" ng-model="user.mail" required />
+                    <span ng-show="form.mail.$valid" class="help-block"><i class="glyphicon glyphicon-ok"></i>&nbspE-mail is correct</span>
                     <span ng-show="form.mail.$touched && form.mail.$error.required" class="help-block">E-mail is required</span>
                     <span ng-show="form.mail.$touched && form.mail.$invalid && !form.mail.$error.required" class="help-block">E-mail is invalid</span>
                 </div>
@@ -29,6 +30,7 @@
                 <div class="form-group">
                     <label for="password">Password*</label>
                     <input type="password" name="password" id="password" class="form-control" ng-model="user.password" ng-minlength="4" ng-maxlength="20" required />
+                    <span ng-show="form.password.$valid" class="help-block"><i class="glyphicon glyphicon-ok"></i>&nbspPassword is correct</span>
                     <span ng-show="form.password.$touched && form.password.$error.required" class="help-block">Password is required</span>
                     <span ng-show="form.password.$touched && form.password.$error.minlength || form.password.$error.maxlength" class="help-block">Password length 4-20</span>
                 </div>
@@ -38,6 +40,8 @@
                     <input type="checkbox" id="agree" ng-model="agree" name="agree" required />
                     <span ng-show="form.agree.$dirty && form.agree.$error.required" class="help-block">Agree is required</span>
                 </div>
+                <br/>
+                <p>* - required</p>
             </div>
             <div class="col-md-4 col-md-offset-3"><%-- prawo--%>
 

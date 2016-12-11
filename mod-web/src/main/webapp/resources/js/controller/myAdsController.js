@@ -1,9 +1,9 @@
 angular.module('app')
-    .controller('myAdsController',observedController);
+    .controller('myAdsController',myAdsController);
 
-observedController.$inject=['$scope','$location', '$log','$http'];
+myAdsController.$inject=['$scope','$location', '$log','$http'];
 
-function observedController($scope,$location,$log,$http){
+function myAdsController($scope,$location,$log,$http){
     $log.info("myAdsController");
     $scope.noAds = false;
 
@@ -24,19 +24,5 @@ function observedController($scope,$location,$log,$http){
                 }
             )
     }
-
-    /*
-    $scope.duplicate = function () {
-        $http.get('/rest/duplicate')
-            .then(
-                function () {
-                    $scope.refreshMyAds();
-                },
-                function () {
-                    console.log("Error: duplicate()");
-                }
-            )
-    }
-    */
 }
 

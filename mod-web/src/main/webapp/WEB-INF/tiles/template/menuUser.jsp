@@ -39,7 +39,7 @@
 
         <li role="presentation" >
             <a href="#/loaned" class="btn btn-default borromColour" role="button">
-                <i class="glyphicon glyphicon-list"></i>&nbsp
+                <i class="glyphicon glyphicon-transfer"></i>&nbsp
                 <spring:message code="userHeader.loaned"/>
             </a>
         </li>

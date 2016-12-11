@@ -10,4 +10,5 @@ import java.util.List;
  */
 public interface ItemCategoryRepository extends JpaRepository<ItemCategory,Long> {
     ItemCategory findOneByNamePL(String namePL);
+    ItemCategory findOneByNameENG(String nameENG);
 }

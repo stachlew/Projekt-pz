@@ -1,5 +1,7 @@
 package pl.wat.pz.application.logic.service;
 
+import pl.wat.pz.application.dao.domain.ItemCategory;
+
 import java.util.List;
 
 /**
@@ -7,4 +9,5 @@ import java.util.List;
  */
 public interface ItemCategoryService {
     List<String> findAllItemCategorName(String language);
+    ItemCategory findOneByCategoryName(String name,String lang);
 }

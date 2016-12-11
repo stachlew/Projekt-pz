@@ -89,6 +89,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
 
     @Override
+    @Transactional
     public Advertisement saveAdvertisement(Advertisement newAdvertisement) {
         return advertisementRepository.save(newAdvertisement);
     }

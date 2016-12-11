@@ -118,6 +118,17 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
+    public pl.wat.pz.application.dao.domain.User getUserByUsername(String username){
+        return userRepository.getOne(username);
+    }
+
+    @Override
+    @javax.transaction.Transactional
+    public pl.wat.pz.application.dao.domain.UserDetails getUserDetailsByUsername(String username){
+        return userRepository.getOne(username).getDetails();
+    }
+
+    @Override
     public boolean exist(String username) {
         return userRepository.exists(username);
     }

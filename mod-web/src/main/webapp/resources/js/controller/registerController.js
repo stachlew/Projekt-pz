@@ -13,7 +13,7 @@ function registerController($scope,$location,$log,$http,$cookies){
     $scope.regexNumber = '[0-9]*';
 
     $scope.refresh = function() {
-        $http.get('/rest/pub/register/getRegions')
+        $http.get('/rest/pub/simpleData/getRegions')
             .then(
                 function (response) {
                     $scope.regions=response.data;

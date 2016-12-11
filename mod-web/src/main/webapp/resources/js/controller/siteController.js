@@ -1,11 +1,24 @@
 angular.module('app')
-    .controller('siteController',observedController);
+    .controller('siteController',siteController);
 
-observedController.$inject=['$scope','$location', '$log','$cookies'];
+siteController.$inject=['$scope','$location', '$log','$cookies','$http'];
 
-function observedController($scope,$location,$log,$cookies){
+function siteController($scope,$location,$log,$cookies,$http){
     $log.info("siteController");
     $scope.userName = $cookies.get('cookieUsername');
+    $scope.logged=false;
+    $scope.isLogged = function () {
+        $http.get('/rest/pub/login/isLogged')
+            .then(
+                function (response) {
+                    $scope.logged=response.data;
+                },
+                function () {
+                    $scope.logged=false;
+                }
+            )
+    }
+    $scope.isLogged();
 
     $scope.goOffer = function(linkId){
         $location.path("/offer/"+linkId);
@@ -13,6 +26,19 @@ function observedController($scope,$location,$log,$cookies){
 
     $scope.goLink = function(linkId){
         $location.path(linkId);
+    }
+
+    $scope.isLogged = function () {
+        $http.get('/rest/pub/login/isLogged')
+            .then(
+                function (response) {
+                    $scope.logged=response.data;
+                },
+                function () {
+                    $scope.logged=false;
+                }
+            )
+        console.log("isLogged() return  koncowy"+$scope.logged);
     }
 }
 

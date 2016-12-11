@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * Created by DELL on 2016-12-06.
  */
-@Service("regionService")
+@Service("RegionService")
 public class RegionServiceImpl implements RegionService {
     @Autowired
     RegionRepository regionRepository;
@@ -25,5 +25,20 @@ public class RegionServiceImpl implements RegionService {
             regionListName.add(region.getName());
         }
         return regionListName;
+    }
+
+    @Override
+    public String loadRegionNameById(long regionId){
+        Region region = regionRepository.findOne(regionId);
+        if(region!=null) {
+            return region.getName();
+        }else {
+            return null;
+        }
+    }
+
+    @Override
+    public Region loadRegionByName(String name) {
+        return regionRepository.findOneByName(name);
     }
 }

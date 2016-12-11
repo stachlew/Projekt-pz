@@ -101,3 +101,21 @@ body
 	cursor: pointer; cursor: hand; !important;
 }
 
+.modal {
+	display: block; !important;
+}
+
+.nav-tabs>li>a {
+	background-color: rgba(243, 255, 59, 0.41) !important;
+	color: #555 !important;
+}
+.nav-tabs>li:hover>a{
+	background-color: rgba(216, 230, 0, 0.82) !important;
+}
+.nav-tabs>li.active>a{
+	background-color: rgba(243, 255, 59, 0.82) !important;
+}
+
+.tab-content>.active {
+	background-color: rgba(243, 255, 59, 0.82) !important;
+}

@@ -12,14 +12,26 @@
     <title><tiles:insertAttribute name="title" /></title>
     <link href="favicon.ico" rel="shortcut icon" >
     <base href="/">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <script	src="//code.angularjs.org/1.4.1/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.1/ui-bootstrap-tpls.min.js"></script>
+
+    <script	src="//code.angularjs.org/1.4.1/angular-route.js"></script>
+    <script src="//code.angularjs.org/1.4.1/angular-cookies.js"></script>
+
+
     <link rel="stylesheet" href="resources/css/style.css" type="text/css" />
     <link rel="stylesheet" href="resources/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Lato:400,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    <script	src="//code.angularjs.org/1.4.1/angular.min.js"></script>
-    <script	src="//code.angularjs.org/1.4.1/angular-route.js"></script>
-    <script src="//code.angularjs.org/1.4.1/angular-cookies.js"></script>
+
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-animate.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular-sanitize.js"></script>
+
     <script src="/resources/js/app.js"></script>
     <script src="/resources/js/controller/siteController.js"></script>
     <script src="/resources/js/controller/addItemController.js"></script>
@@ -31,6 +43,8 @@
     <script src="/resources/js/controller/observedController.js"></script>
     <script src="/resources/js/controller/registerController.js"></script>
     <script src="/resources/js/controller/offerController.js"></script>
+
+    <script src="/resources/js/controller/dialogController/dialogObservedController.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -82,7 +96,7 @@
 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>--%>
+<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>--%>
 </body>
 </html>

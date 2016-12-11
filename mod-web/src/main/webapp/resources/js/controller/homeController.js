@@ -1,9 +1,9 @@
 angular.module('app')
-    .controller('homeController',observedController);
+    .controller('homeController',homeController);
 
-observedController.$inject=['$scope','$location', '$log','$http'];
+homeController.$inject=['$scope','$location', '$log','$http'];
 
-function observedController($scope,$location,$log,$http){
+function homeController($scope,$location,$log,$http){
     $log.info("homeController");
 
     $scope.refreshHome = function () {

@@ -1,13 +1,15 @@
 angular.module('app')
     .controller('offerController',offerController);
 
-offerController.$inject=['$scope','$location', '$log','$routeParams','$http'];
+offerController.$inject=['$scope', '$log','$routeParams','$http'];
 
-function offerController($scope,$location,$log,$routeParams,$http){
+function offerController($scope,$log,$routeParams,$http){
     $log.info("offerController");
     $scope.offerId=$routeParams.idOffer;
     $scope.noOffer = false;
     $scope.isOffer = false;
+    $scope.addFav = false;
+
     $scope.refreshOffer = function () {
         $scope.loading = true;
         $http.get('/rest/pub/offer/'+$scope.offerId)
@@ -30,15 +32,18 @@ function offerController($scope,$location,$log,$routeParams,$http){
     }
 
     $scope.addObs= function () {
-        $http.get('rest/usr/observation/createObs/'+$scope.offerId)
-            .then(
-                function () {
-                    console.log("OK: addObs()");
-                },
-                function () {
-                    console.log("Error: addObs()");
-                }
-            );
+        if($scope.addFav==false){
+            $http.get('rest/usr/observation/createObs/'+$scope.offerId)
+                .then(
+                    function () {
+                        $scope.addFav=true;
+                        //console.log("OK: addObs()");
+                    },
+                    function () {
+                        console.log("Error: addObs()");
+                    }
+                );
+        }
     }
 
 
