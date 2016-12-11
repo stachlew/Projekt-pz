@@ -1,6 +1,7 @@
 package pl.wat.pz.application.dao.domain;
 
 import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -13,7 +14,6 @@ import java.sql.Timestamp;
 public class Advertisement {
     @Id
     @Column(name = "id_Advertisement",length = 30)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long idAdvertisement;
 
     @Column(nullable = false)

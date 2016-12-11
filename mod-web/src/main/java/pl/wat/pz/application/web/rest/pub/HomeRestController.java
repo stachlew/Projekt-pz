@@ -19,7 +19,7 @@ public class HomeRestController {
 
     @RequestMapping(value="/getLatest", method= RequestMethod.GET)
     public @ResponseBody List<AdvertisementHeader> getLatest() {
-        return advertisementService.findPageAndSortOfLatest(1);
+        return advertisementService.findPageAndSortOfLatest(0);
     }
 
 
