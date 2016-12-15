@@ -1,7 +1,6 @@
 package pl.wat.pz.application.logic.service;
 
-import pl.wat.pz.application.dao.domain.Observation;
-import pl.wat.pz.application.logic.intermediateClass.Advertisement.AdvertisementHeader;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 
 import java.util.List;
 
@@ -11,5 +10,5 @@ import java.util.List;
 public interface ObservationService {
     List<AdvertisementHeader> findByUsername(String username);
     void deleteObservation(Long idAdvertisement,String username);
-    public void saveObservation(String username, String adId);
+    void saveObservation(String username, String adId);
 }

@@ -15,7 +15,7 @@ import pl.wat.pz.application.dao.domain.Role;
 import pl.wat.pz.application.dao.repository.RegionRepository;
 import pl.wat.pz.application.dao.repository.RoleRepository;
 import pl.wat.pz.application.dao.repository.UserRepository;
-import pl.wat.pz.application.logic.intermediateClass.User.UserRegistered;
+import pl.wat.pz.application.dao.intermediateClass.User.UserRegistered;
 import pl.wat.pz.application.logic.service.UserDetailsService;
 
 
@@ -52,13 +52,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username)
         throws UsernameNotFoundException {
-
         pl.wat.pz.application.dao.domain.User user = userRepository.findOne(username);
             List<GrantedAuthority> authorities =
                     buildUserAuthority(user.getRoles());
-
             return  buildUserForAuthentication(user, authorities);
-
         }
 
     /**
@@ -82,27 +79,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
      */
     @Override
     public List<GrantedAuthority> buildUserAuthority(Set<Role> userRoles) {
-
         Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
-
         // Build user's authorities
         for (Role userRole : userRoles) {
             setAuths.add(new SimpleGrantedAuthority(userRole.getName()));
         }
-
         List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
-
         return Result;
     }
 
     @Override
     public pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserRegistered userRegistered) {
-        pl.wat.pz.application.dao.domain.UserDetails userDetails = new  pl.wat.pz.application.dao.domain.UserDetails();
-        userDetails.setCity(userRegistered.getCity());
-        userDetails.setMail(userRegistered.getMail());
-        userDetails.setPhone(userRegistered.getPhone());
+        pl.wat.pz.application.dao.domain.UserDetails userDetails = new  pl.wat.pz.application.dao.domain.UserDetails(userRegistered);
         userDetails.setIdRegion(regionRepository.findOneByName(userRegistered.getRegionName()));
-
         Role role = roleRepository.findOneByName("ROLE_USER");
         Set<Role> roles = new HashSet<>();
         roles.add(role);

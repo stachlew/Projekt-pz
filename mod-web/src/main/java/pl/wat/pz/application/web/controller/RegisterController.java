@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 
-import pl.wat.pz.application.logic.intermediateClass.User.UserRegistered;
+import pl.wat.pz.application.dao.intermediateClass.User.UserRegistered;
 
 import pl.wat.pz.application.logic.service.UserDetailsService;
 

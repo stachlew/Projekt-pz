@@ -1,9 +1,11 @@
 package pl.wat.pz.application.dao.domain;
 
 import org.hibernate.annotations.ColumnDefault;
+import pl.wat.pz.application.dao.intermediateClass.User.UserRegistered;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Calendar;
 
 /**
  * Szczegółowe informacje o kliencie
@@ -41,6 +43,12 @@ public class UserDetails {
         this.accountCreateDate = accountCreateDate;
     }
 
+    public UserDetails(UserRegistered userRegistered){
+        this.mail = userRegistered.getMail();
+        this.phone = userRegistered.getPhone();
+        this.city = userRegistered.getCity();
+        this.accountCreateDate=new Date(Calendar.getInstance().getTime().getTime());
+    }
 
 
     public Date getAccountCreateDate() {

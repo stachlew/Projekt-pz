@@ -1,4 +1,4 @@
-package pl.wat.pz.application.logic.intermediateClass.Advertisement;
+package pl.wat.pz.application.dao.intermediateClass.Advertisement;
 
 import pl.wat.pz.application.dao.domain.Advertisement;
 

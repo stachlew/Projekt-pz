@@ -36,12 +36,8 @@ public class ItemCategoryServiceImpl implements ItemCategoryService {
     }
 
     @Override
-    public ItemCategory findOneByCategoryName(String name, String lang) {
-        if(lang.equals("pl")){
-            return itemCategoryRepository.findOneByNamePL(name);
-        }else{
-            return itemCategoryRepository.findOneByNameENG(name);
-        }
+    public ItemCategory findOneByCategoryName(String name) {
+      return itemCategoryRepository.findOneByName(name);
     }
 
 }

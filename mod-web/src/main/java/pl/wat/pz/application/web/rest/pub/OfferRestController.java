@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import pl.wat.pz.application.logic.intermediateClass.Advertisement.AdvertisementDetails;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementDetails;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
 

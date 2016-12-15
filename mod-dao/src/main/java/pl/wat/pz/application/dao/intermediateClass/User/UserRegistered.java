@@ -1,4 +1,4 @@
-package pl.wat.pz.application.logic.intermediateClass.User;
+package pl.wat.pz.application.dao.intermediateClass.User;
 
 /**
  * Created by DELL on 2016-12-06.

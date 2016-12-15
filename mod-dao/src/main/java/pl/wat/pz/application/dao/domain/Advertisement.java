@@ -1,7 +1,7 @@
 package pl.wat.pz.application.dao.domain;
 
 import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.GenericGenerator;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -64,6 +64,15 @@ public class Advertisement {
         this.idRegion = idRegion;
         this.idUser = idUser;
         this.idItemCategory = idItemCategory;
+    }
+
+    public Advertisement(AdvertisementForm advertisementForm){
+        this.title=advertisementForm.getTitle();
+        this.title = advertisementForm.getTitle();
+        this.bailValue = advertisementForm.getBailValue();
+        this.chargePerDay = advertisementForm.getChargePerDay();
+        this.description = advertisementForm.getDescription();
+        this.city = advertisementForm.getCity();
     }
 
     public long getIdAdvertisement() {

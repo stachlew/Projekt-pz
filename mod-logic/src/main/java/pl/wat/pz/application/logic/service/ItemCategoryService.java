@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface ItemCategoryService {
     List<String> findAllItemCategorName(String language);
-    ItemCategory findOneByCategoryName(String name,String lang);
+    ItemCategory findOneByCategoryName(String name);
 }

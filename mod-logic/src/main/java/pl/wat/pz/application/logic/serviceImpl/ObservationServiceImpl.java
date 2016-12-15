@@ -1,9 +1,7 @@
 package pl.wat.pz.application.logic.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pl.wat.pz.application.dao.compositeKeys.ObservationId;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.domain.Observation;
@@ -11,10 +9,9 @@ import pl.wat.pz.application.dao.domain.User;
 import pl.wat.pz.application.dao.repository.AdvertisementRepository;
 import pl.wat.pz.application.dao.repository.ObservationRepository;
 import pl.wat.pz.application.dao.repository.UserRepository;
-import pl.wat.pz.application.logic.intermediateClass.Advertisement.AdvertisementHeader;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 import pl.wat.pz.application.logic.service.ObservationService;
-import pl.wat.pz.application.logic.service.UserDetailsService;
 
 import java.util.LinkedList;
 import java.util.List;

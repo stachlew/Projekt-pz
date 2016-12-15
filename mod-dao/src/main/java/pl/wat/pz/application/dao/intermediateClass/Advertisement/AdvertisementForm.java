@@ -1,13 +1,4 @@
-package pl.wat.pz.application.logic.intermediateClass.Advertisement;
-
-
-import org.springframework.beans.factory.annotation.Autowired;
-import pl.wat.pz.application.dao.domain.Advertisement;
-import pl.wat.pz.application.dao.domain.ItemCategory;
-import pl.wat.pz.application.dao.domain.Region;
-import pl.wat.pz.application.logic.service.ItemCategoryService;
-import pl.wat.pz.application.logic.service.RegionService;
-
+package pl.wat.pz.application.dao.intermediateClass.Advertisement;
 
 
 public class AdvertisementForm {

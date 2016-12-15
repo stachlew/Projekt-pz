@@ -1,6 +1,5 @@
-package pl.wat.pz.application.logic.intermediateClass.Advertisement;
+package pl.wat.pz.application.dao.intermediateClass.Advertisement;
 
-import org.hibernate.annotations.ColumnDefault;
 import pl.wat.pz.application.dao.domain.Advertisement;
 
 import java.sql.Timestamp;

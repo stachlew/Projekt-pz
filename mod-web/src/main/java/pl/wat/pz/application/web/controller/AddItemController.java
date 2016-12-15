@@ -10,8 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import pl.wat.pz.application.dao.domain.Advertisement;
-import pl.wat.pz.application.logic.intermediateClass.Advertisement.AdvertisementForm;
-import pl.wat.pz.application.logic.service.AdvertisementFormService;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
 import java.sql.Timestamp;
@@ -19,7 +18,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /*
-    Przy zapisywaniu wyrzuca błąd braku integralności w bazie na koluminie id ogłoszenia
+
 */
 
 @Controller
@@ -28,9 +27,6 @@ public class AddItemController {
 
     @Autowired
     AdvertisementService advertisementService;
-
-    @Autowired
-    AdvertisementFormService advertisementFormService;
 
     @RequestMapping("/addItem")
     public String userAddItem(){
@@ -44,7 +40,7 @@ public class AddItemController {
         if(auth!=null){
             Locale locale = LocaleContextHolder.getLocale();
             Timestamp addDate = new Timestamp(Calendar.getInstance().getTime().getTime());
-            Advertisement newAd = advertisementFormService.convertAdvertisementFormToAdvertisement(advertisementForm,auth.getName(),locale.getLanguage());
+            Advertisement newAd = advertisementService.convertAdvertisementFormToAdvertisement(advertisementForm,auth.getName());
             newAd.setDateAdded(addDate);
 //            System.out.println("newAd title: "+newAd.getTitle());
 //            System.out.println("newAd bail: "+newAd.getBailValue());

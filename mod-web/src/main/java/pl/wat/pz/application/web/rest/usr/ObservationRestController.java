@@ -6,7 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import pl.wat.pz.application.logic.intermediateClass.Advertisement.AdvertisementHeader;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.ObservationService;
 
 import java.util.List;
@@ -29,7 +29,7 @@ public class ObservationRestController {
     public void deleteObs(@PathVariable(value = "idAdvertisement") String idAdvertisement, Authentication auth) {
         String username = auth.getName();
         Long idAd = new Long(idAdvertisement);
-        observationService.deleteObservation((long)idAd,username);
+        observationService.deleteObservation(idAd,username);
     }
 
     @RequestMapping(value="/createObs/{idAdvertisement}", method= RequestMethod.GET)

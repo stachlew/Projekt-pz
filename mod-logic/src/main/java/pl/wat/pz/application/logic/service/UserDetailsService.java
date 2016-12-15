@@ -5,7 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import pl.wat.pz.application.dao.domain.Role;
 
 import pl.wat.pz.application.dao.domain.User;
-import pl.wat.pz.application.logic.intermediateClass.User.UserRegistered;
+import pl.wat.pz.application.dao.intermediateClass.User.UserRegistered;
 
 
 
