@@ -37,10 +37,10 @@
 
                                 <div class="row">
                                     <div class="col-md-2 col-md-offset-1">
-                                        {{fromItem.categoryName}}
+                                        {{fromItem.idLoan}}
                                     </div>
                                     <div class="col-md-2">
-                                        {{fromItem.dateAdded | date: 'yyyy-MM-dd HH:mm'}}
+                                        {{fromItem.dateTo | date: 'yyyy-MM-dd HH:mm'}}
                                     </div>
                                     <div class="col-md-1">
                                         {{fromItem.idAdvertisement}}
@@ -77,10 +77,10 @@
 
                             <div class="row">
                                 <div class="col-md-2 col-md-offset-1">
-                                    {{toItem.categoryNamePL}}
+                                    {{toItem.idLoan}}
                                 </div>
                                 <div class="col-md-2">
-                                    {{toItem.dateAdded | date: 'yyyy-MM-dd HH:mm'}}
+                                    {{toItem.dateFrom | date: 'yyyy-MM-dd HH:mm'}}
                                 </div>
                                 <div class="col-md-1">
                                     {{toItem.idAdvertisement}}

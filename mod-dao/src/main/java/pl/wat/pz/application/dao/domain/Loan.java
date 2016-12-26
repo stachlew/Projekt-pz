@@ -37,6 +37,9 @@ public class Loan {
     @JoinColumn(name = "id_loan_status")
     private LoanStatus idLoanStatus;
 
+    public Loan() {
+    }
+
     public Loan(Date dateFrom, Date dateTo, double bailValue, double chargePerDay, Advertisement idAdvertisement, User idBorrower) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;

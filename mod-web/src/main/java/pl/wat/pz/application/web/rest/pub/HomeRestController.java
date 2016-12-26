@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
+
 import java.util.List;
 import java.util.Locale;
 
@@ -22,6 +23,7 @@ public class HomeRestController {
     @RequestMapping(value="/getLatest", method= RequestMethod.GET)
     public @ResponseBody List<AdvertisementHeader> getLatest() {
         Locale locale = LocaleContextHolder.getLocale();
+
         return advertisementService.findPageAndSortOfLatest(0,locale.getLanguage());
     }
 

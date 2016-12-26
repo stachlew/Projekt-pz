@@ -17,7 +17,7 @@ function loanedController($scope,$log,$http){
     //od kogos
     $scope.refreshBorrowFrom = function () {
         $scope.loading = true;
-        $http.get('/rest/usr/myOffer/getMyAll') //TUTAJ
+        $http.get('/rest/usr/loaned/getBorrower') //TUTAJ
             .then(
                 function (response) {
                     $scope.loading = false;
@@ -35,7 +35,7 @@ function loanedController($scope,$log,$http){
     //komus
     $scope.refreshBorrowTo = function () {
         $scope.loading = true;
-        $http.get('rest/usr/observation/getObserviation') //TUTAJ
+        $http.get('/rest/usr/loaned/getLender') //TUTAJ
             .then(
                 function (response) {
                     $scope.loading = false;
