@@ -2,6 +2,7 @@ package pl.wat.pz.application.web.rest.usr;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHe
 import pl.wat.pz.application.logic.service.ObservationService;
 
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping(value = "rest/usr/observation")
@@ -21,7 +23,8 @@ public class ObservationRestController {
     public @ResponseBody
     List<AdvertisementHeader> getObservation(Authentication auth) {
         String username = auth.getName();
-        return observationService.findByUsername(username);
+        Locale locale = LocaleContextHolder.getLocale();
+        return observationService.findByUsername(username,locale.getLanguage());
     }
 
     @RequestMapping(value="/deleteObs/{idAdvertisement}", method= RequestMethod.GET)

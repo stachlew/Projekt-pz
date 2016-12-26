@@ -11,7 +11,7 @@
     <div ng-show="isOffer">
         <%--kategoria, data--%>
             <div class="row">
-                <div class="col-md-4"><h4><i class="glyphicon glyphicon-tag"></i>&nbspKategoria: {{offer.categoryNamePL}}</h4></div>
+                <div class="col-md-4"><h4><i class="glyphicon glyphicon-tag"></i>&nbspKategoria: {{offer.categoryName}}</h4></div>
                 <div class="col-md-3 col-md-offset-5"><h4><i class="glyphicon glyphicon-calendar"></i>&nbsp Dodane: {{offer.dateAdded | date: 'yyyy-MM-dd HH:mm'}}</h4></div>
             </div>
 

@@ -13,10 +13,10 @@ import java.util.List;
 public interface AdvertisementService {
 
     //--------FIND------------//
-    List<AdvertisementHeader> findAllAndSortOfLatest();
-    List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage);
-    List<AdvertisementHeader> findAllByUsername(String username);
-    AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement);
+
+    List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage,String lang);
+    List<AdvertisementHeader> findAllByUsername(String username,String lang);
+    AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement,String lang);
 
 
     //--------UPDATE--------//
@@ -29,8 +29,8 @@ public interface AdvertisementService {
     void delete(Long idAdvertisement);
 
     //--------Converts------------//
-    List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements);
-    List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements);
+    List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements,String lang);
+    List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements,String lang);
     Advertisement convertAdvertisementFormToAdvertisement(AdvertisementForm form, String username);
 
 }

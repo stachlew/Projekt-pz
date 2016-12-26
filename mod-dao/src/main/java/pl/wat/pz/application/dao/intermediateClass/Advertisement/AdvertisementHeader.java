@@ -14,18 +14,21 @@ public class AdvertisementHeader {
     private String username;
     private String regionName;
     private byte[] image;
-    private String categoryNamePL;
-    private String categoryNameENG;
+    private String categoryName;
 
-    public AdvertisementHeader(Advertisement advertisement) {
+    public AdvertisementHeader(Advertisement advertisement,String lang) {
         this.idAdvertisement=advertisement.getIdAdvertisement();
         this.title=advertisement.getTitle();
         this.dateAdded=advertisement.getDateAdded();
         this.username=advertisement.getIdUser().getUsername();
         this.regionName=advertisement.getIdRegion().getName();
         this.image=advertisement.getImage();
-        this.categoryNamePL=advertisement.getIdItemCategory().getNamePL();
-        this.categoryNameENG=advertisement.getIdItemCategory().getNameENG();
+        if(lang.equals("pl")) {
+            this.categoryName = advertisement.getIdItemCategory().getNamePL();
+        }else{
+            this.categoryName=advertisement.getIdItemCategory().getNameENG();
+        }
+
     }
 
     public Long getIdAdvertisement() {
@@ -48,12 +51,8 @@ public class AdvertisementHeader {
         return regionName;
     }
 
-    public String getCategoryNamePL() {
-        return categoryNamePL;
-    }
-
-    public String getCategoryNameENG() {
-        return categoryNameENG;
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public byte[] getImage() {

@@ -37,30 +37,25 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Autowired
     private UserRepository userRepository;
 
-    @Override
-    public List<AdvertisementHeader> findAllAndSortOfLatest() {
-        List<Advertisement> advertisementListSorted = advertisementRepository.findAll(new Sort(Sort.Direction.DESC, "dateAdded"));
-        return this.advertisementConvertToAdvertisementHeader(advertisementListSorted);
-    }
 
     @Override
-    public List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage) {
+    public List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage,String lang) {
         Page<Advertisement> advertisementPage = advertisementRepository.findAll(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
-        return this.advertisementConvertToAdvertisementHeader(advertisementPage.getContent());
+        return this.advertisementConvertToAdvertisementHeader(advertisementPage.getContent(),lang);
     }
 
     @Override
-    public List<AdvertisementHeader> findAllByUsername(String username) {
+    public List<AdvertisementHeader> findAllByUsername(String username,String lang) {
         List<Advertisement> advertisementListByUsername= advertisementRepository.findByUsername(username);
-        return this.advertisementConvertToAdvertisementHeader(advertisementListByUsername);
+        return this.advertisementConvertToAdvertisementHeader(advertisementListByUsername,lang);
     }
 
     @Override
-    public AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement) {
+    public AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement,String lang) {
         AdvertisementDetails advertisementDetails = null;
         Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
         if(advertisement!=null)
-            advertisementDetails = new AdvertisementDetails(advertisement);
+            advertisementDetails = new AdvertisementDetails(advertisement,lang);
 
         return advertisementDetails;
 
@@ -80,14 +75,14 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             advertisement.setTitle(advertisementDetails.getTitle());
             advertisement.setImage(advertisement.getImage());
 
-            if (!advertisement.getIdItemCategory().getNamePL().equals(advertisementDetails.getCategoryNamePL())) {
-                ItemCategory category = itemCategoryRepository.findOneByName(advertisementDetails.getCategoryNamePL());
-                advertisement.setIdItemCategory(category);
-            }
-            if (!advertisement.getIdRegion().getName().equals(advertisementDetails.getRegionName())) {
-                Region region = regionRepository.findOneByName(advertisementDetails.getRegionName());
-                advertisement.setIdRegion(region);
-            }
+//            if (!advertisement.getIdItemCategory().getNamePL().equals(advertisementDetails.getCategoryNamePL())) {
+//                ItemCategory category = itemCategoryRepository.findOneByName(advertisementDetails.getCategoryNamePL());
+//                advertisement.setIdItemCategory(category);
+//            }
+//            if (!advertisement.getIdRegion().getName().equals(advertisementDetails.getRegionName())) {
+//                Region region = regionRepository.findOneByName(advertisementDetails.getRegionName());
+//                advertisement.setIdRegion(region);
+//            }
             advertisementRepository.save(advertisement);
         }
 
@@ -106,19 +101,19 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements) {
+    public List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements,String lang) {
         List<AdvertisementHeader> advertisementHeaders = new LinkedList<>();
         for (Advertisement adv:advertisements) {
-            advertisementHeaders.add(new AdvertisementHeader(adv));
+            advertisementHeaders.add(new AdvertisementHeader(adv,lang));
         }
         return advertisementHeaders;
     }
 
     @Override
-    public List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements) {
+    public List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements,String lang) {
         List<AdvertisementDetails> advertisementDetailses = new LinkedList<>();
         for (Advertisement adv:advertisements) {
-            advertisementDetailses.add(new AdvertisementDetails(adv));
+            advertisementDetailses.add(new AdvertisementDetails(adv,lang));
         }
         return advertisementDetailses;
     }

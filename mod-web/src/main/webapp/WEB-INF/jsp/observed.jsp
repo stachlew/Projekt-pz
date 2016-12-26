@@ -27,7 +27,7 @@
 
                     <div class="row">
                         <div class="col-md-2 col-md-offset-1">
-                            {{ob.categoryNamePL}}
+                            {{ob.categoryName}}
                         </div>
                         <div class="col-md-2">
                             {{ob.dateAdded | date: 'yyyy-MM-dd HH:mm'}}

@@ -18,10 +18,9 @@ public class AdvertisementDetails {
     private String city;
     private String username;
     private String regionName;
-    private String categoryNamePL;
-    private String categoryNameENG;
+    private String categoryName;
 
-    public AdvertisementDetails(Advertisement adv) {
+    public AdvertisementDetails(Advertisement adv,String lang) {
         this.idAdvertisement = adv.getIdAdvertisement();
         this.title = adv.getTitle();
         this.dateAdded = adv.getDateAdded();
@@ -32,8 +31,11 @@ public class AdvertisementDetails {
         this.city = adv.getCity();
         this.username = adv.getIdUser().getUsername();
         this.regionName = adv.getIdRegion().getName();
-        this.categoryNamePL = adv.getIdItemCategory().getNamePL();
-        this.categoryNameENG = adv.getIdItemCategory().getNameENG();
+        if(lang.equals("pl")) {
+            this.categoryName = adv.getIdItemCategory().getNamePL();
+        }else {
+            this.categoryName = adv.getIdItemCategory().getNameENG();
+        }
     }
 
     public long getIdAdvertisement() {
@@ -76,13 +78,10 @@ public class AdvertisementDetails {
         return regionName;
     }
 
-    public String getCategoryNamePL() {
-        return categoryNamePL;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public String getCategoryNameENG() {
-        return categoryNameENG;
-    }
 
     public void setTitle(String title) {
         this.title = title;
@@ -116,11 +115,9 @@ public class AdvertisementDetails {
         this.regionName = regionName;
     }
 
-    public void setCategoryNamePL(String categoryNamePL) {
-        this.categoryNamePL = categoryNamePL;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
-    public void setCategoryNameENG(String categoryNameENG) {
-        this.categoryNameENG = categoryNameENG;
-    }
+
 }

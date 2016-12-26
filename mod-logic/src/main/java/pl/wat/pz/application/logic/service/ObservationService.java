@@ -8,7 +8,7 @@ import java.util.List;
  * Created by Małgosia on 2016-12-08.
  */
 public interface ObservationService {
-    List<AdvertisementHeader> findByUsername(String username);
+    List<AdvertisementHeader> findByUsername(String username,String lang);
     void deleteObservation(Long idAdvertisement,String username);
     void saveObservation(String username, String adId);
 }

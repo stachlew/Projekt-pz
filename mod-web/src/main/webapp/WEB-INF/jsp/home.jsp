@@ -36,7 +36,7 @@
                     <p class="flex-text text-muted">
                         <i class="glyphicon glyphicon-map-marker"></i>&nbsp&nbsp{{ad.regionName}}
                         </br>
-                        <i class="glyphicon glyphicon-tag"></i>&nbsp&nbsp{{ad.categoryNamePL}}
+                        <i class="glyphicon glyphicon-tag"></i>&nbsp&nbsp{{ad.categoryName}}
                     </p>
 
                 </div>

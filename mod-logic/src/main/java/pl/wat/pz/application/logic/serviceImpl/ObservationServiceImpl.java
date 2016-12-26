@@ -31,13 +31,13 @@ public class ObservationServiceImpl implements ObservationService {
     UserRepository userRepository;
 
     @Override
-    public List<AdvertisementHeader> findByUsername(String username) {
+    public List<AdvertisementHeader> findByUsername(String username,String lang) {
         List<Observation> observationList = observationRepository.findByUsername(username);
         List<Advertisement> advertisementList = new LinkedList<>();
         for (Observation obs:observationList) {
             advertisementList.add(obs.getIdAdvertisement());
         }
-        List<AdvertisementHeader> advertisementHeaderList= advertisementService.advertisementConvertToAdvertisementHeader(advertisementList);
+        List<AdvertisementHeader> advertisementHeaderList= advertisementService.advertisementConvertToAdvertisementHeader(advertisementList,lang);
 
         return advertisementHeaderList;
     }

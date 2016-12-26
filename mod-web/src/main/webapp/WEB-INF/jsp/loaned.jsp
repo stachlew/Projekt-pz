@@ -37,7 +37,7 @@
 
                                 <div class="row">
                                     <div class="col-md-2 col-md-offset-1">
-                                        {{fromItem.categoryNamePL}}
+                                        {{fromItem.categoryName}}
                                     </div>
                                     <div class="col-md-2">
                                         {{fromItem.dateAdded | date: 'yyyy-MM-dd HH:mm'}}
