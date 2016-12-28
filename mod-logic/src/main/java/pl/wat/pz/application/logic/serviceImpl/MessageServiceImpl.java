@@ -33,7 +33,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     @Transactional
     public void saveMessage(Message message) {
-        messageRepository.save(message);
+        messageRepository.addMessages(message.getText(),message.getIdLoan().getIdLoan(),message.getIdSender().getUsername());
     }
 
     @Override
