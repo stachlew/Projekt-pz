@@ -19,10 +19,12 @@ import java.util.List;
 @Controller
 public class LoginController {
 
+
     @RequestMapping(value="/login", method = RequestMethod.GET)
     public String login(HttpServletResponse response) {
         return "login";
     }
+
 
     @RequestMapping(value="/loginfailed", method = RequestMethod.GET)
     public String loginerror(Model model) {

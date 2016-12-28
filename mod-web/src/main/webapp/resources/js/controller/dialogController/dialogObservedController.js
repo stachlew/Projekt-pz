@@ -1,3 +1,4 @@
+/*Kontroler do okna dialogowego usuwania ogłoszenia z listy obserwowanych*/
 angular.module('app').controller('dialogObservedController',dialogObservedController);
 
 function dialogObservedController ($scope, $modalInstance, items) {

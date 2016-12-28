@@ -56,6 +56,11 @@ app.config(['$routeProvider',function($routeProvider){
             controller: 'offerController'
         })
 
+        .when('/loandetails/:idLoan',{
+            templateUrl: 'loanDetails',
+            controller: 'loanDetailsController'
+        })
+
         .otherwise({templateUrl:'errorPage'});
 }]);
 

@@ -37,6 +37,9 @@ public class MainController {
         return "loaned";
     }
 
+    @RequestMapping("/loanDetails")
+    public String loanDetails(){ return "loanDetails"; }
+
     @RequestMapping("/myAds")
     public String userMyAds(){
         return "myAds";

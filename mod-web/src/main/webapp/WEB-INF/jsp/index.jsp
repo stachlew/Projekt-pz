@@ -43,6 +43,7 @@
     <script src="/resources/js/controller/observedController.js"></script>
     <script src="/resources/js/controller/registerController.js"></script>
     <script src="/resources/js/controller/offerController.js"></script>
+    <script src="/resources/js/controller/loanDetailsController.js"></script>
 
     <script src="/resources/js/controller/dialogController/dialogObservedController.js"></script>
 

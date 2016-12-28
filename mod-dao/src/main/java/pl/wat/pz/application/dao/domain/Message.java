@@ -63,4 +63,7 @@ public class Message {
     public void setIdMessageState(MessageState idMessageState) {
         this.idMessageState = idMessageState;
     }
+
+    public Message() {
+    }
 }

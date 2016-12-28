@@ -41,6 +41,15 @@ public class LoanServiceImpl implements LoanService {
         return new LoanHeader(loanRepository.findOne(idLoan),lang);
     }
 
+    @Override
+    public boolean isMemberInLoan(String username, long idLoan) {
+        LoanHeader header = findOneLoanHeaderByIdLoan(idLoan,"pl");
+        if(header.getBorrower().equals(username)||header.getLender().equals(username)){
+            return true;
+        }
+        return false;
+    }
+
 
     @Override
     public List<LoanHeader> convertLoanToLoanHeader(List<Loan> loans,String lang) {

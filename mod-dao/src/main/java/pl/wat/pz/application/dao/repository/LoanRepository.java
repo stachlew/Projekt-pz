@@ -17,6 +17,6 @@ public interface LoanRepository extends JpaRepository<Loan,Long> {
     @Query("select l from Loan l where l.idBorrower.username=?1 and (l.idLoanStatus.idLoanStatus=3 or l.idLoanStatus.idLoanStatus=4 )")
     List<Loan> findByUsernameAndUserIsBorrower(String username);
 
-    @Query("select l from Loan l where l.idBorrower.username=?1 or l.idAvertisement.idUser.username=?1")
+    @Query("select l from Loan l where l.idBorrower.username=?1 or l.idAdvertisement.idUser.username=?1")
     List<Loan> findByUsername(String username);
 }

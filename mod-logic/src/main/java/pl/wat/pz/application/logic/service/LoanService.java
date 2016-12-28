@@ -13,6 +13,7 @@ public interface LoanService {
     List<LoanHeader>findLoanHeaderByUsernameAndUserIsBorrower(String username,String lang);
     List<LoanHeader> findLoanHeaderByUsername(String username,String lang);
     LoanHeader findOneLoanHeaderByIdLoan(long idLoan,String lang);
+    boolean isMemberInLoan(String username, long idLoan);
 
 
     List<LoanHeader> convertLoanToLoanHeader(List<Loan> loans,String lang);

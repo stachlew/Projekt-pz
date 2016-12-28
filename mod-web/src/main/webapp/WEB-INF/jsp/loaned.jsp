@@ -20,30 +20,37 @@
                 <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
                 <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
                 <div class="list-group" ng-init="refreshBorrowFrom()">
-                    <a class="list-group-item borromColour" ng-repeat="fromItem in borrowFromList" ng-click="goOffer(fromItem.idAdvertisement)" >
+                    <a class="list-group-item borromColour" ng-repeat="fromItem in borrowFromList" ng-click="goLoanDetails(fromItem.idLoan)" >
                         <div class="row">
                             <div class="col-md-1">
                                 <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
                             </div>
                             <div class="col-md-11">
                                 <div class="row">
-                                    <div class="col-md-10 col-md-offset-1">
-                                        {{fromItem.title}}
+                                    <div class="col-md-7 col-md-offset-1">
+                                        <h4>{{fromItem.title}}</h4>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    </br></br></br>
+                                    <div class="col-md-3 col-md-offset-1">
+                                        <br>
+                                        STATUS: {{fromItem.loanStatus}}
+                                    </div>
                                 </div>
 
                                 <div class="row">
-                                    <div class="col-md-2 col-md-offset-1">
-                                        {{fromItem.idLoan}}
+                                    <br>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 col-md-offset-1">
+                                        Nr ogloszenia: {{fromItem.idAdvertisement}} <br>
+                                        Nr wypożyczenia: {{fromItem.idLoan}} <br>
+                                        Udostępniający: {{fromItem.lender}} <br>
+
                                     </div>
                                     <div class="col-md-2">
-                                        {{fromItem.dateTo | date: 'yyyy-MM-dd HH:mm'}}
-                                    </div>
-                                    <div class="col-md-1">
-                                        {{fromItem.idAdvertisement}}
+                                        <br>
+                                        Od: {{fromItem.dateFrom | date: 'yyyy-MM-dd'}}
+                                        Do: {{fromItem.dateTo | date: 'yyyy-MM-dd'}}
                                     </div>
                                 </div>
                             </div>
@@ -60,33 +67,44 @@
             <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
             <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
             <div class="list-group" ng-init="refreshBorrowTo()">
-                <a class="list-group-item borromColour" ng-repeat="toItem in borrowToList" ng-click="goOffer(toItem.idAdvertisement)" >
+                <a class="list-group-item borromColour" ng-repeat="toItem in borrowToList" ng-click="goLoanDetails(toItem.idLoan)" >
                     <div class="row">
                         <div class="col-md-1">
                             <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
                         </div>
+
                         <div class="col-md-11">
                             <div class="row">
-                                <div class="col-md-10 col-md-offset-1">
-                                    {{toItem.title}}
+                                <div class="col-md-7 col-md-offset-1">
+                                    <h4>{{toItem.title}}</h4>
                                 </div>
-                            </div>
-                            <div class="row">
-                                </br></br></br>
+                                <div class="col-md-3 col-md-offset-1">
+                                    <br>
+                                    STATUS: {{toItem.loanStatus}}
+                                </div>
                             </div>
 
                             <div class="row">
-                                <div class="col-md-2 col-md-offset-1">
-                                    {{toItem.idLoan}}
+                                <br>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 col-md-offset-1">
+                                    Nr ogloszenia: {{toItem.idAdvertisement}} <br>
+                                    Nr wypożyczenia: {{toItem.idLoan}} <br>
+                                    Pobierający: {{toItem.borrower}} <br>
+
                                 </div>
                                 <div class="col-md-2">
-                                    {{toItem.dateFrom | date: 'yyyy-MM-dd HH:mm'}}
-                                </div>
-                                <div class="col-md-1">
-                                    {{toItem.idAdvertisement}}
+                                    <br>
+                                    Od: {{toItem.dateFrom | date: 'yyyy-MM-dd'}}
+                                    Do: {{toItem.dateTo | date: 'yyyy-MM-dd'}}
                                 </div>
                             </div>
                         </div>
+
+
+
                     </div>
                 </a>
             </div>
