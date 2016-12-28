@@ -2,6 +2,7 @@ package pl.wat.pz.application.dao.domain;
 
 import org.hibernate.annotations.Check;
 import pl.wat.pz.application.dao.compositeKeys.MessageId;
+import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
 
 import javax.persistence.*;
 
@@ -40,6 +41,11 @@ public class Message {
         this.text = text;
     }
 
+    public Message(MessageForm msg){
+        this.text=msg.getText();
+    }
+
+
     public Loan getIdLoan() {
         return idLoan;
     }
@@ -58,6 +64,14 @@ public class Message {
 
     public MessageState getIdMessageState() {
         return idMessageState;
+    }
+
+    public void setIdLoan(Loan idLoan) {
+        this.idLoan = idLoan;
+    }
+
+    public void setIdSender(User idSender) {
+        this.idSender = idSender;
     }
 
     public void setIdMessageState(MessageState idMessageState) {

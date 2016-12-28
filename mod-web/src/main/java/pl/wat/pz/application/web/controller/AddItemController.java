@@ -42,16 +42,6 @@ public class AddItemController {
             Timestamp addDate = new Timestamp(Calendar.getInstance().getTime().getTime());
             Advertisement newAd = advertisementService.convertAdvertisementFormToAdvertisement(advertisementForm,auth.getName());
             newAd.setDateAdded(addDate);
-//            System.out.println("newAd title: "+newAd.getTitle());
-//            System.out.println("newAd bail: "+newAd.getBailValue());
-//            System.out.println("newAd charge: "+newAd.getChargePerDay());
-//            System.out.println("newAd description: "+newAd.getDescription());
-//            System.out.println("newAd city: "+newAd.getCity());
-//            System.out.println("newAd region: "+newAd.getIdRegion().getName());
-//            System.out.println("newAd category: "+newAd.getIdItemCategory().getNameENG());
-//            System.out.println("newAd id: "+newAd.getIdAdvertisement());
-//            System.out.println("newAd date: "+newAd.getDateAdded());
-//            System.out.println("newAd user: "+newAd.getIdUser().getUsername());
             advertisementService.saveAdvertisement(newAd);
         }
     }

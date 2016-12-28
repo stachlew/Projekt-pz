@@ -4,9 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Message;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
+import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
+import pl.wat.pz.application.dao.repository.LoanRepository;
 import pl.wat.pz.application.dao.repository.MessageRepository;
+import pl.wat.pz.application.dao.repository.UserRepository;
 import pl.wat.pz.application.logic.service.MessageService;
 
+import javax.transaction.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -17,9 +21,19 @@ import java.util.List;
 public class MessageServiceImpl implements MessageService {
     @Autowired
     MessageRepository messageRepository;
+    @Autowired
+    LoanRepository loanRepository;
+    @Autowired
+    UserRepository userRepository;
     @Override
     public List<LoanMessage> findByIdLoan(long idLoan,String lang) {
         return convertMessageToLoanMesage(messageRepository.findByIdLoan(idLoan),lang);
+    }
+
+    @Override
+    @Transactional
+    public void saveMessage(Message message) {
+        messageRepository.save(message);
     }
 
     @Override
@@ -30,5 +44,13 @@ public class MessageServiceImpl implements MessageService {
             loanMessages.add(new LoanMessage(msg,lang));
         }
         return loanMessages;
+    }
+
+    @Override
+    public Message convertMessageFormToMessage(MessageForm messageForm,String username) {
+        Message message= new Message(messageForm);
+        message.setIdLoan(loanRepository.findOne(messageForm.getIdLoan()));
+        message.setIdSender(userRepository.findOne(username));
+        return message;
     }
 }

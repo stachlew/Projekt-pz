@@ -3,20 +3,24 @@ package pl.wat.pz.application.web.rest.usr;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
+import pl.wat.pz.application.dao.domain.Advertisement;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
+import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
 import pl.wat.pz.application.logic.service.LoanService;
 import pl.wat.pz.application.logic.service.MessageService;
 
 import javax.xml.transform.sax.SAXSource;
+import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 
 @Controller
@@ -76,5 +80,15 @@ public class LoanedRestController {
         }
         return null;
     }
+
+    @RequestMapping(value = "/messages/createMessage", method= RequestMethod.POST)
+    @ResponseStatus(value= HttpStatus.NO_CONTENT)
+    public void createItem(@RequestBody MessageForm messageForm, Authentication auth){
+
+        if(auth!=null){
+            messageService.saveMessage(messageService.convertMessageFormToMessage(messageForm,auth.getName()));
+        }
+    }
+
 
 }
