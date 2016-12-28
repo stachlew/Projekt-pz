@@ -16,6 +16,8 @@ public class LoanHeader {
     private String borrower;
     private String lender;
     private String loanStatus;
+    private double bailValue;
+    private double chargePerDay;
 
     public LoanHeader() {
     }
@@ -33,6 +35,8 @@ public class LoanHeader {
         }else{
             this.loanStatus=loan.getIdLoanStatus().getNameENG();
         }
+        this.bailValue=loan.getBailValue();
+        this.chargePerDay=loan.getChargePerDay();
     }
 
     public long getIdLoan() {
@@ -65,5 +69,13 @@ public class LoanHeader {
 
     public String getLoanStatus() {
         return loanStatus;
+    }
+
+    public double getBailValue() {
+        return bailValue;
+    }
+
+    public double getChargePerDay() {
+        return chargePerDay;
     }
 }

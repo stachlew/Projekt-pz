@@ -11,6 +11,8 @@ import java.util.List;
 public interface LoanService {
     List<LoanHeader> findLoanHeaderByUsernameAndUserIsLender(String username,String lang);
     List<LoanHeader>findLoanHeaderByUsernameAndUserIsBorrower(String username,String lang);
+    List<LoanHeader> findLoanHeaderByUsername(String username,String lang);
+    LoanHeader findOneLoanHeaderByIdLoan(long idLoan,String lang);
 
 
     List<LoanHeader> convertLoanToLoanHeader(List<Loan> loans,String lang);

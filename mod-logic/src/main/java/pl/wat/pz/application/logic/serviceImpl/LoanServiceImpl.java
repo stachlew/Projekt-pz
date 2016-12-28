@@ -31,7 +31,15 @@ public class LoanServiceImpl implements LoanService {
         return convertLoanToLoanHeader(loanRepository.findByUsernameAndUserIsBorrower(username),lang);
     }
 
+    @Override
+    public List<LoanHeader> findLoanHeaderByUsername(String username, String lang) {
+        return convertLoanToLoanHeader(loanRepository.findByUsername(username),lang);
+    }
 
+    @Override
+    public LoanHeader findOneLoanHeaderByIdLoan(long idLoan,String lang) {
+        return new LoanHeader(loanRepository.findOne(idLoan),lang);
+    }
 
 
     @Override
