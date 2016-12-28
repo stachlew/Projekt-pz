@@ -84,7 +84,7 @@ public class LoanedRestController {
     @RequestMapping(value = "/messages/createMessage", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void createItem(@RequestBody MessageForm messageForm, Authentication auth){
-
+        System.out.println("Serwer otrzymal:"+messageForm.getText()+" do id: "+messageForm.getIdLoan());
         if(loanService.isMemberInLoan(auth.getName(),messageForm.getIdLoan())){
             messageService.saveMessage(messageService.convertMessageFormToMessage(messageForm,auth.getName()));
         }

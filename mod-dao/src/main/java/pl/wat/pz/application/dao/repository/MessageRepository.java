@@ -21,7 +21,7 @@ public interface MessageRepository extends JpaRepository<Message,MessageId> {
     @Modifying
     @Transactional
     @Query(value = "insert into Message(text,id_loan,id_sender) values (:text,:loan,:send)",nativeQuery = true)
-    void addMessages(@Param(value = "text")String text,@Param("loan") long idLoan, @Param("use") String username);
+    void addMessages(@Param(value = "text")String text,@Param("loan") long idLoan, @Param("send") String username);
 
 
 }

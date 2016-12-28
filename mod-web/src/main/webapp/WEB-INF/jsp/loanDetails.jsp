@@ -19,15 +19,47 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-offset-1 col-md-10">
-                <div class="list-group" ng-init="refreshLoanMessages()">
-                    <a class="list-group-item borromColour" ng-repeat="message in messages">
-                        Tekst: {{message.text}}
-                    </a>
+            <div class="col-md-12">
+                <div class="panel panel-primary"  ng-init="refreshLoanMessages()" >
+                            <div class="panel-heading" style="padding:0 0 0 8px;">
+                                <span class="glyphicon glyphicon-user"></span>
+                                <h6 class="panel-title" style="display:inline; color:#333333">Chat</h6>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="panel-body" style="padding:0 4px;">
+                                <div class="row">
+                                    <div class="col-xs-12" style="max-height:300px;max-width:100%;overflow-y:auto;overflow-x:hidden;">
+                                        <table class="table table-hover table-condensed" style="">
+                                            <tr ng-hide="chatMessages.length === 0" ng-repeat="chat in messages" style="min-width:100%;max-width:100%;width:100%;">
+                                                <td><img src="{{chat.icon}}" alt="" style="margin-top:8px;"/></td>
+                                                <td>
+                                                    <h6>{{chat.sender}}</h6>
+                                                </td>
+                                                <td>
+                                                    <p class="word-wrap:break-word"><small>{{chat.text}}</small></p>
+                                                </td>
+                                            </tr>
+                                            <tr ng-show="chatMessages.length === 0">
+                                                <td>
+                                                    <p>Brak wiadomosci <strong>Napisz cos!</strong></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <form>
+                                    <div class="input-group input-group-sm">
+                                        <input type="text" class="form-control" ng-model="varText" placeholder="..."/>
+                                        <span class="input-group-btn">
+                                          <button class="btn btn-primary" type="submit" ng-click="sendText(varText)">Send</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
-
