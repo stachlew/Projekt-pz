@@ -85,7 +85,7 @@ public class LoanedRestController {
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void createItem(@RequestBody MessageForm messageForm, Authentication auth){
 
-        if(auth!=null){
+        if(loanService.isMemberInLoan(auth.getName(),messageForm.getIdLoan())){
             messageService.saveMessage(messageService.convertMessageFormToMessage(messageForm,auth.getName()));
         }
     }
