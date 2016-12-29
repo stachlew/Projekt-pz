@@ -7,7 +7,7 @@ function loanedController($scope,$log,$http){
     $log.info("loanedController");
 
     $scope.noBorromFrom= false;
-    $scope.noBorromFromItems = false;
+    $scope.noBorrowFromItems = false;
 
     $scope.noBorrowTo = false;
     $scope.noBorrowToItems = false;
@@ -23,7 +23,7 @@ function loanedController($scope,$log,$http){
                     $scope.loading = false;
                     $scope.borrowFromList=response.data;
                     if($scope.borrowFromList.length == 0){
-                        $scope.noBorromFromItems = true;
+                        $scope.noBorrowFromItems = true;
                     }
                 },
                 function () {

@@ -18,7 +18,7 @@
             </tab-heading>
             <%--Wypozyczam od--%>
                 <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-                <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
+                <div class="text-center" ng-show="noBorrowFromItems" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
                 <div class="list-group" ng-init="refreshBorrowFrom()">
                     <a class="list-group-item borromColour" ng-repeat="fromItem in borrowFromList" ng-click="goLoanDetails(fromItem.idLoan)" >
                         <div class="row">
@@ -65,7 +65,7 @@
             </tab-heading>
             <%--Wypozyczam do--%>
             <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-            <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
+            <div class="text-center" ng-show="noBorrowToItems" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
             <div class="list-group" ng-init="refreshBorrowTo()">
                 <a class="list-group-item borromColour" ng-repeat="toItem in borrowToList" ng-click="goLoanDetails(toItem.idLoan)" >
                     <div class="row">

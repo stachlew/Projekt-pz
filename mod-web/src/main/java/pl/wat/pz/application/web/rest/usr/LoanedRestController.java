@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
+import pl.wat.pz.application.dao.intermediateClass.Loan.LoanForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
 import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
@@ -89,6 +90,14 @@ public class LoanedRestController {
             if(messageForm.getText().length()>0)
                 messageService.saveMessage(messageService.convertMessageFormToMessage(messageForm,auth.getName()));
         }
+    }
+
+    @RequestMapping(value = "/createLoanRequest", method= RequestMethod.POST)
+    @ResponseStatus(value= HttpStatus.NO_CONTENT)
+    public void createLoanRequest(@RequestBody LoanForm loanForm, Authentication auth){
+        System.out.println("Odebral "+ loanForm.getidAdvertisement());
+        System.out.println(loanForm.getDateFrom().toString());
+        System.out.println(loanForm.getDateTo().toString());
     }
 
 

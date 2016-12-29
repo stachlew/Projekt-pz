@@ -12,7 +12,7 @@
         <%--kategoria, data--%>
             <div class="row">
                 <div class="col-md-4"><h4><i class="glyphicon glyphicon-tag"></i>&nbspKategoria: {{offer.categoryName}}</h4></div>
-                <div class="col-md-3 col-md-offset-5"><h4><i class="glyphicon glyphicon-calendar"></i>&nbsp Dodane: {{offer.dateAdded | date: 'yyyy-MM-dd HH:mm'}}</h4></div>
+                <div class="col-md-4 col-md-offset-4"><h4><i class="glyphicon glyphicon-calendar"></i>&nbsp Dodane: {{offer.dateAdded | date: 'yyyy-MM-dd HH:mm'}}</h4></div>
             </div>
 
             <%--miasto, region--%>
@@ -33,7 +33,7 @@
                     </br>
                     <div class="row">
                         <h4>
-                            <a class="btn btn-default borromColour" role="button">
+                            <a ng-show="logged" class="btn btn-default borromColour" role="button" ng-click="goAddLoan(offerId)">
                                 Rezerwuj
                             </a>
                             <a class="btn btn-default borromColour" role="button" ng-show="logged" ng-click="addObs()">
