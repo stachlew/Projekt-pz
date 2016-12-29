@@ -1,12 +1,14 @@
 package pl.wat.pz.application.logic.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Message;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
 import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
 import pl.wat.pz.application.dao.repository.LoanRepository;
 import pl.wat.pz.application.dao.repository.MessageRepository;
+import pl.wat.pz.application.dao.repository.MessageStateRepository;
 import pl.wat.pz.application.dao.repository.UserRepository;
 import pl.wat.pz.application.logic.service.MessageService;
 
@@ -25,6 +27,8 @@ public class MessageServiceImpl implements MessageService {
     LoanRepository loanRepository;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    MessageStateRepository messageStateRepository;
     @Override
     public List<LoanMessage> findByIdLoan(long idLoan,String lang) {
         return convertMessageToLoanMesage(messageRepository.findByIdLoan(idLoan),lang);
@@ -53,4 +57,17 @@ public class MessageServiceImpl implements MessageService {
         message.setIdSender(userRepository.findOne(username));
         return message;
     }
+
+    @Override
+    public int isMessageWithStatusTwo(long idLoan, String username) {
+        return messageRepository.isMessageWithStatusTwo(idLoan,username);
+    }
+
+    @Override
+    @Transactional
+    public void readAllMessagesByUsernameInLoan(long idLoan, String username) {
+        messageRepository.readAllMessagesByUsernameInLoan(idLoan,username);
+
+    }
+
 }

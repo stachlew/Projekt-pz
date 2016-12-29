@@ -7,6 +7,7 @@ import pl.wat.pz.application.dao.domain.Loan;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
 import pl.wat.pz.application.dao.repository.LoanRepository;
 import pl.wat.pz.application.logic.service.LoanService;
+import pl.wat.pz.application.logic.service.MessageService;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,6 +19,8 @@ import java.util.List;
 public class LoanServiceImpl implements LoanService {
     @Autowired
     LoanRepository loanRepository;
+    @Autowired
+    MessageService messageService;
 
     @Override
     public List<LoanHeader> findLoanHeaderByUsernameAndUserIsLender(String username, String lang) {
@@ -33,7 +36,12 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public List<LoanHeader> findLoanHeaderByUsername(String username, String lang) {
-        return convertLoanToLoanHeader(loanRepository.findByUsername(username),lang);
+        List<LoanHeader> loanHeaders = convertLoanToLoanHeader(loanRepository.findByUsername(username), lang);
+        for (LoanHeader l:loanHeaders
+             ) {
+                l.setMessageWithStatusTwo(messageService.isMessageWithStatusTwo(l.getIdLoan(),username));
+        }
+        return loanHeaders;
     }
 
     @Override
@@ -44,10 +52,7 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public boolean isMemberInLoan(String username, long idLoan) {
         LoanHeader header = findOneLoanHeaderByIdLoan(idLoan,"pl");
-        if(header.getBorrower().equals(username)||header.getLender().equals(username)){
-            return true;
-        }
-        return false;
+        return header.getBorrower().equals(username) || header.getLender().equals(username);
     }
 
 
@@ -56,7 +61,7 @@ public class LoanServiceImpl implements LoanService {
         List<LoanHeader> loanHeaders = new LinkedList<>();
         for (Loan l:loans)
         {
-            loanHeaders.add(new LoanHeader(l,lang));
+            loanHeaders.add(new LoanHeader(l, lang));
         }
         return loanHeaders;
     }

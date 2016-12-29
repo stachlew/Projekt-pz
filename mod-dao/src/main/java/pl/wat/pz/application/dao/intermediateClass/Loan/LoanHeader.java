@@ -18,6 +18,7 @@ public class LoanHeader {
     private String loanStatus;
     private double bailValue;
     private double chargePerDay;
+    private int messageWithStatusTwo;
 
     public LoanHeader() {
     }
@@ -77,5 +78,13 @@ public class LoanHeader {
 
     public double getChargePerDay() {
         return chargePerDay;
+    }
+
+    public int getMessageWithStatusTwo() {
+        return messageWithStatusTwo;
+    }
+
+    public void setMessageWithStatusTwo(int messageWithStatusTwo) {
+        this.messageWithStatusTwo = messageWithStatusTwo;
     }
 }

@@ -29,7 +29,7 @@ public class Advertisement {
     @Column(name = "charge_per_day",length = 15,precision = 2,scale = 13 , nullable = true)
     private double chargePerDay;
 
-    @Column(length = 255,nullable = true)
+    @Column(length = 512,nullable = true)
     private String description;
 
     @Column(nullable = true)

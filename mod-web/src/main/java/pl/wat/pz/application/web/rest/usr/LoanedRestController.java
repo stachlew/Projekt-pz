@@ -57,6 +57,7 @@ public class LoanedRestController {
             long loanIdLong = Long.parseLong(loanId.trim());
             loanHeader = loanService.findOneLoanHeaderByIdLoan(loanIdLong,locale);
             if(loanHeader.getLender().equals(username) || loanHeader.getBorrower().equals(username)){
+                messageService.readAllMessagesByUsernameInLoan(loanIdLong,username);
                 return loanHeader;
             }
         } catch (NumberFormatException nfe) {

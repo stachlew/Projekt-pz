@@ -18,4 +18,8 @@ public interface MessageService {
 
     List<LoanMessage> convertMessageToLoanMesage(List<Message> messages,String lang);
     Message convertMessageFormToMessage(MessageForm messageForm,String username);
+
+    int isMessageWithStatusTwo(long idLoan,String username);
+
+    void readAllMessagesByUsernameInLoan(long idLoan,String username);
 }

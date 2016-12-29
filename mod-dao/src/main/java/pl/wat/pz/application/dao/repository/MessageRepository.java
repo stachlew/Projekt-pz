@@ -23,5 +23,11 @@ public interface MessageRepository extends JpaRepository<Message,MessageId> {
     @Query(value = "insert into Message(text,id_loan,id_sender) values (:text,:loan,:send)",nativeQuery = true)
     void addMessages(@Param(value = "text")String text,@Param("loan") long idLoan, @Param("send") String username);
 
+    @Query("select COUNT(m) from Message m where idLoan.idLoan=?1 and (idSender.username!=?2) and  idMessageState.idMessageState=2 ")
+    int isMessageWithStatusTwo(long idLoan, String username);
 
+    @Modifying
+    @Transactional
+    @Query(value = "update Message set id_message_state=1 where id_loan=:loan and id_sender!=:user", nativeQuery = true)
+    void readAllMessagesByUsernameInLoan(@Param(value = "loan")long idLoan,@Param("user") String username);
 }
