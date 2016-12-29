@@ -19,9 +19,9 @@
 
                 <div class="form-group">
                     <label for="title">Title*</label>
-                    <input type="text" name="title" id="title" class="form-control" ng-model="title" ng-minlength="4" ng-maxlength="50" required />
+                    <input type="text" name="title" id="title" class="form-control" ng-model="title" ng-minlength="4" ng-maxlength="250" required />
                     <span ng-show="form.title.$touched && form.title.$error.required" class="help-block">Title is required</span>
-                    <span ng-show="form.title.$touched && form.title.$error.minlength || form.title.$error.maxlength" class="help-block">Title length 4-50</span>
+                    <span ng-show="form.title.$touched && form.title.$error.minlength || form.title.$error.maxlength" class="help-block">Title length 4-250</span>
                 </div>
 
                 <div class="form-group">
@@ -57,8 +57,8 @@
 
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <textarea style="max-width: 100%" rows="10" cols="30" name="description" id="description" class="form-control" ng-model="description" ng-maxlength="255"></textarea>
-                    <span ng-show="form.description.$touched && form.description.$error.maxlength" class="help-block">Max length: 255</span>
+                    <textarea style="max-width: 100%" rows="10" cols="30" name="description" id="description" class="form-control" ng-model="description" ng-maxlength="500"></textarea>
+                    <span ng-show="form.description.$touched && form.description.$error.maxlength" class="help-block">Max length: 500</span>
                 </div>
                 </br>
                 </br>

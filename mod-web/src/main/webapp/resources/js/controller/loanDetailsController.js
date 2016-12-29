@@ -46,33 +46,37 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
     }
 
     $scope.sendText = function (varText) {
-        console.log("Wysylam:"+varText);
-        console.log("pod id:"+$scope.idLoan);
-        var newText = {
-            text : varText,
-            idLoan : $scope.idLoan
-        };
+        if(undefined != varText){
+            if(varText.length>0 ){
+                var newText = {
+                    text : varText,
+                    idLoan : $scope.idLoan
+                };
 
-        $scope.csfr=$cookies.get('XSRF-TOKEN');
-        var res = $http({
-            method: 'POST',
-            url: '/rest/usr/loaned/messages/createMessage',
-            data: newText,
-            headers: {
-                'X-CSRF-TOKEN': $scope.csfr,
-                'Content-Type': 'application/json'
+                 $scope.csfr=$cookies.get('XSRF-TOKEN');
+                 var res = $http({
+                 method: 'POST',
+                 url: '/rest/usr/loaned/messages/createMessage',
+                 data: newText,
+                 headers: {
+                 'X-CSRF-TOKEN': $scope.csfr,
+                 'Content-Type': 'application/json'
+                 }
+                 });
+
+                 res.success(function () {
+                 $scope.refreshLoanMessages();
+                 console.log("Wyslano wiadomosc poprawnie");
+                 $scope.varText="";
+                 });
+                 res.error(function () {
+                 $scope.refreshLoanMessages();
+                 console.log("Blad wysylania wiadomosci");
+                 });
             }
-        });
+        }
 
-        res.success(function () {
-            $scope.refreshLoanMessages();
-            console.log("Wyslano wiadomosc poprawnie");
-            $scope.varText="";
-        });
-        res.error(function () {
-            $scope.refreshLoanMessages();
-            console.log("Blad wysylania wiadomosci");
-        });
+
 
     }
 
