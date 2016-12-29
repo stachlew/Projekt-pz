@@ -2,13 +2,20 @@ package pl.wat.pz.application.logic.serviceImpl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Loan;
+import pl.wat.pz.application.dao.domain.Message;
+import pl.wat.pz.application.dao.intermediateClass.Loan.LoanForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
+import pl.wat.pz.application.dao.repository.AdvertisementRepository;
 import pl.wat.pz.application.dao.repository.LoanRepository;
+import pl.wat.pz.application.dao.repository.LoanStatusRepository;
+import pl.wat.pz.application.dao.repository.UserRepository;
 import pl.wat.pz.application.logic.service.LoanService;
 import pl.wat.pz.application.logic.service.MessageService;
 
+import javax.transaction.Transactional;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -21,6 +28,12 @@ public class LoanServiceImpl implements LoanService {
     LoanRepository loanRepository;
     @Autowired
     MessageService messageService;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    AdvertisementRepository advertisementRepository;
+    @Autowired
+    LoanStatusRepository loanStatusRepository;
 
     @Override
     public List<LoanHeader> findLoanHeaderByUsernameAndUserIsLender(String username, String lang) {
@@ -65,4 +78,17 @@ public class LoanServiceImpl implements LoanService {
         }
         return loanHeaders;
     }
+
+    @Override
+    @Transactional
+    @Modifying
+    public void addLoan(LoanForm loanForm, String name) {
+        Loan loan=new Loan(loanForm);
+        loan.setIdBorrower(userRepository.findOne(name));
+        loan.setIdAdvertisement(advertisementRepository.findOne(loanForm.getidAdvertisement()));
+        loan.setIdLoanStatus(loanStatusRepository.findOne(2L));
+       loanRepository.save(loan);
+
+    }
+
 }

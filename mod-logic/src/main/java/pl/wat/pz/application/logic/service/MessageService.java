@@ -22,4 +22,6 @@ public interface MessageService {
     int isMessageWithStatusTwo(long idLoan,String username);
 
     void readAllMessagesByUsernameInLoan(long idLoan,String username);
+
+
 }

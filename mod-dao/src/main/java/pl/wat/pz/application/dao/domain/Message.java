@@ -66,6 +66,10 @@ public class Message {
         return idMessageState;
     }
 
+    public void setText(String text) {
+        this.text = text;
+    }
+
     public void setIdLoan(Loan idLoan) {
         this.idLoan = idLoan;
     }

@@ -1,6 +1,7 @@
 package pl.wat.pz.application.logic.service;
 
 import pl.wat.pz.application.dao.domain.Loan;
+import pl.wat.pz.application.dao.intermediateClass.Loan.LoanForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface LoanService {
 
 
     List<LoanHeader> convertLoanToLoanHeader(List<Loan> loans,String lang);
+
+    void addLoan(LoanForm loanForm, String name);
 }

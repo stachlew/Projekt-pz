@@ -1,5 +1,7 @@
 package pl.wat.pz.application.dao.domain;
 
+import pl.wat.pz.application.dao.intermediateClass.Loan.LoanForm;
+
 import javax.persistence.*;
 import java.sql.Date;
 
@@ -10,7 +12,6 @@ import java.sql.Date;
 public class Loan {
     @Id
     @Column(name = "id_loan", length = 40)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private long idLoan;
 
     @Column(name = "date_from", nullable = false)
@@ -48,8 +49,18 @@ public class Loan {
         this.idAdvertisement = idAdvertisement;
         this.idBorrower = idBorrower;
     }
+    public Loan(LoanForm loanForm){
+        this.dateFrom=loanForm.getDateFrom();
+        this.dateTo=loanForm.getDateTo();
+    }
 
+    public void setIdAdvertisement(Advertisement idAdvertisement) {
+        this.idAdvertisement = idAdvertisement;
+    }
 
+    public void setIdBorrower(User idBorrower) {
+        this.idBorrower = idBorrower;
+    }
 
     public long getIdLoan() {
         return idLoan;

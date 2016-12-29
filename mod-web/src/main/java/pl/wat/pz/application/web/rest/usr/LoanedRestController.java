@@ -95,9 +95,7 @@ public class LoanedRestController {
     @RequestMapping(value = "/createLoanRequest", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void createLoanRequest(@RequestBody LoanForm loanForm, Authentication auth){
-        System.out.println("Odebral "+ loanForm.getidAdvertisement());
-        System.out.println(loanForm.getDateFrom().toString());
-        System.out.println(loanForm.getDateTo().toString());
+        loanService.addLoan(loanForm, auth.getName());
     }
 
 

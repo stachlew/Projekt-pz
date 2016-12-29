@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.domain.ItemCategory;
@@ -62,27 +63,19 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Transactional
+    @Modifying
     @Override
     public void modifyAdvertisementWithAdvertisementDetails(AdvertisementDetails advertisementDetails) {
         Advertisement advertisement = advertisementRepository.findOne(advertisementDetails.getIdAdvertisement());
         if (advertisement!=null) {
-
             advertisement.setBailValue(advertisementDetails.getBailValue());
             advertisement.setChargePerDay(advertisementDetails.getChargePerDay());
             advertisement.setCity(advertisementDetails.getCity());
-            advertisement.setDateAdded(advertisementDetails.getDateAdded());
             advertisement.setDescription(advertisementDetails.getDescription());
             advertisement.setTitle(advertisementDetails.getTitle());
             advertisement.setImage(advertisement.getImage());
-
-//            if (!advertisement.getIdItemCategory().getNamePL().equals(advertisementDetails.getCategoryNamePL())) {
-//                ItemCategory category = itemCategoryRepository.findOneByName(advertisementDetails.getCategoryNamePL());
-//                advertisement.setIdItemCategory(category);
-//            }
-//            if (!advertisement.getIdRegion().getName().equals(advertisementDetails.getRegionName())) {
-//                Region region = regionRepository.findOneByName(advertisementDetails.getRegionName());
-//                advertisement.setIdRegion(region);
-//            }
+            advertisement.setIdItemCategory(itemCategoryRepository.findOneByName(advertisementDetails.getCategoryName()));
+            advertisement.setIdRegion(regionRepository.findOneByName(advertisementDetails.getRegionName()));
             advertisementRepository.save(advertisement);
         }
 
