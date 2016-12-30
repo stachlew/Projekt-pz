@@ -15,7 +15,7 @@ import java.util.List;
  * Created by DELL on 2016-11-23.
  */
 public interface MessageRepository extends JpaRepository<Message,MessageId> {
-    @Query("select m from Message m where idLoan.idLoan=?1")
+    @Query("select m from Message m where idLoan.idLoan=?1 order by m.seqNumber")
     List<Message> findByIdLoan(long idLoan);
 
     @Modifying
