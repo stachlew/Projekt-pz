@@ -19,10 +19,6 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Locale;
 
-/*
-
-*/
-
 @Controller
 
 public class AddItemController {
@@ -40,8 +36,8 @@ public class AddItemController {
     public void createItem(@RequestBody AdvertisementForm advertisementForm, Authentication auth, BindingResult result){
 
         if(auth!=null){
-            AdvertisementFormValidator av = new AdvertisementFormValidator();
-            av.validate(advertisementForm, result);
+            AdvertisementFormValidator advertisementFormValidator = new AdvertisementFormValidator();
+            advertisementFormValidator.validate(advertisementForm, result);
             if(result.hasErrors()) {
                 System.out.println(result.getAllErrors());
             }
