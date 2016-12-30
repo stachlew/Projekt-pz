@@ -59,8 +59,8 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public int isMessageWithStatusTwo(long idLoan, String username) {
-        return messageRepository.isMessageWithStatusTwo(idLoan,username);
+    public int isMessageWithStatusUnread(long idLoan, String username) {
+        return messageRepository.isMessageWithStatusUnread(idLoan,username);
     }
 
     @Override

@@ -52,7 +52,7 @@ public class LoanServiceImpl implements LoanService {
         List<LoanHeader> loanHeaders = convertLoanToLoanHeader(loanRepository.findByUsername(username), lang);
         for (LoanHeader l:loanHeaders
              ) {
-                l.setMessageWithStatusTwo(messageService.isMessageWithStatusTwo(l.getIdLoan(),username));
+                l.setMessageWithStatusTwo(messageService.isMessageWithStatusUnread(l.getIdLoan(),username));
         }
         return loanHeaders;
     }
@@ -89,6 +89,15 @@ public class LoanServiceImpl implements LoanService {
         loan.setIdLoanStatus(loanStatusRepository.findOne(2L));
        loanRepository.save(loan);
 
+    }
+
+    @Override
+    @Transactional
+    @Modifying
+    public void changeLoanStatus(long idLoan, String statusName) {
+        Loan loan = loanRepository.findOne(idLoan);
+        loan.setIdLoanStatus(loanStatusRepository.findLoanStatusByName(statusName));
+        loanRepository.save(loan);
     }
 
 }

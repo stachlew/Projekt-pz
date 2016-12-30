@@ -15,6 +15,7 @@ public class AdvertisementHeader {
     private String regionName;
     private byte[] image;
     private String categoryName;
+    private String city;
 
     public AdvertisementHeader(Advertisement advertisement,String lang) {
         this.idAdvertisement=advertisement.getIdAdvertisement();
@@ -28,6 +29,7 @@ public class AdvertisementHeader {
         }else{
             this.categoryName=advertisement.getIdItemCategory().getNameENG();
         }
+        this.city=advertisement.getCity();
 
     }
 
@@ -57,5 +59,9 @@ public class AdvertisementHeader {
 
     public byte[] getImage() {
         return image;
+    }
+
+    public String getCity() {
+        return city;
     }
 }

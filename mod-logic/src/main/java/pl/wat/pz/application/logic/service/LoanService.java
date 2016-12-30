@@ -17,7 +17,9 @@ public interface LoanService {
     boolean isMemberInLoan(String username, long idLoan);
 
 
+
     List<LoanHeader> convertLoanToLoanHeader(List<Loan> loans,String lang);
 
     void addLoan(LoanForm loanForm, String name);
+    void changeLoanStatus(long idLoan,String statusName);
 }

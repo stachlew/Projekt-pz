@@ -24,7 +24,7 @@ public interface MessageRepository extends JpaRepository<Message,MessageId> {
     void addMessages(@Param(value = "text")String text,@Param("loan") long idLoan, @Param("send") String username);
 
     @Query("select COUNT(m) from Message m where idLoan.idLoan=?1 and (idSender.username!=?2) and  idMessageState.idMessageState=2 ")
-    int isMessageWithStatusTwo(long idLoan, String username);
+    int isMessageWithStatusUnread(long idLoan, String username);
 
     @Modifying
     @Transactional
