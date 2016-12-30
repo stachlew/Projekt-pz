@@ -58,4 +58,16 @@ public class ObservationServiceImpl implements ObservationService {
         }
 
     }
+
+    @Override
+    public boolean isObserved(String username, String adId) {
+        User user = userRepository.findOne(username);
+        Long idAd = new Long(adId);
+        Advertisement advert = advertisementRepository.findOne(idAd);
+        ObservationId observationId = new ObservationId(advert,user);
+        if(observationRepository.exists(observationId))
+            return true;
+        else
+            return false;
+    }
 }

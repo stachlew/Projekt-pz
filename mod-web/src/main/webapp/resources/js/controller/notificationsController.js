@@ -7,11 +7,10 @@ function notificationsController($scope,$log,$http){
     $log.info("notificationsController");
     $log.info("loanedController");
 
-    $scope.noBorromItems = false;
+    $scope.noItems = false;
     $scope.loading = false;
 
-    //od kogos
-    $scope.refreshBorrow = function () {
+    $scope.refreshNotifications = function () {
         $scope.loading = true;
         $http.get('/rest/usr/notifications/getLoan') //TUTAJ
             .then(
@@ -19,12 +18,12 @@ function notificationsController($scope,$log,$http){
                     $scope.loading = false;
                     $scope.borrowList=response.data;
                     if($scope.borrowList.length == 0){
-                        $scope.noBorromItems = true;
+                        $scope.noItems = true;
                     }
                 },
                 function () {
                     $scope.loading = false;
-                    console.log("Error: refreshBorrow()");
+                    console.log("Error: refreshNotifications()");
                 }
             )
     }

@@ -11,4 +11,5 @@ public interface ObservationService {
     List<AdvertisementHeader> findByUsername(String username,String lang);
     void deleteObservation(Long idAdvertisement,String username);
     void saveObservation(String username, String adId);
+    boolean isObserved(String username, String adId);
 }

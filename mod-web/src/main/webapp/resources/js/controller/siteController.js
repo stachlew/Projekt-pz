@@ -24,6 +24,10 @@ function siteController($scope,$location,$log,$cookies,$http){
         $location.path("/offer/"+linkId);
     }
 
+    $scope.goEditOffer = function(linkId){
+        $location.path("/editoffer/"+linkId);
+    }
+
     $scope.goAddLoan = function(linkId){
         $location.path("/addLoan/"+linkId);
     }
@@ -31,6 +35,8 @@ function siteController($scope,$location,$log,$cookies,$http){
     $scope.goLoanDetails = function(linkId){
         $location.path("/loandetails/"+linkId);
     }
+
+
 
     $scope.goLink = function(linkId){
         $location.path(linkId);

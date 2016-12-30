@@ -6,9 +6,11 @@
 
 <div class="well well-sm">
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-    <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych wypożyczeń.</div>
-    <div class="list-group" ng-init="refreshBorrow()">
-        <a class="list-group-item borromColour" ng-repeat="fromItem in borrowList" ng-click="goLoanDetails(fromItem.idLoan)" >
+    <div class="text-center" ng-show="noItems" >
+       <h3>Brak notyfikacji</h3>
+    </div>
+    <div class="list-group" ng-init="refreshNotifications()">
+        <a class="list-group-item borromColour" ng-repeat="fromItem in borrowList" ng-click="goLoanDetails(fromItem.idLoan)" ng-class="{ newNotification: fromItem.messageWithStatusTwo>0}">
             <div class="row">
                 <div class="col-md-1">
                     <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
@@ -16,11 +18,14 @@
                 <div class="col-md-11">
                     <div class="row">
                         <div class="col-md-7 col-md-offset-1">
-                            <h4>{{fromItem.title}}</h4>
+                            <h4><strong>{{fromItem.title}}</strong></h4>
                         </div>
                         <div class="col-md-3 col-md-offset-1">
                             <br>
-                            STATUS: {{fromItem.loanStatus}} {{fromItem.messageWithStatusTwo}}
+                            <p><i class="glyphicon glyphicon-info-sign"></i>&nbspSTATUS:&nbsp{{fromItem.loanStatus}}
+                            <br>
+                            <br>
+                            <span ng-if="fromItem.messageWithStatusTwo"><strong>NOWE WIADOMOŚCI! ({{fromItem.messageWithStatusTwo}}) </strong> </span>
                         </div>
                     </div>
 
@@ -29,17 +34,19 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-1">
+                        <div class="col-md-3 col-md-offset-1">
                             Nr ogloszenia: {{fromItem.idAdvertisement}} <br>
                             Nr wypożyczenia: {{fromItem.idLoan}} <br>
-                            Udostępniający: {{fromItem.lender}} <br>
-
                         </div>
                         <div class="col-md-2">
-                            <br>
-                            Od: {{fromItem.dateFrom | date: 'yyyy-MM-dd'}}
-                            Do: {{fromItem.dateTo | date: 'yyyy-MM-dd'}}
+                            Od: {{fromItem.dateFrom | date: 'yyyy-MM-dd'}}<br>
+                            Do: {{fromItem.dateTo | date: 'yyyy-MM-dd'}}<br>
                         </div>
+                        <div class="col-md-3">
+                            Udostępniający: {{fromItem.lender}} <br>
+                            Pożyczający: {{fromItem.borrower}} <br>
+                        </div>
+
                     </div>
                 </div>
             </div>

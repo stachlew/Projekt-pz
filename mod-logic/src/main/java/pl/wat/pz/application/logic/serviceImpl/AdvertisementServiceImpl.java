@@ -65,17 +65,17 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Transactional
     @Modifying
     @Override
-    public void modifyAdvertisementWithAdvertisementDetails(AdvertisementDetails advertisementDetails) {
-        Advertisement advertisement = advertisementRepository.findOne(advertisementDetails.getIdAdvertisement());
+    public void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement) {
+        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
         if (advertisement!=null) {
-            advertisement.setBailValue(advertisementDetails.getBailValue());
-            advertisement.setChargePerDay(advertisementDetails.getChargePerDay());
-            advertisement.setCity(advertisementDetails.getCity());
-            advertisement.setDescription(advertisementDetails.getDescription());
-            advertisement.setTitle(advertisementDetails.getTitle());
-            advertisement.setImage(advertisement.getImage());
-            advertisement.setIdItemCategory(itemCategoryRepository.findOneByName(advertisementDetails.getCategoryName()));
-            advertisement.setIdRegion(regionRepository.findOneByName(advertisementDetails.getRegionName()));
+            advertisement.setBailValue(advertisementForm.getBailValue());
+            advertisement.setChargePerDay(advertisementForm.getChargePerDay());
+            advertisement.setCity(advertisementForm.getCity());
+            advertisement.setDescription(advertisementForm.getDescription());
+            advertisement.setTitle(advertisementForm.getTitle());
+            //advertisement.setImage(advertisementForm.getImage());
+            advertisement.setIdItemCategory(itemCategoryRepository.findOneByName(advertisementForm.getCategory()));
+            advertisement.setIdRegion(regionRepository.findOneByName(advertisementForm.getRegion()));
             advertisementRepository.save(advertisement);
         }
 

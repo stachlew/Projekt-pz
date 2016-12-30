@@ -26,7 +26,19 @@ function offerController($scope,$log,$routeParams,$http){
                 },
                 function () {
                     $scope.loading = false;
-                    console.log("Error: refreshOffer()");
+                    console.log("Error: refreshOfferData()");
+                }
+            )
+    }
+
+    $scope.refreshObsStatus = function (){
+        $http.get('rest/usr/observation/checkObservation/'+$scope.offerId)
+            .then(
+                function (response) {
+                    $scope.addFav=response.data.flag;
+                },
+                function () {
+                    console.log("Error: refreshOfferObsStatus()");
                 }
             )
     }

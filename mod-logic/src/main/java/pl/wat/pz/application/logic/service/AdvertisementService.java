@@ -20,7 +20,7 @@ public interface AdvertisementService {
 
 
     //--------UPDATE--------//
-    void modifyAdvertisementWithAdvertisementDetails(AdvertisementDetails advertisementDetails);
+    void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement);
 
     //----------SAVE--------//
     Advertisement saveAdvertisement(Advertisement newAdvertisement);

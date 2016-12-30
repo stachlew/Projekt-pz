@@ -82,6 +82,10 @@ body
 	width: 100%;
 }
 
+.borromColourNotHover{
+	background-color: rgba(243, 255, 59, 0.82) !important;
+}
+
 .borromColour{
 	background-color: rgba(243, 255, 59, 0.82) !important;
 }
@@ -99,6 +103,10 @@ body
 .linkBorrom:hover{
 	color: rgb(152, 139, 26); !important;
 	cursor: pointer; cursor: hand; !important;
+}
+
+.newNotification{
+	background-color: rgba(158, 170, 255, 0.82) !important;
 }
 
 .modal {

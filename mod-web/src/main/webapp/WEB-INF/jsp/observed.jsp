@@ -18,7 +18,7 @@
                 <div class="col-md-10" ng-click="goOffer(ob.idAdvertisement)" >
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            {{ob.title}}
+                            <h4><strong>{{ob.title}} (Nr {{ob.idAdvertisement}})</strong></h4>
                         </div>
                     </div>
                     <div class="row">
@@ -26,14 +26,16 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-2 col-md-offset-1">
-                            {{ob.categoryName}}
+                        <div class="col-md-3 col-md-offset-1">
+                            Kategoria: {{ob.categoryName}}<br>
+                            Dodano: {{ob.dateAdded | date: 'yyyy-MM-dd'}}
                         </div>
-                        <div class="col-md-2">
-                            {{ob.dateAdded | date: 'yyyy-MM-dd HH:mm'}}
+                        <div class="col-md-4 ">
+                            Region: {{ob.regionName}}<br>
+                            Miasto: {{ob.city}}<br>
                         </div>
-                        <div class="col-md-1">
-                            {{ob.idAdvertisement}}
+                        <div class="col-md-4">
+                            Właściciel: {{ob.username}}
                         </div>
                     </div>
                 </div>
