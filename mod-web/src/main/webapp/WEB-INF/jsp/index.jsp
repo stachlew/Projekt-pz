@@ -67,7 +67,7 @@
     <%--<meta name="csrf-token" content="{{ csrf_token() }}">--%>
     <div id="i18Bar" class="row ">
         <div class="pull-right" style="padding-right: 10px">
-            <a href="?language=pl">
+            <a href="?language=pl" >
                 <img src="<c:url value="/resources/image/icon/flag_pl.png"></c:url>" class="img-rounded">
             </a>
             |

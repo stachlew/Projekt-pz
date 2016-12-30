@@ -127,3 +127,21 @@ body
 .tab-content>.active {
 	background-color: rgba(243, 255, 59, 0.82) !important;
 }
+
+.input-group-addon:first-child {
+	width: 100px; !important;
+}
+
+.input-group {
+	width: 100%; !important;
+}
+
+.animate-show.ng-hide-add, .animate-show.ng-hide-remove {
+	transition: all linear 0.3s;
+}
+
+.animate-show.ng-hide {
+	line-height: 0;
+	opacity: 0;
+	padding: 0 15px;
+}
