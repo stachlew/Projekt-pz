@@ -7,6 +7,7 @@ function siteController($scope,$location,$log,$cookies,$http){
     $log.info("siteController");
     $scope.userName = $cookies.get('cookieUsername');
     $scope.logged=false;
+
     $scope.isLogged = function () {
         $http.get('/rest/pub/login/isLogged')
             .then(
@@ -35,8 +36,6 @@ function siteController($scope,$location,$log,$cookies,$http){
     $scope.goLoanDetails = function(linkId){
         $location.path("/loandetails/"+linkId);
     }
-
-
 
     $scope.goLink = function(linkId){
         $location.path(linkId);
