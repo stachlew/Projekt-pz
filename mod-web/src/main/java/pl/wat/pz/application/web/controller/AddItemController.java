@@ -5,6 +5,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 import pl.wat.pz.application.logic.service.AdvertisementService;
+import pl.wat.pz.application.web.validator.AdvertisementFormValidator;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
@@ -35,14 +37,22 @@ public class AddItemController {
 
     @RequestMapping(value = "/addItem/createItem", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void createItem(@RequestBody AdvertisementForm advertisementForm, Authentication auth){
+    public void createItem(@RequestBody AdvertisementForm advertisementForm, Authentication auth, BindingResult result){
 
         if(auth!=null){
-            Locale locale = LocaleContextHolder.getLocale();
-            Timestamp addDate = new Timestamp(Calendar.getInstance().getTime().getTime());
-            Advertisement newAd = advertisementService.convertAdvertisementFormToAdvertisement(advertisementForm,auth.getName());
-            newAd.setDateAdded(addDate);
-            advertisementService.saveAdvertisement(newAd);
+            AdvertisementFormValidator av = new AdvertisementFormValidator();
+            av.validate(advertisementForm, result);
+            if(result.hasErrors()) {
+                System.out.println(result.getAllErrors());
+            }
+            /////////////////////////////////////////////////////////////////////
+            else {
+                Locale locale = LocaleContextHolder.getLocale();
+                Timestamp addDate = new Timestamp(Calendar.getInstance().getTime().getTime());
+                Advertisement newAd = advertisementService.convertAdvertisementFormToAdvertisement(advertisementForm,auth.getName());
+                newAd.setDateAdded(addDate);
+                advertisementService.saveAdvertisement(newAd);
+            }
         }
     }
 
