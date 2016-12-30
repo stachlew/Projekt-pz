@@ -54,6 +54,9 @@ function observedController($scope,$log,$http,$modal){
             .then(
                 function () {
                     $scope.observationList.splice(idx,1);
+                    if($scope.observationList.length==0){
+                        $scope.noObs=true;
+                    }
                 },
                 function () {
                     console.log("Error: deleteObs()");

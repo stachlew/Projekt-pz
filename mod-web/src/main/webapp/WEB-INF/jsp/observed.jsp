@@ -7,7 +7,10 @@
 <div class="well well-sm">
 
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-    <div class="text-center" ng-show="noObs" >Aktualnie nie obserwujesz żadnych ogłoszeń.</div>
+
+    <div class="text-center" ng-show="noObs" >
+        <h3>Nie obserwujesz żadnych ogłoszeń.</h3>
+    </div>
 
     <div class="list-group" ng-init="refreshObserved()">
         <a class="list-group-item borromColour" ng-repeat="ob in observationList" >

@@ -16,10 +16,14 @@
             <tab-heading>
                 <i class="glyphicon glyphicon-download"></i>&nbspWypożyczam od
             </tab-heading>
-            <%--Wypozyczam od--%>
+
                 <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-                <div class="text-center" ng-show="noBorrowFromItems" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
-                <div class="list-group" ng-init="refreshBorrowFrom()">
+
+                <div class="text-center" ng-show="noBorrowFromItems" >
+                    <p style="padding-top: 20px; padding-bottom: 20px"><strong>Niczego nie pożyczasz lub Twoje zapytania są niezaakceptowane.</strong><p>
+                </div>
+            <%--Wypozyczam od--%>
+            <div class="list-group" ng-init="refreshBorrowFrom()">
                     <a class="list-group-item borromColour" ng-repeat="fromItem in borrowFromList" ng-click="goLoanDetails(fromItem.idLoan)" >
                         <div class="row">
                             <div class="col-md-1">
@@ -65,7 +69,11 @@
             </tab-heading>
             <%--Wypozyczam do--%>
             <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-            <div class="text-center" ng-show="noBorrowToItems" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
+
+            <div class="text-center" ng-show="noBorrowToItems" >
+                <p style="padding-top: 20px; padding-bottom: 20px"><strong>Nie potwierdziłeś wypożyczenia lub nikomu nic nie wypożyczasz.</strong><p>
+            </div>
+
             <div class="list-group" ng-init="refreshBorrowTo()">
                 <a class="list-group-item borromColour" ng-repeat="toItem in borrowToList" ng-click="goLoanDetails(toItem.idLoan)" >
                     <div class="row">
@@ -102,9 +110,6 @@
                                 </div>
                             </div>
                         </div>
-
-
-
                     </div>
                 </a>
             </div>

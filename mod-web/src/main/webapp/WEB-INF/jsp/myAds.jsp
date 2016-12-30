@@ -5,7 +5,11 @@
 
 <div class="well well-sm">
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-    <div class="text-center" ng-show="noAds" >Aktualnie nie posiadasz żadnych ogłoszeń.</div>
+
+    <div class="text-center" ng-show="noAds" >
+        <h3>Nie posiadasz żadnych ogłoszeń</h3>
+    </div>
+
     <div class="list-group" ng-init="refreshMyAds()">
         <a class="list-group-item borromColourNotHover" ng-repeat="ad in adsList" >
             <div class="row">
