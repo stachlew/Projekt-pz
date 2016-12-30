@@ -12,6 +12,7 @@ import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
+import pl.wat.pz.application.dao.intermediateClass.LoanStatus.LoanStatusForm;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
 import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
 import pl.wat.pz.application.logic.service.LoanService;
@@ -57,9 +58,11 @@ public class LoanedRestController {
         try {
             long loanIdLong = Long.parseLong(loanId.trim());
             loanHeader = loanService.findOneLoanHeaderByIdLoan(loanIdLong,locale);
-            if(loanHeader.getLender().equals(username) || loanHeader.getBorrower().equals(username)){
-                messageService.readAllMessagesByUsernameInLoan(loanIdLong,username);
-                return loanHeader;
+            if(loanHeader!=null){
+                if(loanHeader.getLender().equals(username) || loanHeader.getBorrower().equals(username)){
+                    messageService.readAllMessagesByUsernameInLoan(loanIdLong,username);
+                    return loanHeader;
+                }
             }
         } catch (NumberFormatException nfe) {
             return null;
@@ -96,6 +99,22 @@ public class LoanedRestController {
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void createLoanRequest(@RequestBody LoanForm loanForm, Authentication auth){
         loanService.addLoan(loanForm, auth.getName());
+    }
+
+    @RequestMapping(value = "/changeLoanStatus", method= RequestMethod.POST)
+    @ResponseStatus(value= HttpStatus.NO_CONTENT)
+    public void changeLoanRequest(@RequestBody LoanStatusForm form, Authentication auth){
+        String lang = LocaleContextHolder.getLocale().getLanguage();
+        try {
+            Long longIdLoan = Long.parseLong(form.getIdLoan());
+            LoanHeader header = loanService.findOneLoanHeaderByIdLoan(longIdLoan,lang);
+            if(header.getLender().equals(auth.getName())){
+                loanService.changeLoanStatus(longIdLoan,form.getStatusName());
+            }
+        }
+        catch (NumberFormatException nfe){
+
+        }
     }
 
 

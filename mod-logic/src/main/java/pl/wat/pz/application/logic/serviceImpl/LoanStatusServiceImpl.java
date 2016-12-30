@@ -1,6 +1,7 @@
 package pl.wat.pz.application.logic.serviceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.LoanStatus;
 import pl.wat.pz.application.dao.repository.LoanStatusRepository;
 import pl.wat.pz.application.logic.service.LoanStatusService;
@@ -11,6 +12,8 @@ import java.util.List;
 /**
  * Created by DELL on 2016-12-10.
  */
+
+@Service
 public class LoanStatusServiceImpl implements LoanStatusService {
     @Autowired
     LoanStatusRepository loanStatusRepository;

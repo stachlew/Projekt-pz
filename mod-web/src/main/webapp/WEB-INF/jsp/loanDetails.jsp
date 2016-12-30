@@ -38,6 +38,28 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-1">
+                            <p style="margin-top: 20px"></p>
+                        </div>
+                    </div>
+
+
+                    <div class="row" ng-show="isLender">
+                        <div class="col-md-10 col-md-offset-1">
+                            <form class="form-inline" name="form" ng-submit="changeStatus()" ng-init="refreshLoanStatuses()" role="form" novalidate>
+                                 <div class="form-group">
+                                     <label for="status">Zmiana statusu: </label>
+                                     <select class="form-control" id="status" ng-model="status">
+                                         <option  ng-repeat="status in statuses" value="{{status}}">{{status}}</option>
+                                     </select>
+                                 </div>
+                                <button type="submit" ng-disabled="form.$invalid" class="btn btn-default  borromColour">Change status</button>
+
+                            <form>
+                        </div>
+                    </div>
+
             </div><%--/Lewa--%>
             <div class="col-md-6"><%--Prawa--%>
 
@@ -58,15 +80,14 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-calendar"></i>&nbspDo: <strong>{{loanDetails.dateTo}}</strong></p>
+                            <p><i class="glyphicon glyphicon-calendar"></i>&nbspOd: <strong>{{loanDetails.dateFrom}}</strong></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-calendar"></i>&nbspOd: <strong>{{loanDetails.dateFrom}}</strong></p>
+                            <p><i class="glyphicon glyphicon-calendar"></i>&nbspDo: <strong>{{loanDetails.dateTo}}</strong></p>
                         </div>
                     </div>
-
 
             </div><%--/Prawa--%>
         </div>

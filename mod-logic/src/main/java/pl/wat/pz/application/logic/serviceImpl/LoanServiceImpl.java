@@ -59,13 +59,20 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public LoanHeader findOneLoanHeaderByIdLoan(long idLoan,String lang) {
-        return new LoanHeader(loanRepository.findOne(idLoan),lang);
+        Loan loan = loanRepository.findOne(idLoan);
+        if(loan!=null){
+            return new LoanHeader(loan,lang);
+        }
+        return null;
     }
 
     @Override
     public boolean isMemberInLoan(String username, long idLoan) {
         LoanHeader header = findOneLoanHeaderByIdLoan(idLoan,"pl");
-        return header.getBorrower().equals(username) || header.getLender().equals(username);
+        if(header!=null){
+            return header.getBorrower().equals(username) || header.getLender().equals(username);
+        }
+        return false;
     }
 
 

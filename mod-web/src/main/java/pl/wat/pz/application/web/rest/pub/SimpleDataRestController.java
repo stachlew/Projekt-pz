@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import pl.wat.pz.application.dao.domain.ItemCategory;
 import pl.wat.pz.application.logic.service.ItemCategoryService;
+import pl.wat.pz.application.logic.service.LoanStatusService;
 import pl.wat.pz.application.logic.service.RegionService;
 import pl.wat.pz.application.logic.service.UserDetailsService;
 
@@ -26,6 +27,9 @@ public class SimpleDataRestController {
     @Autowired
     ItemCategoryService itemCategoryService;
 
+    @Autowired
+    LoanStatusService loanStatusService;
+
     @RequestMapping(value="/getRegions", method= RequestMethod.GET)
     public @ResponseBody List<String> getRegions() {
         return regionService.findAllRegionName();
@@ -36,5 +40,11 @@ public class SimpleDataRestController {
     public @ResponseBody List<String> getCategories() {
         Locale locale = LocaleContextHolder.getLocale();
         return itemCategoryService.findAllItemCategorName(locale.getLanguage());
+    }
+
+    @RequestMapping(value="/getLoanStatus", method= RequestMethod.GET)
+    public @ResponseBody List<String> getLoanStatus() {
+        Locale locale = LocaleContextHolder.getLocale();
+        return loanStatusService.findAllLoanStatusName(locale.getLanguage());
     }
 }
