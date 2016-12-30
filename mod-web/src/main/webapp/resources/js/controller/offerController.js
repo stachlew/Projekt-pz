@@ -56,6 +56,21 @@ function offerController($scope,$log,$routeParams,$http){
                     }
                 );
         }
+        else {
+            $scope.deleteObserved();
+        }
+    }
+
+    $scope.deleteObserved = function(idAdvertisement){
+        $http.get('rest/usr/observation/deleteObs/'+$scope.offerId)
+            .then(
+                function () {
+                    $scope.addFav=false;
+                },
+                function () {
+                    console.log("Error: deleteObserved()");
+                }
+            )
     }
 
 

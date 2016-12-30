@@ -11,7 +11,7 @@
             <div class="col-md-5"><%-- lewo--%>
 
                 <div class="form-group">
-                    <label for="category">Category</label>
+                    <label for="category">Category*</label>
                     <select class="form-control" id="category" ng-model="category">
                         <option  ng-repeat="category in categories" value="{{category}}">{{category}}</option>
                     </select>
@@ -26,13 +26,13 @@
 
                 <div class="form-group">
                     <label for="bailValue">Bail value PLN</label>
-                    <input type="number" step="0.01" name="bailValue" id="bailValue" class="form-control" ng-model="bailValue" ng-maxlength="10"/>
+                    <input type="number" step="0.01" name="bailValue" id="bailValue" class="form-control" ng-model="bailValue" min="0" max="999999" ng-maxlength="10"/>
                     <span ng-show="form.bailValue.$touched && form.bailValue.$error.maxlength" class="help-block">Max length: 10</span>
                 </div>
 
                 <div class="form-group">
                     <label for="chargePerDay">Charge per day PLN</label>
-                    <input type="number" step="0.01" name="chargePerDay" id="chargePerDay" class="form-control" ng-model="chargePerDay" ng-maxlength="10"/>
+                    <input type="number" step="0.01" name="chargePerDay" id="chargePerDay" class="form-control" ng-model="chargePerDay" min="0" max="999999" ng-maxlength="10"/>
                     <span ng-show="form.chargePerDay.$touched && form.chargePerDay.$error.maxlength" class="help-block">Max length: 10</span>
                 </div>
 

@@ -44,9 +44,9 @@ function addItemController($scope,$log,$http,$cookies){
 
         $http.get('/rest/pub/simpleData/getCategories')
             .then(
-                function (response) {//jesli wypelnil
+                function (response) {
                     $scope.categories=response.data;
-                    $scope.categories.unshift("");
+                    $scope.category=response.data[0];
                 },
                 function () {
                     console.log("Error: getCategories()");

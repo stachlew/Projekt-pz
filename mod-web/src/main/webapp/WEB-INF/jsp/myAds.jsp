@@ -39,13 +39,13 @@
                 <div class="col-md-3">
                     <br>
                     <button class="btn btn-default btn-block borromColour" role="button" ng-click="goEditOffer(ad.idAdvertisement)">
-                        Edytuj ogłoszenie
+                        <i class="glyphicon glyphicon-edit"></i>&nbspEdytuj ogłoszenie
                     </button>
                     <button class="btn btn-default btn-block borromColour" role="button" ng-click="goOffer(ad.idAdvertisement)">
-                        Podgląd ogłoszenia
+                        <i class="glyphicon glyphicon-question-sign"></i>&nbspPodgląd ogłoszenia
                     </button>
                     <button class="btn btn-default btn-block borromColour" role="button" ng-click="">
-                        Usuń ogłoszenie
+                        <i class="glyphicon glyphicon-trash"></i>&nbspUsuń ogłoszenie
                     </button>
                 </div>
 
