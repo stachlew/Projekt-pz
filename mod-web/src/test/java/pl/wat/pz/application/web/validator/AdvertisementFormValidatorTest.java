@@ -1,11 +1,11 @@
 package pl.wat.pz.application.web.validator;
 
-import junit.framework.TestCase;
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
-import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
+        import junit.framework.TestCase;
+        import org.junit.Before;
+        import org.junit.Test;
+        import org.springframework.validation.BeanPropertyBindingResult;
+        import org.springframework.validation.Errors;
+        import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 
 public class AdvertisementFormValidatorTest extends TestCase {
     private AdvertisementForm advertisementForm;
@@ -82,7 +82,7 @@ public class AdvertisementFormValidatorTest extends TestCase {
 
     @Test
     public void testValidatorWithTooLongCity() {
-        advertisementForm.setCity("WarsawCracovBreslauDanzigMlawa");
+        advertisementForm.setCity("WarsawCracovBreslauDanzigMlawa1");
 
         Errors errors = new BeanPropertyBindingResult(advertisementForm, "Too long city name.");
         advertisementFormValidator.validate(advertisementForm, errors);
