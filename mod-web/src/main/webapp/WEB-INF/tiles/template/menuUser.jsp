@@ -34,6 +34,7 @@
             <a href="#/notifications" class="btn btn-default borromColour" role="button">
                 <i class="glyphicon glyphicon-envelope"></i>&nbsp
                 <spring:message code="userHeader.notifications"/>
+                <i class="spin glyphicon glyphicon-bell" ng-show="newNotifications"></i>
             </a>
         </li>
 

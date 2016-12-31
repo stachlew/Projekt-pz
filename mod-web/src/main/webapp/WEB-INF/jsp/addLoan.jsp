@@ -50,9 +50,18 @@
                     <label for="dateTo">Do</label>
                     <input class="borromColour form-control" type="date" name="dateTo" id="dateFrom" ng-model="dateTo" required>
                 </div>
-                <div class="col-md-6 col-md-offset-2">
+                <div class="col-md-3 col-md-offset-2">
                     <div class="form-group">
-                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg btn-default btn-block borromColour">Add loan</button>
+                        <button type="button" ng-click="goOffer(offerId)" class="btn btn-lg btn-default btn-block borromColour">
+                            <i class="glyphicon glyphicon-remove"></i>&nbspCancel
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-3 ">
+                    <div class="form-group">
+                        <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg btn-default btn-block borromColour">
+                            <i class="glyphicon glyphicon-ok"></i>&nbspAdd loan
+                        </button>
                     </div>
                 </div>
             </div>

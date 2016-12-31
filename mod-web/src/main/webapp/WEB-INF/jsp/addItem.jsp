@@ -80,9 +80,9 @@
         </div>
     </form>
 
-    <div class="text-center linkBorrom" ng-show="regOk" ng-click='goLink("/")'>
+    <div class="text-center linkBorrom" ng-show="regOk" ng-click='goLink("/myAds")'>
         <h4>
-            Przedmiot dodany. Kliknij tutaj by zobaczyć ogłoszenie.
+            Przedmiot dodany pomyślnie. Przejdź do własnych ogłoszeń.
         </h4>
     </div>
 

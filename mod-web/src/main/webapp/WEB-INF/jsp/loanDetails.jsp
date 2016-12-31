@@ -99,9 +99,20 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="panel panel-primary"  ng-init="refreshLoanMessages()" >
-                    <div class="panel-heading" style="padding:0 0 0 8px;">
-                        <span class="glyphicon glyphicon-comment" style="color:#333333"></span>
-                        <h6 class="panel-title" style="display:inline; color:#333333">Chat</h6>
+                    <div class="panel-heading" style="padding:3px 3px 3px 3px;">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <h3 class="panel-title" style="display:inline; color:#333333">
+                                    &nbsp<span class="glyphicon glyphicon-comment" style="color:#333333"></span>&nbspChat
+                                </h3>
+                            </div>
+                            <div class="col-md-3 col-md-offset-7 text-right">
+                                <button type="button" class="btn btn-block btn-primary borromColour" ng-click="refreshLoanMessages()" style="color: #333333">
+                                    <span class="glyphicon glyphicon-repeat"></span>&nbspRefresh
+                                </button>
+                            </div>
+                        </div>
+
                         <div class="clearfix"></div>
                     </div>
                     <div class="panel-body" style="padding:0 4px;">

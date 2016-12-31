@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
 import pl.wat.pz.application.logic.service.LoanService;
+import pl.wat.pz.application.web.wrapper.BooleanResponse;
 
 import java.util.List;
 
@@ -25,5 +26,21 @@ public class NotificationsRestController {
         String username = auth.getName();
         String locale = LocaleContextHolder.getLocale().getLanguage();
         return loanService.findLoanHeaderByUsername(username,locale);
+    }
+
+    @RequestMapping(value="/checkNotifications", method= RequestMethod.GET)
+    public @ResponseBody
+    BooleanResponse isNewNotificationsExists(Authentication auth) {
+        String username = auth.getName();
+        String locale = LocaleContextHolder.getLocale().getLanguage();
+        List<LoanHeader> headers = loanService.findLoanHeaderByUsername(username,locale);
+        boolean exist = false;
+        for (LoanHeader header: headers) {
+            if(header.getMessageWithStatusTwo()>0){
+                exist=true;
+                break;
+            }
+        }
+        return new BooleanResponse(exist);
     }
 }

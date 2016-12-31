@@ -7,6 +7,13 @@ function siteController($scope,$location,$log,$cookies,$http){
     $log.info("siteController");
     $scope.userName = $cookies.get('cookieUsername');
     $scope.logged=false;
+    $scope.newNotifications=false;
+
+    $scope.$on('$routeChangeStart', function () {
+        if($scope.logged){
+            $scope.checkNewNotifications();
+        }
+    });
 
     $scope.isLogged = function () {
         $http.get('/rest/pub/login/isLogged')
@@ -20,6 +27,22 @@ function siteController($scope,$location,$log,$cookies,$http){
             )
     }
     $scope.isLogged();
+
+    $scope.checkNewNotifications = function () {
+        //console.log("checkNotifications!")
+        $http.get('/rest/usr/notifications/checkNotifications')
+            .then(
+                function (response) {
+                    $scope.newNotifications=response.data.flag;
+                },
+                function () {
+                    $scope.newNotifications=false;
+                }
+            )
+    }
+    $scope.checkNewNotifications();
+
+
 
     $scope.goOffer = function(linkId){
         $location.path("/offer/"+linkId);
