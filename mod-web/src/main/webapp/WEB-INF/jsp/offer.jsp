@@ -59,12 +59,12 @@
             </div>
             <div class="row">
                 <br>
-                <div class="col-md-12">
+                <div class="col-md-12" ng-show="logged && (userName != offer.username)">
                     <div class="btn-group btn-group-justified">
                         <a ng-show="logged" class="btn btn-block btn-default borromColour" role="button" ng-click="goAddLoan(offerId)">
                             Rezerwuj
                         </a>
-                        <a class="btn btn-default btn-block borromColour" role="button" ng-show="logged" ng-init="refreshObsStatus()" ng-click="addObs()">
+                        <a class="btn btn-default btn-block borromColour" role="button"  ng-init="refreshObsStatus()" ng-click="addObs()">
                             <span ng-show="addFav"><i class="glyphicon glyphicon-star" ></i>&nbspObserwowane </span>
                             <span ng-show="!addFav"><i class="glyphicon glyphicon-star-empty" ></i> &nbspDodaj do obserwowanych </span>
                         </a>
