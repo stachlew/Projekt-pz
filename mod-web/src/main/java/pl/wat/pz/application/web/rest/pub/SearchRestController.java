@@ -40,7 +40,7 @@ public class SearchRestController {
         System.out.println("bailValueTo "+form.getBailValueTo());
         */
 
-        return advertisementService.findAllByUsername("otton",lang);
+        return advertisementService.findByFilter(form,lang);
     }
 
 

@@ -8,21 +8,19 @@ public class AdvertisementSearchForm {
     private String category;
     private String region;
     private String city;
-    private String lang;
-    private double chargePerDayFrom;
-    private double chargePerDayTo;
-    private double bailValueFrom;
-    private double bailValueTo;
+    private String chargePerDayFrom;
+    private String chargePerDayTo;
+    private String bailValueFrom;
+    private String bailValueTo;
 
     public AdvertisementSearchForm() {
     }
 
-    public AdvertisementSearchForm(String title, String category, String region, String city, String lang, double chargePerDayFrom, double chargePerDayTo, double bailValueFrom, double bailValueTo) {
+    public AdvertisementSearchForm(String title, String category, String region, String city, String chargePerDayFrom, String chargePerDayTo, String bailValueFrom, String bailValueTo) {
         this.title = title;
         this.category = category;
         this.region = region;
         this.city = city;
-        this.lang = lang;
         this.chargePerDayFrom = chargePerDayFrom;
         this.chargePerDayTo = chargePerDayTo;
         this.bailValueFrom = bailValueFrom;
@@ -61,43 +59,36 @@ public class AdvertisementSearchForm {
         this.city = city;
     }
 
-    public String getLang() {
-        return lang;
-    }
 
-    public void setLang(String lang) {
-        this.lang = lang;
-    }
-
-    public double getChargePerDayFrom() {
+    public String getChargePerDayFrom() {
         return chargePerDayFrom;
     }
 
-    public void setChargePerDayFrom(double chargePerDayFrom) {
+    public void setChargePerDayFrom(String chargePerDayFrom) {
         this.chargePerDayFrom = chargePerDayFrom;
     }
 
-    public double getChargePerDayTo() {
+    public String getChargePerDayTo() {
         return chargePerDayTo;
     }
 
-    public void setChargePerDayTo(double chargePerDayTo) {
+    public void setChargePerDayTo(String chargePerDayTo) {
         this.chargePerDayTo = chargePerDayTo;
     }
 
-    public double getBailValueFrom() {
+    public String getBailValueFrom() {
         return bailValueFrom;
     }
 
-    public void setBailValueFrom(double bailValueFrom) {
+    public void setBailValueFrom(String bailValueFrom) {
         this.bailValueFrom = bailValueFrom;
     }
 
-    public double getBailValueTo() {
+    public String getBailValueTo() {
         return bailValueTo;
     }
 
-    public void setBailValueTo(double bailValueTo) {
+    public void setBailValueTo(String bailValueTo) {
         this.bailValueTo = bailValueTo;
     }
 }

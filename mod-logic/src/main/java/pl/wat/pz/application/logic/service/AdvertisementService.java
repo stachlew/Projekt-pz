@@ -4,6 +4,7 @@ import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementDetails;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementSearchForm;
 
 import java.util.List;
 
@@ -32,5 +33,7 @@ public interface AdvertisementService {
     List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements,String lang);
     List<AdvertisementDetails> advertisementConvertToAdvertisementDetails(List<Advertisement> advertisements,String lang);
     Advertisement convertAdvertisementFormToAdvertisement(AdvertisementForm form, String username);
+
+    List<AdvertisementHeader> findByFilter(AdvertisementSearchForm searchForm,String lang);
 
 }

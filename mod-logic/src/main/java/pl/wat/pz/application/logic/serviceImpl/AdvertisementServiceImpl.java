@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.domain.ItemCategory;
 import pl.wat.pz.application.dao.domain.Region;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementSearchForm;
 import pl.wat.pz.application.dao.repository.AdvertisementRepository;
 import pl.wat.pz.application.dao.repository.ItemCategoryRepository;
 import pl.wat.pz.application.dao.repository.RegionRepository;
@@ -119,6 +120,67 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         advert.setIdUser(userRepository.findOne(username));
         return advert;
     }
+
+    @Override
+    @Transactional
+    public List<AdvertisementHeader> findByFilter(AdvertisementSearchForm searchForm, String lang) {
+        String idCategoryString= new String();
+        String idRegionString= new String();
+        String titleString = new String();
+        String cityString = new String();
+        String  bailValueFromString = new String();
+        String bailValueToString=new String();
+        String chargePerDayFrom=new String();
+        String chargePerDayTo=new String();
+        ItemCategory itemCategory = itemCategoryRepository.findOneByName(searchForm.getCategory());
+        Region region = regionRepository.findOneByName(searchForm.getRegion());
+        if(searchForm.getTitle()!=null){
+            titleString=searchForm.getTitle();
+        }
+        if(itemCategory != null) {
+            long idItemCategory = itemCategory.getIdItemCategory();
+           idCategoryString = String.valueOf(idItemCategory);
+        }
+        if(region != null) {
+            long idRegion = region.getIdRegion();
+            idRegionString = String.valueOf(idRegion);
+        }
+        if(searchForm.getCity()!=null){
+            cityString=searchForm.getCity();
+        }
+        if(searchForm.getBailValueFrom()!=null) {
+            bailValueFromString = String.valueOf(searchForm.getBailValueFrom());
+        }
+        if(searchForm.getBailValueTo()!=null) {
+             bailValueToString = String.valueOf(searchForm.getBailValueTo());
+        }
+        if(searchForm.getChargePerDayFrom()!=null) {
+           chargePerDayFrom = String.valueOf(searchForm.getChargePerDayFrom());
+        }
+        if(searchForm.getChargePerDayTo()!=null) {
+            chargePerDayTo = String.valueOf(searchForm.getChargePerDayTo());
+        }
+
+
+
+
+        advertisementRepository.findAdvertisementWithParam(titleString,
+                idCategoryString,
+                idRegionString,
+                cityString,
+                bailValueFromString,
+                bailValueToString,
+                chargePerDayFrom,
+                chargePerDayTo
+                );
+        List<Advertisement> byParameters = advertisementRepository.findByParameters();
+
+        if(byParameters!=null) {
+            return advertisementConvertToAdvertisementHeader(byParameters, lang);
+        }
+        else
+            return null;
+        }
 
 
 }

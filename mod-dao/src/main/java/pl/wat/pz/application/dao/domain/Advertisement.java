@@ -11,6 +11,20 @@ import java.sql.Timestamp;
  * Ogłoszenie
  */
 @Entity
+@NamedStoredProcedureQueries({
+        @NamedStoredProcedureQuery(name = "proc_search",procedureName ="PKG_BORROW.get_adv_header_filter",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_title", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_id_item_category", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_id_region", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_city", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_bail_value_for", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_bail_value_to", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_charger_per_day_for", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "v_charger_per_day_to", type = String.class)
+        }
+        )
+})
 public class Advertisement {
     @Id
     @Column(name = "id_Advertisement",length = 30)
