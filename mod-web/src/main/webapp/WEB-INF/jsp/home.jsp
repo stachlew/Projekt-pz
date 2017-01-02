@@ -63,12 +63,15 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon">Stawka od</span>
-                            <input type="number" step="0.01" name="chargePerDay" id="chargePerDay" class="form-control" ng-model="chargePerDayFrom" min="0" max="999999" ng-maxlength="10"/>
+                            <span class="input-symbol-pln">
+                                <input type="number" step="0.01" name="chargePerDay" id="chargePerDay" class="form-control" ng-model="chargePerDayFrom" min="0" max="999999" ng-maxlength="10"/>
+                            </span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon">Kaucja od</span>
+                            <span class="input-symbol-pln">
                             <input type="number" step="0.01" name="bailValue" id="bailValue" class="form-control" ng-model="bailValueFrom" min="0" max="999999" ng-maxlength="10"/>
                         </div>
                     </div>
@@ -83,12 +86,14 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon">Stawka do</span>
+                            <span class="input-symbol-pln">
                             <input type="number" step="0.01" name="chargePerDay" id="chargePerDay" class="form-control" ng-model="chargePerDayTo" min="0" max="999999" ng-maxlength="10"/>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon">Kaucja do</span>
+                            <span class="input-symbol-pln">
                             <input type="number" step="0.01" name="bailValue" id="bailValue" class="form-control" ng-model="bailValueTo" min="0" max="999999" ng-maxlength="10"/>
                         </div>
                     </div>
@@ -125,7 +130,7 @@
                         {{ad.title}}
                     </b></h3>
                     <p class="flex-text text-muted">
-                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp&nbsp{{ad.regionName}}
+                        <i class="glyphicon glyphicon-map-marker"></i>&nbsp&nbsp{{ad.city}},&nbsp{{ad.regionName}}
                         </br>
                         <i class="glyphicon glyphicon-tag"></i>&nbsp&nbsp{{ad.categoryName}}
                     </p>

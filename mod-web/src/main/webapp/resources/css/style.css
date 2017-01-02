@@ -184,3 +184,17 @@ body
 	}
 }
 /*END Animowana ikona*/
+/* Znak PLN w input*/
+.input-symbol-pln {
+	position: relative;
+}
+.input-symbol-pln input {
+	padding-right: 15px;
+}
+.input-symbol-pln:after {
+	position: absolute;
+	top: 7px;
+	content:"PLN";
+	right: 5px;
+}
+/* END PLN w input*/
