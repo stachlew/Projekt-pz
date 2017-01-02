@@ -121,6 +121,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         return advert;
     }
 
+
     @Override
     @Transactional
     public List<AdvertisementHeader> findByFilter(AdvertisementSearchForm searchForm, String lang) {
