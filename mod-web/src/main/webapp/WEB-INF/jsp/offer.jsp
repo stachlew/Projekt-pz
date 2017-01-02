@@ -45,6 +45,7 @@
                 </div>
             </div>
 
+
             <div class="row">
                 <div class="col-md-3">
                     <img src="<c:url value="/resources/image/300x300.jpg"></c:url>" height="300" width="300" class="img-rounded img-responsive">
