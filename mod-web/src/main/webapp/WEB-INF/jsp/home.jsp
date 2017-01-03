@@ -160,11 +160,11 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-1">
+                        <div class="col-md-3 col-md-offset-1">
                             Kategoria: {{ob.categoryName}}<br>
                             Dodano: {{ob.dateAdded | date: 'yyyy-MM-dd'}}
                         </div>
-                        <div class="col-md-4 ">
+                        <div class="col-md-3 ">
                             Region: {{ob.regionName}}<br>
                             Miasto: {{ob.city}}<br>
                         </div>
