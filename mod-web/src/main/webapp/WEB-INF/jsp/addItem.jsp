@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label for="bailValue">Bail value PLN</label>
-                    <input type="number" step="0.01" name="bailValue" id="bailValue" class="form-control" ng-model="bailValue" min="0" max="999999" ng-maxlength="10"/>
+                    <input type="number" step="0.01" name="bailValue" id="bailValue" class="form-control" ng-model="bailValue" min="0" max="999999" ng-maxlength="11"/>
                     <span ng-show="form.bailValue.$touched && form.bailValue.$error.maxlength" class="help-block">Max length: 10</span>
                 </div>
 

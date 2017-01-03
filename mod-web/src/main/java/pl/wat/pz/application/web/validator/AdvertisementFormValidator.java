@@ -23,14 +23,14 @@ public class AdvertisementFormValidator implements Validator {
         if(Double.toString(advertisementForm.getBailValue()).length() > 10) {
             errors.rejectValue("bailValue", "Too big bailValue.");
         }
-        if(Double.toString(advertisementForm.getChargePerDay()).length() > 10) {
-            errors.rejectValue("chargePerDay", "Too big chargePerDay.");
-        }
-        if(advertisementForm.getDescription().length() > 500) {
-            errors.rejectValue("description", "Too long description.");
-        }
-        if(advertisementForm.getCity().length() > 30) {
-            errors.rejectValue("city", "Too long city name.");
-        }
+//        if(Double.toString(advertisementForm.getChargePerDay()).length() > 10) {
+//            errors.rejectValue("chargePerDay", "Too big chargePerDay.");
+//        }
+//        if(advertisementForm.getDescription().length() > 500) {
+//            errors.rejectValue("description", "Too long description.");
+//        }
+//        if(advertisementForm.getCity().length() > 30) {
+//            errors.rejectValue("city", "Too long city name.");
+//        }
     }
 }
