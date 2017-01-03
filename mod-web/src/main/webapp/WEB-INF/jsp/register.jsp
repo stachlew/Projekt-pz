@@ -45,8 +45,8 @@
             </div>
             <div class="col-md-4 col-md-offset-3"><%-- prawo--%>
 
-                <h3>Contact info</h3>
-                <h4>(You can do this after registration)</h4>
+                <h3>Contact info <br></h3>
+                <%--<h4>(You can do this after registration)</h4>--%>
 
                 <div class="form-group">
                     <label for="reg1">Województwo</label>
