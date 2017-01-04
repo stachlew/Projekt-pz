@@ -4,7 +4,7 @@
 
 <div class="well well-sm">
     <div class ="userInfo">
-        <spring:message code="userHeader.loggedAs"/>
+        <spring:message code="tile.menu.button.loggedAs"/>
         {{userName}}
         <i class="glyphicon glyphicon-user"></i>
     </div>
@@ -12,28 +12,28 @@
         <li role="presentation">
             <a href="#/" class="btn btn-default borromColour" role="button">
                 <i class="glyphicon glyphicon-search"></i>&nbsp
-                <spring:message code="userHeader.search"/>
+                <spring:message code="tile.menu.button.search"/>
             </a>
         </li>
 
         <li role="presentation" >
             <a ng-href="#/myAds" class="btn btn-default borromColour" role="button">
                 <i class="glyphicon glyphicon-folder-open"></i>&nbsp
-                <spring:message code="userHeader.myAds"/>
+                <spring:message code="tile.menu.button.myAds"/>
             </a>
         </li>
 
         <li role="presentation" >
             <a href="#/observed" class="btn btn-default borromColour" role="button">
                 <i class="glyphicon glyphicon-eye-open"></i>&nbsp
-                <spring:message code="userHeader.observed"/>
+                <spring:message code="tile.menu.button.observed"/>
             </a>
         </li>
 
         <li role="presentation" >
             <a href="#/notifications" class="btn btn-default borromColour" role="button">
                 <i class="glyphicon glyphicon-envelope"></i>&nbsp
-                <spring:message code="userHeader.notifications"/>
+                <spring:message code="tile.menu.button.notifications"/>
                 <i class="spin glyphicon glyphicon-bell" ng-show="newNotifications"></i>
             </a>
         </li>
@@ -41,7 +41,7 @@
         <li role="presentation" >
             <a href="#/loaned" class="btn btn-default borromColour" role="button">
                 <i class="glyphicon glyphicon-transfer"></i>&nbsp
-                <spring:message code="userHeader.loaned"/>
+                <spring:message code="tile.menu.button.loaned"/>
             </a>
         </li>
     </ul>

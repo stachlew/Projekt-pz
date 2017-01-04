@@ -7,7 +7,7 @@
 <div class="well well-sm">
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
     <div class="text-center" ng-show="noItems" >
-       <h3>Brak notyfikacji</h3>
+       <h3><spring:message code="notifications.content.text.noNotification"/></h3>
     </div>
     <div class="list-group" ng-init="refreshNotifications()">
         <a class="list-group-item borromColour" ng-repeat="fromItem in borrowList" ng-click="goLoanDetails(fromItem.idLoan)" ng-class="{ newNotification: fromItem.messageWithStatusTwo>0}">
@@ -25,7 +25,7 @@
                             <p><i class="glyphicon glyphicon-info-sign"></i>&nbspSTATUS:&nbsp{{fromItem.loanStatus}}
                             <br>
                             <br>
-                            <span ng-if="fromItem.messageWithStatusTwo"><strong>NOWE WIADOMOŚCI! ({{fromItem.messageWithStatusTwo}}) </strong> </span>
+                            <span ng-if="fromItem.messageWithStatusTwo"><strong><spring:message code="notifications.list.text.newMessage"/> ({{fromItem.messageWithStatusTwo}}) </strong> </span>
                         </div>
                     </div>
 
@@ -35,16 +35,16 @@
 
                     <div class="row">
                         <div class="col-md-3 col-md-offset-1">
-                            Nr ogloszenia: {{fromItem.idAdvertisement}} <br>
-                            Nr wypożyczenia: {{fromItem.idLoan}} <br>
+                            <spring:message code="uniText.offerId"/>:&nbsp {{fromItem.idAdvertisement}} <br>
+                            <spring:message code="uniText.loanId"/>:&nbsp {{fromItem.idLoan}} <br>
                         </div>
                         <div class="col-md-2">
-                            Od: {{fromItem.dateFrom | date: 'yyyy-MM-dd'}}<br>
-                            Do: {{fromItem.dateTo | date: 'yyyy-MM-dd'}}<br>
+                            <spring:message code="uniText.fromUpper"/>:&nbsp {{fromItem.dateFrom | date: 'yyyy-MM-dd'}}<br>
+                            <spring:message code="uniText.toUpper"/>:&nbsp {{fromItem.dateTo | date: 'yyyy-MM-dd'}}<br>
                         </div>
                         <div class="col-md-3">
-                            Udostępniający: {{fromItem.lender}} <br>
-                            Pożyczający: {{fromItem.borrower}} <br>
+                            <spring:message code="uniText.lender"/>:&nbsp {{fromItem.lender}} <br>
+                            <spring:message code="uniText.borrower"/>:&nbsp {{fromItem.borrower}} <br>
                         </div>
 
                     </div>

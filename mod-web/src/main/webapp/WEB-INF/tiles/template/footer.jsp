@@ -3,8 +3,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="well well-sm">
-    <spring:message code="footer.content"/>
+    <spring:message code="tile.footer.info.content"/>
 </div>
 <div class="reserved">
-    <spring:message code="footer.bottom"/>
+    <spring:message code="tile.footer.info.rights"/>
 </div>
