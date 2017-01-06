@@ -109,6 +109,10 @@ body
 	background-color: rgba(158, 170, 255, 0.82) !important;
 }
 
+.iAmStrong{
+	font-weight: 900;
+}
+
 .modal {
 	display: block; !important;
 }
@@ -198,3 +202,4 @@ body
 	right: 5px;
 }
 /* END PLN w input*/
+

@@ -35,14 +35,23 @@
                         <div class="col-md-11">
                             <div class="row">
                                 <div class="col-md-7 col-md-offset-1">
-                                    <h4><strong>{{fromItem.title}}</strong></h4>
+                                    <h4><strong>
+                                        <span ng-show="fromItem.borrower == userName">
+                                            {{fromItem.title}}
+                                            <i class="glyphicon glyphicon-arrow-right" ></i>
+                                            <i class="glyphicon glyphicon-home" ></i>
+                                        </span>
+                                        <span ng-show="fromItem.lender == userName">
+                                            {{fromItem.title}}
+                                            <i class="glyphicon glyphicon-arrow-right" ></i>
+                                            <i class="glyphicon glyphicon-globe" ></i>
+                                        </span>
+
+                                    </strong></h4>
                                 </div>
                                 <div class="col-md-3 col-md-offset-1">
                                     <br>
                                     <p><i class="glyphicon glyphicon-info-sign"></i>&nbspSTATUS:&nbsp{{fromItem.loanStatus}}
-                                        <br>
-                                        <br>
-                                        <span ng-if="fromItem.messageWithStatusTwo"><strong><spring:message code="notifications.list.text.newMessage"/> ({{fromItem.messageWithStatusTwo}}) </strong> </span>
                                 </div>
                             </div>
 
@@ -60,8 +69,15 @@
                                     <spring:message code="uniText.toUpper"/>:&nbsp {{fromItem.dateTo | date: 'yyyy-MM-dd'}}<br>
                                 </div>
                                 <div class="col-md-3">
-                                    <spring:message code="uniText.lender"/>:&nbsp {{fromItem.lender}} <br>
-                                    <spring:message code="uniText.borrower"/>:&nbsp {{fromItem.borrower}} <br>
+                                    <span ng-class="{ iAmStrong: fromItem.lender === userName}">
+                                        <spring:message code="uniText.lender"/>:&nbsp {{fromItem.lender}} <br>
+                                    </span>
+                                    <span ng-class="{ iAmStrong: fromItem.borrower === userName}">
+                                        <spring:message code="uniText.borrower"/>:&nbsp {{fromItem.borrower}} <br>
+                                    </span>
+                                </div>
+                                <div class="col-md-3">
+                                    <span ng-if="fromItem.messageWithStatusTwo"><strong><spring:message code="notifications.list.text.newMessage"/> ({{fromItem.messageWithStatusTwo}}) </strong> </span>
                                 </div>
 
                             </div>
