@@ -14,7 +14,9 @@
     <tabset justified="true">
         <tab active="true" select="alertMe()">
             <tab-heading>
-                <i class="glyphicon glyphicon-download"></i>&nbsp<spring:message code="loaned.from.heading.text.borrow"/>
+                <i class="glyphicon glyphicon-arrow-right" ></i>
+                <i class="glyphicon glyphicon-home" ></i>
+                &nbsp<spring:message code="loaned.from.heading.text.borrow"/>
             </tab-heading>
 
                 <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
@@ -65,7 +67,9 @@
         </tab>
         <tab select="alertMe()">
             <tab-heading>
-                <i class="glyphicon glyphicon-upload"></i>&nbsp<spring:message code="loaned.to.heading.text.lend"/>
+                <i class="glyphicon glyphicon-arrow-right" ></i>
+                <i class="glyphicon glyphicon-globe" ></i>
+                &nbsp<spring:message code="loaned.to.heading.text.lend"/>
             </tab-heading>
             <%--Wypozyczam do--%>
             <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>

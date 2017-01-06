@@ -27,13 +27,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="list-group">
-                <a class="list-group-item borromColour" ng-repeat="fromItem in borrowList" ng-click="goLoanDetails(fromItem.idLoan)" ng-class="{ newNotification: fromItem.messageWithStatusTwo>0}">
+                <a class="list-group-item borromColour" ng-repeat="fromItem in borrowList" ng-class="{ newNotification: fromItem.messageWithStatusTwo>0}">
                     <div class="row">
-                        <div class="col-md-1">
+                        <div class="col-md-1" ng-click="goLoanDetails(fromItem.idLoan)">
                             <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
                         </div>
                         <div class="col-md-11">
-                            <div class="row">
+                            <div class="row" ng-click="goLoanDetails(fromItem.idLoan)">
                                 <div class="col-md-7 col-md-offset-1">
                                     <h4><strong>
                                         <span ng-show="fromItem.borrower == userName">
@@ -56,11 +56,18 @@
                             </div>
 
                             <div class="row">
-                                <br>
+                                <div class="col-md-9" ng-click="goLoanDetails(fromItem.idLoan)">&nbsp</div>
+                                <div class="col-md-3" ng-click="clearNotifications(fromItem.idLoan)" ng-if="fromItem.messageWithStatusTwo">
+                                    <span ><strong><spring:message code="notifications.list.text.newMessage"/> ({{fromItem.messageWithStatusTwo}})&nbsp<i class="glyphicon glyphicon-remove"></i> </strong> </span>
+                                </div>
+                                <div class="col-md-3" ng-click="goLoanDetails(fromItem.idLoan)" ng-if="!fromItem.messageWithStatusTwo">
+                                    <span>&nbsp</span>
+                                </div>
                             </div>
 
-                            <div class="row">
-                                <div class="col-md-3 col-md-offset-1">
+                            <div class="row" ng-click="goLoanDetails(fromItem.idLoan)">
+                                <br>
+                                <div class="col-md-3 col-md-offset-1" >
                                     <spring:message code="uniText.offerId"/>:&nbsp {{fromItem.idAdvertisement}} <br>
                                     <spring:message code="uniText.loanId"/>:&nbsp {{fromItem.idLoan}} <br>
                                 </div>
@@ -75,9 +82,6 @@
                                     <span ng-class="{ iAmStrong: fromItem.borrower === userName}">
                                         <spring:message code="uniText.borrower"/>:&nbsp {{fromItem.borrower}} <br>
                                     </span>
-                                </div>
-                                <div class="col-md-3">
-                                    <span ng-if="fromItem.messageWithStatusTwo"><strong><spring:message code="notifications.list.text.newMessage"/> ({{fromItem.messageWithStatusTwo}}) </strong> </span>
                                 </div>
 
                             </div>

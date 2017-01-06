@@ -51,7 +51,6 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
             )
     }
 
-
     $scope.changeStatus = function ()
     {
         var newStatus = {

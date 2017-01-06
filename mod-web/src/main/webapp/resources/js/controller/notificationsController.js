@@ -38,6 +38,29 @@ function notificationsController($scope,$log,$http){
             )
     }
 
+    $scope.clearNotifications = function (idLoan) {
+        $http.get('/rest/usr/loaned/clearNotifications/'+idLoan)
+            .then(
+                function (response) {
+                    var searched = $scope.searchInNotificationsList(idLoan);
+                    searched.messageWithStatusTwo=0;
+                    $scope.checkNewNotifications();
+                },
+                function () {
+                    console.log("Error: refreshNotificationsStatuses()");
+                }
+            )
+    }
+
+    $scope.searchInNotificationsList = function (idLoan) {
+        for (i in $scope.borrowList){
+            if($scope.borrowList[i].idLoan === idLoan){
+                return $scope.borrowList[i];
+            }
+        }
+        return null;
+    }
+
 
     $scope.refreshNotifications = function (pageNo) {
         $scope.loading = true;
