@@ -70,6 +70,10 @@ public class MessageServiceImpl implements MessageService {
 
     }
 
+    @Override
+    public void sendAutomaticMessage(long idLoan, String username, String statusName) {
+       // if()
+    }
 
 
 }

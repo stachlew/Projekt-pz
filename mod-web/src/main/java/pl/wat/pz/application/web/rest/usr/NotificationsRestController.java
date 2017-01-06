@@ -25,7 +25,7 @@ public class NotificationsRestController {
     List<LoanHeader> getLoan(Authentication auth) {
         String username = auth.getName();
         String locale = LocaleContextHolder.getLocale().getLanguage();
-        return loanService.findLoanHeaderByUsername(username,locale);
+        return loanService.findLoanHeaderByUsername(username,0,locale);
     }
 
     @RequestMapping(value="/checkNotifications", method= RequestMethod.GET)
@@ -33,7 +33,7 @@ public class NotificationsRestController {
     BooleanResponse isNewNotificationsExists(Authentication auth) {
         String username = auth.getName();
         String locale = LocaleContextHolder.getLocale().getLanguage();
-        List<LoanHeader> headers = loanService.findLoanHeaderByUsername(username,locale);
+        List<LoanHeader> headers = loanService.findLoanHeaderByUsername(username,0,locale);
         boolean exist = false;
         for (LoanHeader header: headers) {
             if(header.getMessageWithStatusTwo()>0){

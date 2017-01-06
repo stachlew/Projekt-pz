@@ -115,7 +115,7 @@ public class LoanedRestController {
 
             List<String> loanStatusNameAvailableToUser = loanStatusService.findLoanStatusNameAvailableToUser(longIdLoan, auth.getName(), lang);
             if(loanStatusNameAvailableToUser.contains(form.getStatusName())){
-                loanService.changeLoanStatus(longIdLoan,form.getStatusName());
+                loanService.changeLoanStatus(longIdLoan,form.getStatusName(),auth.getName());
             }
         }
         catch (NumberFormatException nfe){

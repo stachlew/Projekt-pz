@@ -17,7 +17,7 @@ import java.util.List;
  */
 public interface ObservationRepository extends JpaRepository<Observation,ObservationId> {
 
-    @Query("select o from Observation o where o.idUser.username=?1")
+    @Query("select o from Observation o where o.idUser.username=?1 and o.idAdvertisement.advertisementDeleted=0")
     List<Observation> findByUsername(String username);
 
     @Modifying
