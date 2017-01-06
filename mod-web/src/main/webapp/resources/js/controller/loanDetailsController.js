@@ -7,7 +7,7 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
     $log.info("loanDetailsController");
     $scope.idLoan=$routeParams.idLoan;
     $scope.noLoan = false;
-    $scope.isLoan = false;
+    $scope.loanStatVis = false;
 
     $scope.isLender=false;
 
@@ -20,9 +20,6 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
                     if(response.data){
                         $scope.loanDetails=response.data;
                         $scope.isLoan = true;
-                        if($scope.loanDetails.lender === $scope.userName){
-                            $scope.isLender=true;
-                        }
                     }
                     else{
                         $scope.noLoan = true;
@@ -37,10 +34,16 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
 
 
     $scope.refreshLoanStatuses = function () {
-        $http.get('/rest/pub/simpleData/getLoanStatus')
+        $http.get('/rest/pub/simpleData/getLoanStatusByUser/'+$scope.idLoan)
             .then(
                 function (response) {
                     $scope.statuses = response.data;
+                    if($scope.statuses.length>0){
+                        $scope.loanStatVis=true;
+                    }
+                    else {
+                        $scope.loanStatVis=false;
+                    }
                 },
                 function () {
                     console.log("Error: refreshNotificationsStatuses()");
@@ -74,6 +77,7 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
             function () {
                 //console.log("STATUS OK");
                 $scope.refreshLoanDetails();
+                $scope.refreshLoanStatuses();
             },
             function () {
                 console.log("STATUS FAIL");

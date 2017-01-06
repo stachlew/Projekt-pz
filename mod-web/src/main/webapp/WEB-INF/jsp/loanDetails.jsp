@@ -45,7 +45,7 @@
                     </div>
 
 
-                    <div class="row" ng-show="isLender">
+                    <div class="row" ng-show="loanStatVis">
                         <div class="col-md-10 col-md-offset-1">
                             <form class="form-inline" name="form" ng-submit="changeStatus()" ng-init="refreshLoanStatuses()" role="form" novalidate>
                                  <div class="form-group">

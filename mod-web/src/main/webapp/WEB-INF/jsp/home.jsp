@@ -81,7 +81,7 @@
                     <div class="col-md-4">
                         <div class="input-group">
                             <span class="input-group-addon"><spring:message code="uniText.city"/></span>
-                            <input type="text" name="city" id="city" class="form-control" ng-model="city" ng-maxlength="30" required/>
+                            <input type="text" name="city" id="city" class="form-control" ng-model="city" maxlength="30" ng-maxlength="30" required/>
                         </div>
                     </div>
                     <div class="col-md-4">

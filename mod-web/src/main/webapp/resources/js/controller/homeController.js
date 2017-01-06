@@ -96,6 +96,7 @@ function homeController($scope,$location,$log,$http,$cookies){
             bailValueFrom : $scope.bailValueFrom,
             bailValueTo : $scope.bailValueTo
         };
+        console.log("IDZIE: "+$scope.city);
 
         /*console.log("Szukaj zaawansowano: ");
         console.log(searchProperties.title);
