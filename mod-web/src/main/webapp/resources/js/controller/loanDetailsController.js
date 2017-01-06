@@ -78,6 +78,7 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
                 //console.log("STATUS OK");
                 $scope.refreshLoanDetails();
                 $scope.refreshLoanStatuses();
+                $scope.refreshLoanMessages();
             },
             function () {
                 console.log("STATUS FAIL");

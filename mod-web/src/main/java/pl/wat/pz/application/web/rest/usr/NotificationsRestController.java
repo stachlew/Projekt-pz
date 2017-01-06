@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
 import pl.wat.pz.application.logic.service.LoanService;
 import pl.wat.pz.application.web.wrapper.BooleanResponse;
+import pl.wat.pz.application.web.wrapper.StringResponse;
 
 import java.util.List;
 
@@ -32,6 +33,15 @@ public class NotificationsRestController {
         }catch (NumberFormatException e){
             return null;
         }
+    }
+
+    @RequestMapping(value = "/getNumberOfPages",method = RequestMethod.GET)
+    public @ResponseBody
+    StringResponse getNumberOfPager(Authentication auth){
+        String username =  auth.getName();
+        Integer countedPages = loanService.numberOfPage(username);
+        StringResponse response = new StringResponse(countedPages.toString());
+        return response;
     }
 
 
