@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,13 +21,20 @@ public class NotificationsRestController {
     @Autowired
     LoanService loanService;
 
-    @RequestMapping(value="/getLoan", method= RequestMethod.GET)
+    @RequestMapping(value="/getNotifications/{pageNo}", method= RequestMethod.GET)
     public @ResponseBody
-    List<LoanHeader> getLoan(Authentication auth) {
+    List<LoanHeader> getLoan(Authentication auth, @PathVariable String pageNo) {
         String username = auth.getName();
         String locale = LocaleContextHolder.getLocale().getLanguage();
-        return loanService.findLoanHeaderByUsername(username,0,locale);
+        try{
+            int intPageNo = Integer.parseInt(pageNo);
+            return loanService.findLoanHeaderByUsername(username,intPageNo,locale);
+        }catch (NumberFormatException e){
+            return null;
+        }
     }
+
+
 
     @RequestMapping(value="/checkNotifications", method= RequestMethod.GET)
     public @ResponseBody

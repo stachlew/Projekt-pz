@@ -76,26 +76,26 @@ public class MessageServiceImpl implements MessageService {
     public void sendAutomaticMessage(long idLoan, String username, String statusName) {
         LoanStatus loanStatus = loanStatusRepository.findLoanStatusByName(statusName);
         if(loanStatus.getIdLoanStatus()== LoanStatusEnum.REJECTED.getId()){
-            String messagesString="Użytkownik "+username+" odrzucił propozycje wypożyczenia.\n User "+ username+ " rejected the offer loan.";
+            String messagesString="Użytkownik "+username+" odrzucił propozycje wypożyczenia.\nUser "+ username+ " rejected the offer loan.";
             messageRepository.addMessages(messagesString,idLoan,username);
         }
         else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.ACCEPTED.getId()){
-            String messagesString="Użytkownik "+username+" zaakceptował ofertę.\n User "+ username+ " acctepeted the offer.";
+            String messagesString="Użytkownik "+username+" zaakceptował ofertę.\nUser "+ username+ " accepted the offer.";
             messageRepository.addMessages(messagesString,idLoan,username);
 
         }
         else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.IN_PROGRESS.getId()){
-            String messagesString="Użytkownik "+username+" zmienił status wypożyczenia na: w trakcie.\n User "+ username+ " changed the status of the loan on: in progress.";
+            String messagesString="Użytkownik "+username+" zmienił status wypożyczenia na: w trakcie.\nUser "+ username+ " changed the status of the loan on: in progress.";
             messageRepository.addMessages(messagesString,idLoan,username);
 
         }
         else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.CANCELED.getId()){
-            String messagesString="Użytkownik "+username+" anulował wypożyczenie.<br> User "+ username+ " canceled loan";
+            String messagesString="Użytkownik "+username+" anulował wypożyczenie.\nUser "+ username+ " canceled loan";
             messageRepository.addMessages(messagesString,idLoan,username);
 
         }
         else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.COMPLETED.getId()){
-            String messagesString="Użytkownik "+username+" mienił status wypożyczenia na: zakończone.\n User "+ username+ " changed the status of the loan on: completeda";
+            String messagesString="Użytkownik "+username+" zmienił status wypożyczenia na: zakończone.\nUser "+ username+ " changed the status of the loan on: completed";
             messageRepository.addMessages(messagesString,idLoan,username);
 
         }

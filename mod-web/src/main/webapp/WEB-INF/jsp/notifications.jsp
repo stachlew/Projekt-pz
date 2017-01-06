@@ -9,7 +9,17 @@
     <div class="text-center" ng-show="noItems" >
        <h3><spring:message code="notifications.content.text.noNotification"/></h3>
     </div>
-    <div class="list-group" ng-init="refreshNotifications()">
+
+    <span >
+        <ul class="pagination" style="margin: 0px">
+            <li><a ng-click="refreshNotifications(0)">1</a></li>
+            <li><a ng-click="refreshNotifications(1)">2</a></li>
+            <li><a ng-click="refreshNotifications(2)">3</a></li>
+            <li><a ng-click="refreshNotifications(3)">4</a></li>
+            <li><a ng-click="refreshNotifications(4)">5</a></li>
+        </ul>
+    </span>
+    <div class="list-group" ng-init="refreshNotifications(0)">
         <a class="list-group-item borromColour" ng-repeat="fromItem in borrowList" ng-click="goLoanDetails(fromItem.idLoan)" ng-class="{ newNotification: fromItem.messageWithStatusTwo>0}">
             <div class="row">
                 <div class="col-md-1">

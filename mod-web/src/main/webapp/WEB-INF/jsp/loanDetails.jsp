@@ -124,7 +124,7 @@
                                             <h6>{{chat.sender}}</h6>
                                         </td>
                                         <td>
-                                            <p class="word-wrap:break-word"><small>{{chat.text}}</small></p>
+                                            <p style="white-space: pre;" class="word-wrap:break-word"><small>{{chat.text}}</small></p>
                                         </td>
                                     </tr>
                                     <tr ng-show="messages.length === 0">

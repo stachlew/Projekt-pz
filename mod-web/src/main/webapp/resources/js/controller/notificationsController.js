@@ -9,10 +9,11 @@ function notificationsController($scope,$log,$http){
 
     $scope.noItems = false;
     $scope.loading = false;
+    $scope.pageNo=0;
 
-    $scope.refreshNotifications = function () {
+    $scope.refreshNotifications = function (pageNo) {
         $scope.loading = true;
-        $http.get('/rest/usr/notifications/getLoan') //TUTAJ
+        $http.get('/rest/usr/notifications/getNotifications/'+pageNo) //TUTAJ
             .then(
                 function (response) {
                     $scope.loading = false;
