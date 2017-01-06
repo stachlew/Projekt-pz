@@ -24,5 +24,19 @@ function myAdsController($scope,$location,$log,$http){
                 }
             )
     }
+
+    $scope.deleteMyAd = function (idAdvertisement) {
+        console.log("deleteMyAd()");
+        $http.get('/rest/usr/myOffer/delete/'+idAdvertisement)
+            .then(
+                function (response) {
+                    console.log("OK: refreshMyAds()");
+                    $scope.refreshMyAds();
+                },
+                function () {
+                    console.log("Error: refreshMyAds()");
+                }
+            )
+    }
 }
 

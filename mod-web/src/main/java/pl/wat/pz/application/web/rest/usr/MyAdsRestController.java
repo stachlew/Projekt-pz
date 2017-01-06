@@ -45,7 +45,7 @@ public class MyAdsRestController {
             }
         }
     }
-    @RequestMapping(value = "/delete/{idOffer}",method = RequestMethod.POST)
+    @RequestMapping(value = "/delete/{idOffer}",method = RequestMethod.GET)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void deleteOffer(@PathVariable String idOffer, Authentication auth){
         if(auth!=null){
@@ -56,9 +56,7 @@ public class MyAdsRestController {
             } catch (NumberFormatException nfe) {
 
             }
-
         }
     }
-
 
 }
