@@ -44,7 +44,7 @@
                     <button class="btn btn-default btn-block borromColour" role="button" ng-click="goOffer(ad.idAdvertisement)">
                         <i class="glyphicon glyphicon-question-sign"></i>&nbsp<spring:message code="myAds.list.button.showAd"/>
                     </button>
-                    <button class="btn btn-default btn-block borromColour" role="button" ng-click="">
+                    <button class="btn btn-default btn-block borromColour" role="button" ng-click="deleteMyAd(ad.idAdvertisement)">
                         <i class="glyphicon glyphicon-trash"></i>&nbsp<spring:message code="myAds.list.button.deleteAd"/>
                     </button>
                 </div>
