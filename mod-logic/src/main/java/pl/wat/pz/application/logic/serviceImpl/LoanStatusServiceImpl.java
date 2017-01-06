@@ -6,6 +6,7 @@ import pl.wat.pz.application.dao.domain.Loan;
 import pl.wat.pz.application.dao.domain.LoanStatus;
 import pl.wat.pz.application.dao.repository.LoanRepository;
 import pl.wat.pz.application.dao.repository.LoanStatusRepository;
+import pl.wat.pz.application.logic.enumeric.LoanStatusEnum;
 import pl.wat.pz.application.logic.service.LoanService;
 import pl.wat.pz.application.logic.service.LoanStatusService;
 
@@ -18,20 +19,6 @@ import java.util.List;
 
 @Service
 public class LoanStatusServiceImpl implements LoanStatusService {
-
-    public enum LoanStatusENUM{
-        REJECTED(1l),OFFER(2L),ACCEPTED(3l),IN_PROGRESS(4l),CANCELED(5L),COMPLETED(6L);
-
-        private long id;
-
-        LoanStatusENUM(long id){
-            this.id=id;
-        }
-
-        public long getId() {
-            return id;
-        }
-    }
 
     @Autowired
     LoanStatusRepository loanStatusRepository;
@@ -65,24 +52,24 @@ public class LoanStatusServiceImpl implements LoanStatusService {
             Loan loan = loanRepository.findOne(idLoan);
             List<LoanStatus> loanStatusList = new LinkedList<>();
             if(loan.getIdBorrower().getUsername().equals(username)){
-                if(loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusENUM.OFFER.getId()){
-                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusENUM.CANCELED.getId()));
+                if(loan.getIdLoanStatus().getIdLoanStatus()== LoanStatusEnum.OFFER.getId()){
+                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusEnum.CANCELED.getId()));
                 }
-                if (loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusENUM.ACCEPTED.getId()){
-                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusENUM.CANCELED.getId()));
+                if (loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusEnum.ACCEPTED.getId()){
+                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusEnum.CANCELED.getId()));
                 }
             }
             else{
-                if(loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusENUM.OFFER.getId()){
-                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusENUM.REJECTED.getId()));
-                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusENUM.ACCEPTED.getId()));
+                if(loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusEnum.OFFER.getId()){
+                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusEnum.REJECTED.getId()));
+                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusEnum.ACCEPTED.getId()));
                 }
-                if (loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusENUM.ACCEPTED.getId()){
-                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusENUM.CANCELED.getId()));
-                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusENUM.IN_PROGRESS.getId()));
+                if (loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusEnum.ACCEPTED.getId()){
+                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusEnum.CANCELED.getId()));
+                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusEnum.IN_PROGRESS.getId()));
                 }
-                if (loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusENUM.IN_PROGRESS.getId()){
-                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusENUM.COMPLETED.getId()));
+                if (loan.getIdLoanStatus().getIdLoanStatus()==LoanStatusEnum.IN_PROGRESS.getId()){
+                    loanStatusList.add(loanStatusRepository.findOne(LoanStatusEnum.COMPLETED.getId()));
                 }
 
             }
@@ -90,6 +77,11 @@ public class LoanStatusServiceImpl implements LoanStatusService {
         }
 
         return null;
+    }
+
+    @Override
+    public LoanStatus findLoanStatusByName(String name) {
+        return loanStatusRepository.findLoanStatusByName(name);
     }
 
     @Override

@@ -7,10 +7,8 @@ import pl.wat.pz.application.dao.domain.LoanStatus;
 import pl.wat.pz.application.dao.domain.Message;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
 import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
-import pl.wat.pz.application.dao.repository.LoanRepository;
-import pl.wat.pz.application.dao.repository.MessageRepository;
-import pl.wat.pz.application.dao.repository.MessageStateRepository;
-import pl.wat.pz.application.dao.repository.UserRepository;
+import pl.wat.pz.application.dao.repository.*;
+import pl.wat.pz.application.logic.enumeric.LoanStatusEnum;
 import pl.wat.pz.application.logic.service.LoanStatusService;
 import pl.wat.pz.application.logic.service.MessageService;
 
@@ -32,7 +30,7 @@ public class MessageServiceImpl implements MessageService {
     @Autowired
     MessageStateRepository messageStateRepository;
     @Autowired
-    LoanStatusService loanStatusService;
+    LoanStatusRepository loanStatusRepository;
     @Override
     public List<LoanMessage> findByIdLoan(long idLoan,String lang) {
         return convertMessageToLoanMesage(messageRepository.findByIdLoan(idLoan),lang);
@@ -76,7 +74,11 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void sendAutomaticMessage(long idLoan, String username, String statusName) {
-      // if()
+        LoanStatus loanStatus = loanStatusRepository.findLoanStatusByName(statusName);
+        if(loanStatus.getIdLoanStatus()== LoanStatusEnum.REJECTED.getId()){
+            String messagesString="Użytkownik "+username+" anulowal wypożyczenie.\n User "+ username+ " ";
+            //messageRepository.addMessages();
+        }
     }
 
 

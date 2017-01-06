@@ -21,4 +21,7 @@ public interface LoanRepository extends JpaRepository<Loan,Long> {
 
     @Query("select l from Loan l where l.idBorrower.username=?1 or l.idAdvertisement.idUser.username=?1")
     Page<Loan> findByUsername(String username, Pageable pageable);
+
+    @Query("SELECT count(l) from Loan l where l.idBorrower.username=?1 or l.idAdvertisement.idUser.username=?1")
+    int countByUsername(String username);
 }

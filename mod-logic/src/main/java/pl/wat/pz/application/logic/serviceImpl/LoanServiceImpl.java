@@ -63,6 +63,11 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
+    public int numberOfPage(String username) {
+        return  (loanRepository.countByUsername(username)/sizeOfPage)+1;
+    }
+
+    @Override
     public LoanHeader findOneLoanHeaderByIdLoan(long idLoan,String lang) {
         Loan loan = loanRepository.findOne(idLoan);
         if(loan!=null){
