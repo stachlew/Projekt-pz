@@ -42,7 +42,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage,String lang) {
-        Page<Advertisement> advertisementPage = advertisementRepository.findAll(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
+        Page<Advertisement> advertisementPage = advertisementRepository.findByAdvertisementDeletedFalse(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
         return this.advertisementConvertToAdvertisementHeader(advertisementPage.getContent(),lang);
     }
 
@@ -55,7 +55,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement,String lang) {
         AdvertisementDetails advertisementDetails = null;
-        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        Advertisement advertisement = advertisementRepository.findByIdAdvertisementAndAdvertisementDeletedFalse(idAdvertisement);
         if(advertisement!=null)
             advertisementDetails = new AdvertisementDetails(advertisement,lang);
 
@@ -67,7 +67,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Modifying
     @Override
     public void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement) {
-        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        Advertisement advertisement = advertisementRepository.findByIdAdvertisementAndAdvertisementDeletedFalse(idAdvertisement);
         if (advertisement!=null) {
             advertisement.setBailValue(advertisementForm.getBailValue());
             advertisement.setChargePerDay(advertisementForm.getChargePerDay());
@@ -90,8 +90,15 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public void delete(Long idAdvertisement) {
-        advertisementRepository.delete(idAdvertisement);
+    @Transactional
+    @Modifying
+    public void delete(Long idAdvertisement,String username) {
+        Advertisement advertisement = advertisementRepository.findByIdAdvertisementAndAdvertisementDeletedFalse(idAdvertisement);
+        if(advertisement.getIdUser().getUsername().equals(username)) {
+            advertisement.setAdvertisementDeleted(true);
+            advertisementRepository.save(advertisement);
+        }
+
     }
 
     @Override

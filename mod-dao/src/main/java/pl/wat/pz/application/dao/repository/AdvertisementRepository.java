@@ -1,6 +1,8 @@
 package pl.wat.pz.application.dao.repository;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.query.Procedure;
@@ -19,7 +21,7 @@ import java.util.List;
 public interface AdvertisementRepository extends JpaRepository<Advertisement,Long> {
 
     //---------------------Selects--------------//
-    @Query("select a from Advertisement a where a.idUser.username=?1")
+    @Query("select a from Advertisement a where a.idUser.username=?1 and a.advertisementDeleted=0")
     List<Advertisement> findByUsername(String username);
 
     @Procedure(name = "proc_search")
@@ -29,6 +31,11 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement,Lon
 
     @Query(value = "select * from adv_tmp",nativeQuery = true)
     List<Advertisement> findByParameters();
+
+
+    Advertisement findByIdAdvertisementAndAdvertisementDeletedFalse(long idAdvertisment);
+
+    Page<Advertisement> findByAdvertisementDeletedFalse(Pageable pageable);
     //---------------------Updates============//
 
 }

@@ -45,6 +45,20 @@ public class MyAdsRestController {
             }
         }
     }
+    @RequestMapping(value = "/delete/{idOffer}",method = RequestMethod.POST)
+    @ResponseStatus(value= HttpStatus.NO_CONTENT)
+    public void deleteOffer(@PathVariable String idOffer, Authentication auth){
+        if(auth!=null){
+            String username = auth.getName();
+            try {
+                Long offerIdLong = Long.parseLong(idOffer.trim());
+                advertisementService.delete(offerIdLong,username);
+            } catch (NumberFormatException nfe) {
+
+            }
+
+        }
+    }
 
 
 }

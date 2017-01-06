@@ -27,7 +27,7 @@ public interface AdvertisementService {
     Advertisement saveAdvertisement(Advertisement newAdvertisement);
 
     //------DELETE----------//
-    void delete(Long idAdvertisement);
+    void delete(Long idAdvertisement,String username);
 
     //--------Converts------------//
     List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements,String lang);
