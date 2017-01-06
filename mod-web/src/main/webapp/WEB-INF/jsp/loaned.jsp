@@ -29,7 +29,7 @@
                     <a class="list-group-item borromColour" ng-repeat="fromItem in borrowFromList" ng-click="goLoanDetails(fromItem.idLoan)" >
                         <div class="row">
                             <div class="col-md-1">
-                                <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
+                                <img style="max-height:120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{fromItem.idAdvertisement}}" alt="Offer foto" />
                             </div>
                             <div class="col-md-11">
                                 <div class="row">
@@ -82,7 +82,7 @@
                 <a class="list-group-item borromColour" ng-repeat="toItem in borrowToList" ng-click="goLoanDetails(toItem.idLoan)" >
                     <div class="row">
                         <div class="col-md-1">
-                            <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
+                            <img style="max-height:120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{toItem.idAdvertisement}}" alt="Offer foto" />
                         </div>
 
                         <div class="col-md-11">

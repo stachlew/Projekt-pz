@@ -126,7 +126,7 @@
         <div class="col-md-3 col-sm-4 col-xs-12"  ng-repeat="ad in adsList" ng-click="goOffer(ad.idAdvertisement)">
             <div class="thumbnail borromColour">
                 <div class="caption">
-                    <img src="<c:url value="/resources/image/150.png"></c:url>" class="img-rounded">
+                    <img class="img-rounded" ng-src="rest/pub/images/getImage/{{ad.idAdvertisement}}" alt="Offer foto" />
                     <h3><b>
                         {{ad.title}}
                     </b></h3>
@@ -148,7 +148,7 @@
         <a class="list-group-item borromColour" ng-repeat="ob in searchedOffers" >
             <div class="row">
                 <div class="col-md-1">
-                    <img src="<c:url value="/resources/image/150.png"></c:url>" style="max-height:120px" class="img-rounded">
+                    <img style="max-height:120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ob.idAdvertisement}}" alt="Offer foto" />
                 </div>
                 <div class="col-md-10" ng-click="goOffer(ob.idAdvertisement)" >
                     <div class="row">

@@ -48,7 +48,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <img src="<c:url value="/resources/image/300x300.jpg"></c:url>" height="300" width="300" class="img-rounded img-responsive">
+                    <img height="300" width="300" class="img-rounded img-responsive" ng-src="rest/pub/images/getImage/{{offer.idAdvertisement}}" alt="Offer foto" />
                 </div>
                 <div class="col-md-8">
                     <div class="row">
