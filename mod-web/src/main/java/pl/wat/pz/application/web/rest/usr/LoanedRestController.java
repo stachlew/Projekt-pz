@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import pl.wat.pz.application.dao.domain.Advertisement;
+import pl.wat.pz.application.dao.domain.LoanStatus;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanForm;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
@@ -16,6 +17,7 @@ import pl.wat.pz.application.dao.intermediateClass.LoanStatus.LoanStatusForm;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
 import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
 import pl.wat.pz.application.logic.service.LoanService;
+import pl.wat.pz.application.logic.service.LoanStatusService;
 import pl.wat.pz.application.logic.service.MessageService;
 
 import javax.xml.transform.sax.SAXSource;
@@ -32,6 +34,8 @@ public class LoanedRestController {
     LoanService loanService;
     @Autowired
     MessageService messageService;
+    @Autowired
+    LoanStatusService loanStatusService;
 
     @RequestMapping(value="/getLender", method= RequestMethod.GET)
     public @ResponseBody
@@ -108,7 +112,9 @@ public class LoanedRestController {
         try {
             Long longIdLoan = Long.parseLong(form.getIdLoan());
             LoanHeader header = loanService.findOneLoanHeaderByIdLoan(longIdLoan,lang);
-            if(header.getLender().equals(auth.getName())){
+
+            List<String> loanStatusNameAvailableToUser = loanStatusService.findLoanStatusNameAvailableToUser(longIdLoan, auth.getName(), lang);
+            if(loanStatusNameAvailableToUser.contains(form.getStatusName())){
                 loanService.changeLoanStatus(longIdLoan,form.getStatusName());
             }
         }
