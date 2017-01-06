@@ -64,7 +64,13 @@ public class LoanServiceImpl implements LoanService {
 
     @Override
     public int numberOfPage(String username) {
-        return  (loanRepository.countByUsername(username)/sizeOfPage)+1;
+        int countedPages;
+        int countedLoans = loanRepository.countByUsername(username);
+        countedPages=countedLoans/sizeOfPage;
+        if(countedLoans%sizeOfPage!=0){
+            countedPages++;
+        }
+        return  countedPages;
     }
 
     @Override

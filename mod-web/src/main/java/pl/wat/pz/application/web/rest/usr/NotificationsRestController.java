@@ -29,7 +29,10 @@ public class NotificationsRestController {
         String locale = LocaleContextHolder.getLocale().getLanguage();
         try{
             int intPageNo = Integer.parseInt(pageNo);
-            return loanService.findLoanHeaderByUsername(username,intPageNo,locale);
+            if(intPageNo>=0){
+                return loanService.findLoanHeaderByUsername(username,intPageNo,locale);
+            }
+            return null;
         }catch (NumberFormatException e){
             return null;
         }

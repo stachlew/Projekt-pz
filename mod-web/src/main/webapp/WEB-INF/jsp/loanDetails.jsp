@@ -4,12 +4,12 @@
 <script src="/resources/js/homeRedirect.js/"></script>
 
 <div class="well well-sm" ng-init="refreshLoanDetails()">
-    <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
+
     <div class="text-center" ng-show="noLoan" ><spring:message code="uniText.noOfferId"/></div>
     <div ng-show="isLoan">
 
         <div class="row">
-            <div class="col-md-6"><%--Lewa--%>
+            <div class="col-md-5"><%--Lewa--%>
 
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1 ">
@@ -90,6 +90,9 @@
                     </div>
 
             </div><%--/Prawa--%>
+            <div class="col-md-1">
+                <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
+            </div>
         </div>
 
         <div class="row">

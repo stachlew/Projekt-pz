@@ -33,14 +33,14 @@
 
             <div class="row">
                 <div class="col-md-4">
-                    <p><i class="glyphicon glyphicon-calendar"></i>&nbsp <spring:message code="loanProposition.pickDate"/>:&nbsp </p>
+                    <p><i class="glyphicon glyphicon-calendar"></i>&nbsp <spring:message code="loanProposition.pickDate"/>&nbsp </p>
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-md-4">
                     <label for="dateFrom"><spring:message code="uniText.fromUpper"/></label>
-                    <input class="borromColour form-control" type="date" name="dateFrom" id="dateFrom" ng-model="dateFrom" required>
+                    <input class="borromColour form-control" type="date" name="dateFrom" id="dateFrom" ng-model="dateFrom" min={{stockDate}} required>
                     <br>
                 </div>
             </div>
@@ -48,7 +48,7 @@
             <div class="row">
                 <div class="col-md-4">
                     <label for="dateTo"><spring:message code="uniText.toUpper"/></label>
-                    <input class="borromColour form-control" type="date" name="dateTo" id="dateFrom" ng-model="dateTo" required>
+                    <input class="borromColour form-control" type="date" name="dateTo" id="dateFrom" ng-model="dateTo" min={{dateFrom}} required>
                 </div>
                 <div class="col-md-3 col-md-offset-2">
                     <div class="form-group">

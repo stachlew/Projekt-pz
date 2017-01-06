@@ -82,7 +82,7 @@
         <sec:authorize access="hasRole('ROLE_ANONYMOUS')"><tiles:insertAttribute name="headingGuest" /></sec:authorize>
     </div>
 
-    <div id="menuUser " class="row">
+    <div id="menuUser" class="row">
         <sec:authorize access="hasRole('ROLE_USER')"><tiles:insertAttribute name="menuUser" /></sec:authorize>
     </div>
 

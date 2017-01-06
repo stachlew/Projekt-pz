@@ -11,6 +11,10 @@ function addLoanController($scope,$log,$http,$cookies,$routeParams){
     $scope.noOffer=false;
     $scope.loading=false;
 
+
+    $scope.stockDate=new Date();
+
+
     $scope.refreshLoan = function () {
         $scope.loading = true;
         $http.get('/rest/pub/offer/'+$scope.offerId)
@@ -21,6 +25,8 @@ function addLoanController($scope,$log,$http,$cookies,$routeParams){
                         $scope.offer=response.data;
                         $scope.isOffer = true;
                         $scope.formVis = true;
+                        $scope.dateFrom =$scope.stockDate;
+                        $scope.dateTo=$scope.stockDate;
                     }
                     else{
                         $scope.noOffer = true;

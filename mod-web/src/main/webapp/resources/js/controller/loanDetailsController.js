@@ -59,9 +59,6 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
             statusName : $scope.status
         };
 
-        //console.log("Modyfikuje: ");
-        //console.log(newStatus.idLoan);
-        //console.log(newStatus.statusName);
 
         $scope.csfr=$cookies.get('XSRF-TOKEN');
 
@@ -92,6 +89,8 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
                     if(response.data){
                         $scope.messages=response.data;
                     }
+                    $scope.refreshLoanDetails();
+                    $scope.refreshLoanStatuses();
                 },
                 function () {
                     $scope.loading = false;
