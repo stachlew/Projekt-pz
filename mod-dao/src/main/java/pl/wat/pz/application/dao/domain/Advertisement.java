@@ -65,6 +65,8 @@ public class Advertisement {
     @JoinColumn(name = "id_Item_Category")
     private ItemCategory idItemCategory;
 
+    private boolean advertisementDeleted;
+
     public Advertisement() { }
 
     public Advertisement(String title, Timestamp dateAdded, double bailValue, double chargePerDay, String description, byte[] image, String city, Region idRegion, User idUser, ItemCategory idItemCategory) {
@@ -176,5 +178,13 @@ public class Advertisement {
 
     public void setIdItemCategory(ItemCategory idItemCategory) {
         this.idItemCategory = idItemCategory;
+    }
+
+    public boolean isAdvertisementDeleted() {
+        return advertisementDeleted;
+    }
+
+    public void setAdvertisementDeleted(boolean advertisementDeleted) {
+        this.advertisementDeleted = advertisementDeleted;
     }
 }
