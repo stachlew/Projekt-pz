@@ -49,44 +49,71 @@
                     <span ng-show="form.city.$touched && form.city.$error.maxlength" class="help-block">Max &nbsp <spring:message code="validate.length"/>&nbsp: 30</span>
                 </div>
 
-            </div>
-            <div class="col-md-5 col-md-offset-2"><%-- prawo--%>
-                <div class="text-right">
-                    <h1><spring:message code="editOffer.text.title"/></h1>
-                </div>
-
                 <div class="form-group">
                     <label for="description"><spring:message code="uniText.description"/></label>
                     <textarea style="max-width: 100%" rows="10" cols="30" name="description" id="description" class="form-control" ng-model="offer.description" ng-maxlength="500"></textarea>
                     <span ng-show="form.description.$touched && form.description.$error.maxlength" class="help-block">Max &nbsp <spring:message code="validate.length"/>&nbsp: 500</span>
                 </div>
-                </br>
-                </br>
-                <div class="form-group">
-                    <label for="image"><spring:message code="uniText.image"/></label>
-                    <input id="image" type="file" class="form-control" />
+
+            </div>
+            <div class="col-md-5 col-md-offset-2"><%-- prawo--%>
+
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="text-center">
+                            <h1><spring:message code="editOffer.text.title"/></h1>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-md-5 col-md-offset-1">
+                        <div class="form-group">
+                            <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg btn-default btn-block borromColour">
+                                <i class="glyphicon glyphicon-ok"></i>&nbsp<spring:message code="editOffer.button.accept"/>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-default btn-block borromColour" ng-click="goLink('myAds')">
+                                <i class="glyphicon glyphicon-remove"></i>&nbsp<spring:message code="editOffer.button.cancel"/>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="form-group">
+                            <label for="image"><spring:message code="uniText.image"/></label>
+                            <input id="image" type="file" file-model="myFile" class="form-control" />
+                        </div>
+                        <div class="form-group text-center">
+                            <br>
+                            <br>
+                            <p ng-show="showPhoto">
+                                <strong><spring:message code="editOffer.text.actualPhoto"/></strong>
+                                <img  height="400" width="400" class="img-rounded img-responsive" ng-src="rest/pub/images/getImage/{{offerId}}" alt="Offer foto" />
+                                <button type="button" class="btn btn-default borromColour" ng-click="removePhotoRequest()">
+                                    <i class="glyphicon glyphicon-remove"></i>&nbsp<spring:message code="editOffer.text.removePhoto"/>
+                                </button>
+                            </p>
+                            <p ng-show="!showPhoto">
+                                <strong><spring:message code="editOffer.text.noPhoto"/></strong>
+                            </p>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         </br>
 
-        </br>
-        <div class="row">
-            <div class="col-md-3 col-md-offset-3">
-                <div class="form-group">
-                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg btn-default btn-block borromColour">
-                        <i class="glyphicon glyphicon-ok"></i>&nbsp<spring:message code="editOffer.button.accept"/>
-                    </button>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <button class="btn btn-lg btn-default btn-block borromColour" ng-click="goLink('myAds')">
-                        <i class="glyphicon glyphicon-remove"></i>&nbsp<spring:message code="editOffer.button.cancel"/>
-                    </button>
-                </div>
-            </div>
-        </div>
     </form>
 
     <div class="text-center linkBorrom" ng-show="regOk" ng-click='goOffer(offerId)'>

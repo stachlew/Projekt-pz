@@ -21,7 +21,6 @@ public interface AdvertisementService {
 
     byte[] findImageByIdAdvertisement(long idAdvertisement);
 
-
     //--------UPDATE--------//
     void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement);
 

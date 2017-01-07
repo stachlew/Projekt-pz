@@ -118,6 +118,9 @@ public class AdvertisementServiceImpl implements AdvertisementService {
                 e.printStackTrace();
             }
         }
+        else {
+            advertisement.setImage(null);
+        }
     }
 
     @Override

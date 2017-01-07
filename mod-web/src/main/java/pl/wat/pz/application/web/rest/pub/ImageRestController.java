@@ -7,17 +7,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import pl.wat.pz.application.logic.service.AdvertisementService;
+import pl.wat.pz.application.web.wrapper.BooleanResponse;
 
 import javax.servlet.http.HttpServletResponse;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Arrays;
 
 @Controller
 public class ImageRestController {
@@ -45,6 +42,18 @@ public class ImageRestController {
         catch (NumberFormatException nfe){
             System.out.println("NumberFormatException");
         }
+    }
+
+    @RequestMapping(value = "rest/usr/images/deleteImage/{offerId}",method = RequestMethod.GET)
+    @ResponseStatus(value= HttpStatus.NO_CONTENT)
+    public void deleteImage(@PathVariable String offerId, Authentication auth){
+        Long longOfferId = null;
+        try {
+            longOfferId = Long.parseLong(offerId);
+        }catch (NumberFormatException e){
+            System.out.println("NumberFormatException uploadImage()");
+        }
+        advertisementService.saveImageToAdvertisement(longOfferId,null);
     }
 
     @RequestMapping(value = "rest/usr/images/uploadImage/{offerId}",method = RequestMethod.POST)

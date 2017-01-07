@@ -17,6 +17,9 @@ function editOfferController($scope,$log,$routeParams,$http,$cookies){
     $scope.regexNumber = '[0-9]*';
     $scope.regionName;
 
+    $scope.showPhoto=true;
+    $scope.removeFlag=false;
+
     $scope.refreshFormOptions = function() {
         $scope.refreshOffer();
 
@@ -82,6 +85,12 @@ function editOfferController($scope,$log,$routeParams,$http,$cookies){
         });
 
         res.success(function () {
+            if($scope.myFile){
+                $scope.uploadFoto($scope.offerId);
+            }
+            if($scope.removeFlag){
+                $scope.removePhoto();
+            }
             $scope.regOk=true;
             $scope.formVis=false;
         });
@@ -89,6 +98,43 @@ function editOfferController($scope,$log,$routeParams,$http,$cookies){
             $scope.regError=true;
             $scope.formVis=false;
         });
+    }
+
+    $scope.uploadFoto = function (idOffer) {
+        $scope.removeFlag=false;
+        var fd = new FormData();
+        fd.append('file', $scope.myFile);
+        var uploadUrl = "/rest/usr/images/uploadImage/"+idOffer;
+        $scope.csfr=$cookies.get('XSRF-TOKEN');
+
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'X-CSRF-TOKEN': $scope.csfr,
+                'Content-Type': undefined}
+        })
+            .success(function(){
+            })
+            .error(function(){
+                console.log("Upload FAIL");
+            });
+    }
+
+    $scope.removePhotoRequest = function () {
+        $scope.removeFlag=true;
+        $scope.showPhoto=false;
+    }
+
+    $scope.removePhoto = function () {
+        $http.get('/rest/usr/images/deleteImage/'+$scope.offerId)
+            .then(
+                function (response) {
+
+                },
+                function () {
+                    console.log("Error: refreshOfferData()");
+                }
+            )
     }
 
 
