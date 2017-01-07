@@ -23,13 +23,6 @@
                         <h4><i class="glyphicon glyphicon-share-alt"></i>&nbsp<spring:message code="uniText.bailValue"/>:&nbsp  {{offer.bailValue}} <spring:message code="uniText.pln"/></h4>
                     </p>
                 </div>
-                <div class="col-md-5 col-md-offset-3">
-                    <p>
-                        <h4 class="text-right">
-                            <i class="glyphicon glyphicon-th-list"></i>&nbsp <spring:message code="offer.text.moreUserOffers"/>:&nbsp {{offer.username}}.
-                        </h4>
-                    </p>
-                </div>
             </div>
             <div class="row">
                 <div class="col-md-4">

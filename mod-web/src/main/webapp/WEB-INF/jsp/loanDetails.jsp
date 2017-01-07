@@ -12,7 +12,7 @@
             <div class="col-md-5"><%--Lewa--%>
 
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1 ">
+                        <div class="col-md-10 col-md-offset-1 linkBorrom" ng-click="goOffer(loanDetails.idAdvertisement)">
                             <h3><spring:message code="loanDetails.heading.infoAd"/>:&nbsp  {{loanDetails.idAdvertisement}}</h3>
                         </div>
                     </div>
@@ -70,12 +70,17 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-user"></i>&nbsp<spring:message code="uniText.borrower"/>:&nbsp  <strong>{{loanDetails.borrower}}</strong></p>
+                            <p><i class="glyphicon glyphicon-user"></i>&nbsp<spring:message code="uniText.borrower"/>:&nbsp  <strong>{{loanDetails.borrower}}</strong>
+                                <span ng-if="loanDetails.phoneNumberOfBorrower"><br><spring:message code="uniText.phoneNumber"/>:&nbsp{{loanDetails.phoneNumberOfBorrower}}</span>
+                            </p>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-user"></i>&nbsp<spring:message code="uniText.lender"/>:&nbsp  <strong>{{loanDetails.lender}}</strong></p>
+                            <p><i class="glyphicon glyphicon-user"></i>&nbsp<spring:message code="uniText.lender"/>:&nbsp  <strong>{{loanDetails.lender}}</strong>
+                                <span ng-if="loanDetails.phoneNumberOfLender"><br><spring:message code="uniText.phoneNumber"/>:&nbsp{{loanDetails.phoneNumberOfLender}}</span>
+                            </p>
                         </div>
                     </div>
                     <div class="row">

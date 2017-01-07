@@ -18,8 +18,8 @@ public class LoanHeader {
     private String loanStatus;
     private double bailValue;
     private double chargePerDay;
-    private String phoneNuberOfBorrower;
-    private String phoneNuberOfLender;
+    private String phoneNumberOfBorrower;
+    private String phoneNumberOfLender;
     private int messageWithStatusTwo;
 
     public LoanHeader() {
@@ -40,8 +40,8 @@ public class LoanHeader {
         }
         this.bailValue=loan.getBailValue();
         this.chargePerDay=loan.getChargePerDay();
-        this.phoneNuberOfBorrower=loan.getIdBorrower().getDetails().getPhone();
-        this.phoneNuberOfLender=loan.getIdAdvertisement().getIdUser().getDetails().getPhone();
+        this.phoneNumberOfBorrower=loan.getIdBorrower().getDetails().getPhone();
+        this.phoneNumberOfLender=loan.getIdAdvertisement().getIdUser().getDetails().getPhone();
     }
 
     public long getIdLoan() {
@@ -92,19 +92,19 @@ public class LoanHeader {
         this.messageWithStatusTwo = messageWithStatusTwo;
     }
 
-    public String getPhoneNuberOfBorrower() {
-        return phoneNuberOfBorrower;
+    public String getPhoneNumberOfBorrower() {
+        return phoneNumberOfBorrower;
     }
 
-    public void setPhoneNuberOfBorrower(String phoneNuberOfBorrower) {
-        this.phoneNuberOfBorrower = phoneNuberOfBorrower;
+    public void setPhoneNumberOfBorrower(String phoneNumberOfBorrower) {
+        this.phoneNumberOfBorrower = phoneNumberOfBorrower;
     }
 
-    public String getPhoneNuberOfLender() {
-        return phoneNuberOfLender;
+    public String getPhoneNumberOfLender() {
+        return phoneNumberOfLender;
     }
 
-    public void setPhoneNuberOfLender(String phoneNuberOfLender) {
-        this.phoneNuberOfLender = phoneNuberOfLender;
+    public void setPhoneNumberOfLender(String phoneNumberOfLender) {
+        this.phoneNumberOfLender = phoneNumberOfLender;
     }
 }
