@@ -107,6 +107,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
+    @Transactional
     public void saveImageToAdvertisement(long idAdvertisement, byte[] image) {
         Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
         if(image!=null) {

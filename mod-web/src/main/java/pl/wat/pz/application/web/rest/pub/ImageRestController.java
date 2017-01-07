@@ -5,15 +5,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
 import javax.servlet.http.HttpServletResponse;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 @Controller
 public class ImageRestController {
@@ -45,26 +49,27 @@ public class ImageRestController {
 
     @RequestMapping(value = "rest/usr/images/uploadImage/{offerId}",method = RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void uploadImage(@PathVariable String offerId, Authentication auth, @RequestParam("file") File file){
-        //pobrac plik z uploadu
-        /*
-        System.out.println("Serwer upload");
-        System.out.println("file: "+file.toString());
-        System.out.println("file: "+file.getTotalSpace());
-        //update na ogloszeniu
+    public void uploadImage(@PathVariable String offerId, Authentication auth, @RequestParam("file") MultipartFile file) {
+        if(!file.isEmpty()){
+            try{
+                Long longOfferId = Long.parseLong(offerId);
+                byte[] bytes = file.getBytes();
+                advertisementService.saveImageToAdvertisement(longOfferId,bytes);
 
-        try{
-            Path path = FileSystems.getDefault().getPath("","D:\\LocalRepoGit\\Projekt-pz\\mod-web\\src\\main\\resources\\stockFoto\\ObrazDB3.jpg");
-            byte[] dbImageByte = Files.readAllBytes(path);
-            Blob dbImage = new javax.sql.rowset.serial.SerialBlob(dbImageByte);
+                /*
+                //Zapis na lokalnym dla testu
+                File serverFile = new File("D:\\LocalRepoGit\\Projekt-pz\\mod-web\\src\\main\\resources\\stockFoto"
+                        + File.separator + offerId + ".jpg");
+                BufferedOutputStream stream = new BufferedOutputStream(
+                        new FileOutputStream(serverFile));
+                stream.write(bytes);
+                stream.close();
+                */
 
-            //newAd.setImage(dbImage);
+
+            }catch (Exception e){
+                System.out.println("Exception uploadImage");
+            }
         }
-        catch (IOException ioe){
-            System.out.println("IOException");
-        }
-        catch (SQLException sqle){
-            System.out.println("SQLDataException");
-        }
-    }*/
+    }
 }

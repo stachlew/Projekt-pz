@@ -1,6 +1,20 @@
 var app = angular.module('app',['ngRoute','ngCookies','ui.bootstrap','ngAnimate', 'ngSanitize']);
 
+app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
 
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
 
 app.config(['$routeProvider',function($routeProvider){
 
@@ -73,5 +87,6 @@ app.config(['$routeProvider',function($routeProvider){
 
         .otherwise({templateUrl:'errorPage'});
 }]);
+
 
 
