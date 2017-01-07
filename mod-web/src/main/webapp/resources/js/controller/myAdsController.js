@@ -6,6 +6,10 @@ myAdsController.$inject=['$scope','$location', '$log','$http'];
 function myAdsController($scope,$location,$log,$http){
     $log.info("myAdsController");
     $scope.noAds = false;
+    $scope.firstOpen=true;
+
+    $scope.loadingRemove = false;
+    $scope.idRemove="";
 
     $scope.refreshMyAds = function () {
         $scope.loading = true;
@@ -13,6 +17,7 @@ function myAdsController($scope,$location,$log,$http){
             .then(
                 function (response) {
                     $scope.loading = false;
+                    $scope.firstOpen=false;
                     $scope.adsList=response.data;
                     if($scope.adsList.length == 0){
                         $scope.noAds = true;
@@ -20,6 +25,7 @@ function myAdsController($scope,$location,$log,$http){
                 },
                 function () {
                     $scope.loading = false;
+                    $scope.firstOpen=false;
                     console.log("Error: refreshMyAds()");
                 }
             )
@@ -27,13 +33,17 @@ function myAdsController($scope,$location,$log,$http){
 
     $scope.deleteMyAd = function (idAdvertisement) {
         console.log("deleteMyAd()");
+        $scope.idRemove=idAdvertisement;
+        $scope.loadingRemove=true;
         $http.get('/rest/usr/myOffer/delete/'+idAdvertisement)
             .then(
                 function (response) {
-                    console.log("OK: refreshMyAds()");
+                    //console.log("OK: refreshMyAds()");
+                    $scope.loadingRemove=false;
                     $scope.refreshMyAds();
                 },
                 function () {
+                    $scope.loadingRemove=false;
                     console.log("Error: refreshMyAds()");
                 }
             )

@@ -4,7 +4,7 @@
 <script src="/resources/js/homeRedirect.js/"></script>
 
 <div class="well well-sm">
-    <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
+    <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading && firstOpen" height="42" width="42"/></div>
 
     <div class="text-center" ng-show="noAds" >
         <h3><spring:message code="myAds.content.text.noAds"/></h3>
@@ -45,7 +45,9 @@
                         <i class="glyphicon glyphicon-question-sign"></i>&nbsp<spring:message code="myAds.list.button.showAd"/>
                     </button>
                     <button class="btn btn-default btn-block borromColour" role="button" ng-click="deleteMyAd(ad.idAdvertisement)">
-                        <i class="glyphicon glyphicon-trash"></i>&nbsp<spring:message code="myAds.list.button.deleteAd"/>
+                        <i class="glyphicon glyphicon-trash"></i>
+                        &nbsp<spring:message code="myAds.list.button.deleteAd"/>
+                        &nbsp<i ng-show="loadingRemove && (idRemove==ad.idAdvertisement)" class="glyphicon glyphicon-refresh fa-spin"></i>
                     </button>
                 </div>
 
