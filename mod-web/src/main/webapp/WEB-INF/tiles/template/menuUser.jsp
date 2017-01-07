@@ -3,7 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="well well-sm">
-    <div class ="userInfo">
+    <div ng-click="goEditUser()" class ="userInfo linkBorrom">
         <spring:message code="tile.menu.button.loggedAs"/>
         {{userName}}
         <i class="glyphicon glyphicon-user"></i>

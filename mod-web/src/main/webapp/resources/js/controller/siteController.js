@@ -56,6 +56,10 @@ function siteController($scope,$location,$log,$cookies,$http){
         $location.path("/addLoan/"+linkId);
     }
 
+    $scope.goEditUser = function(){
+        $location.path("/editUser");
+    }
+
     $scope.goLoanDetails = function(linkId){
         $location.path("/loandetails/"+linkId);
     }
@@ -74,7 +78,6 @@ function siteController($scope,$location,$log,$cookies,$http){
                     $scope.logged=false;
                 }
             )
-        console.log("isLogged() return  koncowy"+$scope.logged);
     }
 }
 

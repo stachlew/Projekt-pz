@@ -75,6 +75,11 @@ app.config(['$routeProvider',function($routeProvider){
             controller: 'editOfferController'
         })
 
+        .when('/editUser',{
+            templateUrl: 'editUser',
+            controller: 'editUserController'
+        })
+
         .when('/loandetails/:idLoan',{
             templateUrl: 'loanDetails',
             controller: 'loanDetailsController'

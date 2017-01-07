@@ -46,6 +46,7 @@
     <script src="/resources/js/controller/loanDetailsController.js"></script>
     <script src="/resources/js/controller/addLoanController.js"></script>
     <script src="/resources/js/controller/editOfferController.js"></script>
+    <script src="/resources/js/controller/editUserController.js"></script>
 
     <script src="/resources/js/controller/dialogController/dialogObservedController.js"></script>
 
