@@ -64,7 +64,7 @@
                 </br>
                 <div class="form-group">
                     <label for="image"><spring:message code="uniText.image"/></label>
-                    <input id="image" type="file" class="form-control" />
+                    <input id="image" type="file" file-model="myFile" class="form-control" />
                 </div>
             </div>
         </div>

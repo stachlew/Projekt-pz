@@ -68,6 +68,7 @@ function addItemController($scope,$log,$http,$cookies){
 
         console.log("newItem: "+newItem.title+" "+newItem.category);
 
+
         $scope.csfr=$cookies.get('XSRF-TOKEN');
         var res = $http({
             method: 'POST',
@@ -80,6 +81,7 @@ function addItemController($scope,$log,$http,$cookies){
         });
 
         res.success(function () {
+            //$scope.uploadFoto(37);
             $scope.regOk=true;
             $scope.formVis=false;
         });
@@ -88,6 +90,28 @@ function addItemController($scope,$log,$http,$cookies){
             $scope.formVis=false;
         });
     }
+
+    $scope.uploadFoto = function (idOffer) {
+        var fd = new FormData();
+        fd.append('file', $scope.myFile);
+        var uploadUrl = "/rest/usr/images/uploadImage/"+idOffer;
+        $scope.csfr=$cookies.get('XSRF-TOKEN');
+
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'X-CSRF-TOKEN': $scope.csfr,
+                'Content-Type': undefined}
+        })
+            .success(function(){
+                console.log("Upload OK");
+            })
+            .error(function(){
+                console.log("Upload FAIL");
+            });
+    }
+
+
 }
 
 

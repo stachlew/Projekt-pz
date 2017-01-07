@@ -15,7 +15,16 @@ import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementFo
 import pl.wat.pz.application.logic.service.AdvertisementService;
 import pl.wat.pz.application.web.validator.AdvertisementFormValidator;
 
+import java.io.IOException;
+import java.lang.reflect.Array;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.Blob;
+import java.sql.SQLDataException;
+import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
 
