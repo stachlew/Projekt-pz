@@ -14,7 +14,7 @@
         <a class="list-group-item borromColourNotHover" ng-repeat="ad in adsList" >
             <div class="row">
                 <div class="col-md-1">
-                    <img style="max-height:120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ad.idAdvertisement}}" alt="Offer foto" />
+                    <img style="height:120px;width: 120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ad.idAdvertisement}}" alt="Offer foto" />
                 </div>
                 <div class="col-md-8">
                     <div class="row">

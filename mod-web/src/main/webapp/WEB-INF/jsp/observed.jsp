@@ -15,10 +15,10 @@
     <div class="list-group" ng-init="refreshObserved()">
         <a class="list-group-item borromColour" ng-repeat="ob in observationList" >
             <div class="row">
-                <div class="col-md-1">
-                    <img style="max-height:120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ob.idAdvertisement}}" alt="Offer foto" />
+                <div class="col-md-2">
+                    <img style="height:160px;width: 210px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ob.idAdvertisement}}" alt="Offer foto" />
                 </div>
-                <div class="col-md-10" ng-click="goOffer(ob.idAdvertisement)" >
+                <div class="col-md-9" ng-click="goOffer(ob.idAdvertisement)" >
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <h4><strong>{{ob.title}} (<spring:message code="uniText.offerId"/>&nbsp{{ob.idAdvertisement}})</strong></h4>

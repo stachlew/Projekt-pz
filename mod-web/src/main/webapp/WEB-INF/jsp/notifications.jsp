@@ -29,10 +29,10 @@
             <div class="list-group">
                 <a class="list-group-item borromColour" ng-repeat="fromItem in borrowList" ng-class="{ newNotification: fromItem.messageWithStatusTwo>0}">
                     <div class="row">
-                        <div class="col-md-1" ng-click="goLoanDetails(fromItem.idLoan)">
-                            <img style="max-height:120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{fromItem.idAdvertisement}}" alt="Offer foto" />
+                        <div class="col-md-2" ng-click="goLoanDetails(fromItem.idLoan)">
+                            <img style="height:160px;width: 210px" class="img-rounded" ng-src="rest/pub/images/getImage/{{fromItem.idAdvertisement}}" alt="Offer foto" />
                         </div>
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <div class="row" ng-click="goLoanDetails(fromItem.idLoan)">
                                 <div class="col-md-7 col-md-offset-1">
                                     <h4><strong>

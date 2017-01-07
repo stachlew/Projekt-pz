@@ -126,9 +126,9 @@
         <div class="col-md-3 col-sm-4 col-xs-12"  ng-repeat="ad in adsList" ng-click="goOffer(ad.idAdvertisement)">
             <div class="thumbnail borromColour">
                 <div class="caption">
-                    <img class="img-rounded" ng-src="rest/pub/images/getImage/{{ad.idAdvertisement}}" alt="Offer foto" />
+                    <img style="width: 100%; min-height:230px"class="img-rounded" ng-src="rest/pub/images/getImage/{{ad.idAdvertisement}}" alt="Offer foto" />
                     <h3><b>
-                        {{ad.title}}
+                        {{ad.title |truncate:43}}
                     </b></h3>
                     <p class="flex-text text-muted">
                         <i class="glyphicon glyphicon-map-marker"></i>&nbsp&nbsp{{ad.city}},&nbsp{{ad.regionName}}
@@ -147,10 +147,10 @@
     <div class="list-group" ng-show="areSearched">
         <a class="list-group-item borromColour" ng-repeat="ob in searchedOffers" >
             <div class="row">
-                <div class="col-md-1">
-                    <img style="max-height:120px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ob.idAdvertisement}}" alt="Offer foto" />
+                <div class="col-md-2">
+                    <img style="height:160px;width: 210px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ob.idAdvertisement}}" alt="Offer foto" />
                 </div>
-                <div class="col-md-10" ng-click="goOffer(ob.idAdvertisement)" >
+                <div class="col-md-9" ng-click="goOffer(ob.idAdvertisement)" >
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
                             <h4><strong>{{ob.title}} (<spring:message code="uniText.offerId"/>&nbsp {{ob.idAdvertisement}})</strong></h4>

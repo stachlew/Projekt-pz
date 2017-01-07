@@ -49,7 +49,7 @@ function editUserController($scope,$log,$http,$cookies){
     }
 
     $scope.acceptChanges = function (user) {
-        console.log("changeAccount()");
+        //console.log("changeAccount()");
         var editUser = {
             password : $scope.password,
             mail : $scope.mail,
