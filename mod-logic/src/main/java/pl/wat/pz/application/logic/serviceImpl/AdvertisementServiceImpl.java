@@ -19,7 +19,9 @@ import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementFo
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
+import javax.sql.rowset.serial.SerialBlob;
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -66,7 +68,14 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public byte[] findImageByIdAdvertisement(long idAdvertisement) {
         Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
-        return advertisement.getImage() ;
+        if (advertisement.getImage()!=null) {
+            try {
+                return advertisement.getImage().getBytes(1, (int) advertisement.getImage().length());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 
     @Transactional
@@ -80,7 +89,13 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             advertisement.setCity(advertisementForm.getCity());
             advertisement.setDescription(advertisementForm.getDescription());
             advertisement.setTitle(advertisementForm.getTitle());
-            advertisement.setImage(advertisementForm.getImage());
+            if(advertisementForm.getImage()!=null) {
+                try {
+                    advertisement.setImage(new SerialBlob(advertisementForm.getImage()));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
             advertisement.setIdItemCategory(itemCategoryRepository.findOneByName(advertisementForm.getCategory()));
             advertisement.setIdRegion(regionRepository.findOneByName(advertisementForm.getRegion()));
             advertisementRepository.save(advertisement);
