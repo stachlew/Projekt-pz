@@ -49,6 +49,7 @@
     <script src="/resources/js/controller/editUserController.js"></script>
 
     <script src="/resources/js/controller/dialogController/dialogObservedController.js"></script>
+    <script src="/resources/js/controller/dialogController/dialogImageController.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

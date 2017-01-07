@@ -4,11 +4,11 @@
 <script src="/resources/js/homeRedirect.js/"></script>
 
 
-<div class="well well-sm" ng-init="refreshOffer()">
+<div class="well well-sm" ng-init="refreshOffer()" style="padding: 15px 15px 15px 15px">
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
     <div class="text-center" ng-show="noOffer" ><spring:message code="uniText.noOfferId"/></div>
 
-    <div ng-show="isOffer">
+    <div ng-show="isOffer" >
         <%--kategoria, data--%>
             <div class="row">
                 <div class="col-md-5"><h4><i class="glyphicon glyphicon-tag"></i>&nbsp<spring:message code="uniText.category"/>:&nbsp  {{offer.categoryName}}</h4></div>
@@ -41,7 +41,7 @@
 
             <div class="row">
                 <div class="col-md-3">
-                    <img height="300" width="300" class="img-rounded img-responsive" ng-src="rest/pub/images/getImage/{{offer.idAdvertisement}}" alt="Offer foto" />
+                    <img style="cursor: zoom-in;" ng-click="showImage()" height="300" width="300" class="img-rounded img-responsive" ng-src="rest/pub/images/getImage/{{offer.idAdvertisement}}" alt="Offer foto" />
                 </div>
                 <div class="col-md-8">
                     <div class="row">
