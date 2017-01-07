@@ -26,7 +26,8 @@ public interface AdvertisementService {
     void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement);
 
     //----------SAVE--------//
-    Advertisement saveAdvertisement(Advertisement newAdvertisement);
+    long saveAdvertisement(Advertisement newAdvertisement);
+    void saveImageToAdvertisement(long idAdvertisement,byte[] image);
 
     //------DELETE----------//
     void delete(Long idAdvertisement,String username);

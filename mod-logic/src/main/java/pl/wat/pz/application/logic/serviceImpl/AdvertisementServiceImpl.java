@@ -89,13 +89,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             advertisement.setCity(advertisementForm.getCity());
             advertisement.setDescription(advertisementForm.getDescription());
             advertisement.setTitle(advertisementForm.getTitle());
-            if(advertisementForm.getImage()!=null) {
-                try {
-                    advertisement.setImage(new SerialBlob(advertisementForm.getImage()));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
             advertisement.setIdItemCategory(itemCategoryRepository.findOneByName(advertisementForm.getCategory()));
             advertisement.setIdRegion(regionRepository.findOneByName(advertisementForm.getRegion()));
             advertisementRepository.save(advertisement);
@@ -106,8 +99,23 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     @Transactional
-    public Advertisement saveAdvertisement(Advertisement newAdvertisement) {
-        return advertisementRepository.save(newAdvertisement);
+    public long saveAdvertisement(Advertisement newAdvertisement) {
+         advertisementRepository.save(newAdvertisement);
+        long maxIdAdvertisementByUsername = advertisementRepository.findMaxIdAdvertisementByUsername(newAdvertisement.getIdUser().getUsername());
+        return maxIdAdvertisementByUsername;
+
+    }
+
+    @Override
+    public void saveImageToAdvertisement(long idAdvertisement, byte[] image) {
+        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        if(image!=null) {
+            try {
+                advertisement.setImage(new SerialBlob(image));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
