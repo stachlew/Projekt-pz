@@ -47,7 +47,9 @@ public class AddItemController {
                 Timestamp addDate = new Timestamp(Calendar.getInstance().getTime().getTime());
                 Advertisement newAd = advertisementService.convertAdvertisementFormToAdvertisement(advertisementForm,auth.getName());
                 newAd.setDateAdded(addDate);
-                advertisementService.saveAdvertisement(newAd);
+                long idAdvertisement = advertisementService.saveAdvertisement(newAd);
+                //w tym miejscu trzeba wykorzystać metode saveImageToAdvertisement i dając jako argument idAdvetisement i byte[]
+
             }
         }
     }

@@ -36,6 +36,9 @@ public interface AdvertisementRepository extends JpaRepository<Advertisement,Lon
     Advertisement findByIdAdvertisementAndAdvertisementDeletedFalse(long idAdvertisment);
 
     Page<Advertisement> findByAdvertisementDeletedFalse(Pageable pageable);
+
+    @Query("select max(a.idAdvertisement) from Advertisement a where  a.idUser.username=?1 and a.advertisementDeleted=0")
+    long findMaxIdAdvertisementByUsername(String username);
     //---------------------Updates============//
 
 }
