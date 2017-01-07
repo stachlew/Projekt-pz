@@ -18,6 +18,8 @@ public class LoanHeader {
     private String loanStatus;
     private double bailValue;
     private double chargePerDay;
+    private String phoneNuberOfBorrower;
+    private String phoneNuberOfLender;
     private int messageWithStatusTwo;
 
     public LoanHeader() {
@@ -38,6 +40,8 @@ public class LoanHeader {
         }
         this.bailValue=loan.getBailValue();
         this.chargePerDay=loan.getChargePerDay();
+        this.phoneNuberOfBorrower=loan.getIdBorrower().getDetails().getPhone();
+        this.phoneNuberOfLender=loan.getIdAdvertisement().getIdUser().getDetails().getPhone();
     }
 
     public long getIdLoan() {
@@ -86,5 +90,21 @@ public class LoanHeader {
 
     public void setMessageWithStatusTwo(int messageWithStatusTwo) {
         this.messageWithStatusTwo = messageWithStatusTwo;
+    }
+
+    public String getPhoneNuberOfBorrower() {
+        return phoneNuberOfBorrower;
+    }
+
+    public void setPhoneNuberOfBorrower(String phoneNuberOfBorrower) {
+        this.phoneNuberOfBorrower = phoneNuberOfBorrower;
+    }
+
+    public String getPhoneNuberOfLender() {
+        return phoneNuberOfLender;
+    }
+
+    public void setPhoneNuberOfLender(String phoneNuberOfLender) {
+        this.phoneNuberOfLender = phoneNuberOfLender;
     }
 }
