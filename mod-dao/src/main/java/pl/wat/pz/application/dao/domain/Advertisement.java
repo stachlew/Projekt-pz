@@ -47,6 +47,7 @@ public class Advertisement {
     @Column(length = 512,nullable = true)
     private String description;
 
+    @Lob
     @Column(nullable = true)
     @Basic(fetch = FetchType.LAZY)
     private Blob image;

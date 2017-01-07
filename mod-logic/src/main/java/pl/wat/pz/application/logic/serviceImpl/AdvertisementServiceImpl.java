@@ -19,6 +19,7 @@ import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementFo
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
+import javax.persistence.Lob;
 import javax.sql.rowset.serial.SerialBlob;
 import javax.transaction.Transactional;
 import java.sql.SQLException;
@@ -78,7 +79,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         return null;
     }
 
-    @Transactional
     @Modifying
     @Override
     public void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement) {
@@ -99,6 +99,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     @Transactional
+    @Modifying
     public long saveAdvertisement(Advertisement newAdvertisement) {
          advertisementRepository.save(newAdvertisement);
         long maxIdAdvertisementByUsername = advertisementRepository.findMaxIdAdvertisementByUsername(newAdvertisement.getIdUser().getUsername());
@@ -120,8 +121,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    @Transactional
-    @Modifying
     public void delete(Long idAdvertisement,String username) {
         Advertisement advertisement = advertisementRepository.findByIdAdvertisementAndAdvertisementDeletedFalse(idAdvertisement);
         if(advertisement.getIdUser().getUsername().equals(username)) {
