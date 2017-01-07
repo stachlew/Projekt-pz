@@ -13,7 +13,6 @@ public class AdvertisementHeader {
     private Timestamp dateAdded;
     private String username;
     private String regionName;
-    private byte[] image;
     private String categoryName;
     private String city;
 
@@ -23,7 +22,6 @@ public class AdvertisementHeader {
         this.dateAdded=advertisement.getDateAdded();
         this.username=advertisement.getIdUser().getUsername();
         this.regionName=advertisement.getIdRegion().getName();
-        this.image=advertisement.getImage();
         if(lang.equals("pl")) {
             this.categoryName = advertisement.getIdItemCategory().getNamePL();
         }else{
@@ -55,10 +53,6 @@ public class AdvertisementHeader {
 
     public String getCategoryName() {
         return categoryName;
-    }
-
-    public byte[] getImage() {
-        return image;
     }
 
     public String getCity() {

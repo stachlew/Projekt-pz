@@ -19,6 +19,8 @@ public interface AdvertisementService {
     List<AdvertisementHeader> findAllByUsername(String username,String lang);
     AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement,String lang);
 
+    byte[] findImageByIdAdvertisement(long idAdvertisement);
+
 
     //--------UPDATE--------//
     void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement);

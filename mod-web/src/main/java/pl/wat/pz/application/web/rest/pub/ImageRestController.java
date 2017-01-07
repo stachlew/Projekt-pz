@@ -19,7 +19,7 @@ public class ImageRestController {
 
     @RequestMapping(value = "/getImage/{offerId}",method = RequestMethod.GET)
     public void findImage(HttpServletResponse resp, @PathVariable String offerId){
-        Path path = FileSystems.getDefault().getPath("","D:\\LocalRepoGit\\Projekt-pz\\mod-web\\src\\main\\resources\\stockFoto\\noFoto.jpg");
+        Path path = FileSystems.getDefault().getPath("","D:\\SEMV\\PZ_PROJEKT\\Projekt-pz\\mod-web\\src\\main\\resources\\stockFoto\\noFoto.jpg");
 
         try{
             byte [] dbImage = null;

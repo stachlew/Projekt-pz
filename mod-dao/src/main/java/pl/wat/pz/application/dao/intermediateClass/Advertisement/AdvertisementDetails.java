@@ -14,7 +14,6 @@ public class AdvertisementDetails {
     private double bailValue;
     private double chargePerDay;
     private String description;
-    private byte[] image;
     private String city;
     private String username;
     private String regionName;
@@ -27,7 +26,6 @@ public class AdvertisementDetails {
         this.bailValue = adv.getBailValue();
         this.chargePerDay = adv.getChargePerDay();
         this.description = adv.getDescription();
-        this.image = adv.getImage();
         this.city = adv.getCity();
         this.username = adv.getIdUser().getUsername();
         this.regionName = adv.getIdRegion().getName();
@@ -60,10 +58,6 @@ public class AdvertisementDetails {
 
     public String getDescription() {
         return description;
-    }
-
-    public byte[] getImage() {
-        return image;
     }
 
     public String getCity() {
@@ -101,10 +95,6 @@ public class AdvertisementDetails {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
     }
 
     public void setCity(String city) {

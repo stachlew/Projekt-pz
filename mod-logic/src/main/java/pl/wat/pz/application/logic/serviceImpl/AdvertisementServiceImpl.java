@@ -63,6 +63,12 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     }
 
+    @Override
+    public byte[] findImageByIdAdvertisement(long idAdvertisement) {
+        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        return advertisement.getImage() ;
+    }
+
     @Transactional
     @Modifying
     @Override
@@ -74,7 +80,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
             advertisement.setCity(advertisementForm.getCity());
             advertisement.setDescription(advertisementForm.getDescription());
             advertisement.setTitle(advertisementForm.getTitle());
-            //advertisement.setImage(advertisementForm.getImage());
+            advertisement.setImage(advertisementForm.getImage());
             advertisement.setIdItemCategory(itemCategoryRepository.findOneByName(advertisementForm.getCategory()));
             advertisement.setIdRegion(regionRepository.findOneByName(advertisementForm.getRegion()));
             advertisementRepository.save(advertisement);

@@ -12,6 +12,7 @@ public class AdvertisementForm {
     private String city;
     private String region;
     private String category;
+    private byte[] image;
 
     public AdvertisementForm() {
     }
@@ -81,5 +82,13 @@ public class AdvertisementForm {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 }
