@@ -19,15 +19,17 @@ public interface AdvertisementService {
     List<AdvertisementHeader> findAllByUsername(String username,String lang);
     AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement,String lang);
 
+    byte[] findImageByIdAdvertisement(long idAdvertisement);
 
     //--------UPDATE--------//
     void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement);
 
     //----------SAVE--------//
-    Advertisement saveAdvertisement(Advertisement newAdvertisement);
+    long saveAdvertisement(Advertisement newAdvertisement);
+    void saveImageToAdvertisement(long idAdvertisement,byte[] image);
 
     //------DELETE----------//
-    void delete(Long idAdvertisement);
+    void delete(Long idAdvertisement,String username);
 
     //--------Converts------------//
     List<AdvertisementHeader> advertisementConvertToAdvertisementHeader(List<Advertisement> advertisements,String lang);

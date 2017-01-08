@@ -18,7 +18,7 @@
 
         <li role="presentation">
             <a href="#/addItem" class="btn btn-default btn-block borromColour" role="button">
-                <i class="glyphicon glyphicon-plus"></i>&nbsp<spring:message code="heading.button.addItem"/>
+                <i class="glyphicon glyphicon-plus"></i>&nbsp<spring:message code="tile.heading.button.addItem"/>
             </a>
         </li>
 
@@ -33,7 +33,7 @@
         <li role="presentation">
             <a href="/logout" class="btn btn-default btn-block borromColour" role="button">
                 <i class="glyphicon glyphicon-off"></i>&nbsp
-                <spring:message code="heading.button.logout"/>
+                <spring:message code="tile.heading.button.logout"/>
             </a>
         </li>
     </ul>

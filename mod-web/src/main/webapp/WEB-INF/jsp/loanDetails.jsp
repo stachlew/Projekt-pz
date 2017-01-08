@@ -4,16 +4,16 @@
 <script src="/resources/js/homeRedirect.js/"></script>
 
 <div class="well well-sm" ng-init="refreshLoanDetails()">
-    <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-    <div class="text-center" ng-show="noLoan" >Brak wypożyczenia o wskazanym id</div>
+
+    <div class="text-center" ng-show="noLoan" ><spring:message code="uniText.noOfferId"/></div>
     <div ng-show="isLoan">
 
         <div class="row">
-            <div class="col-md-6"><%--Lewa--%>
+            <div class="col-md-5"><%--Lewa--%>
 
                     <div class="row">
-                        <div class="col-md-10 col-md-offset-1 ">
-                            <h3>Dotyczy ogłoszenia (nr {{loanDetails.idAdvertisement}})</h3>
+                        <div class="col-md-10 col-md-offset-1 linkBorrom" ng-click="goOffer(loanDetails.idAdvertisement)">
+                            <h3><spring:message code="loanDetails.heading.infoAd"/>:&nbsp  {{loanDetails.idAdvertisement}}</h3>
                         </div>
                     </div>
                     <div class="row">
@@ -23,18 +23,18 @@
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-share-alt"></i>&nbspKaucja: <strong>{{loanDetails.bailValue}} PLN</strong></p>
+                            <p><i class="glyphicon glyphicon-share-alt"></i>&nbsp<spring:message code="uniText.bailValue"/>:&nbsp <strong>{{loanDetails.bailValue}} <spring:message code="uniText.pln"/></strong></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-time"></i>&nbspStawka: <strong>{{loanDetails.chargePerDay}} PLN/dzień</strong></p>
+                            <p><i class="glyphicon glyphicon-time"></i>&nbsp<spring:message code="uniText.price"/>:&nbsp  <strong>{{loanDetails.chargePerDay}} <spring:message code="uniText.PLNperDay"/></strong></p>
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><h4>Status: <strong>{{loanDetails.loanStatus}}</strong></h4></p>
+                            <p><h4><spring:message code="loanDetails.content.status"/>:&nbsp <strong>{{loanDetails.loanStatus}}</strong></h4></p>
                         </div>
                     </div>
 
@@ -45,16 +45,16 @@
                     </div>
 
 
-                    <div class="row" ng-show="isLender">
+                    <div class="row" ng-show="loanStatVis">
                         <div class="col-md-10 col-md-offset-1">
                             <form class="form-inline" name="form" ng-submit="changeStatus()" ng-init="refreshLoanStatuses()" role="form" novalidate>
                                  <div class="form-group">
-                                     <label for="status">Zmiana statusu: </label>
+                                     <label for="status"><spring:message code="loanDetails.label.changeStatus"/>:&nbsp </label>
                                      <select class="form-control" id="status" ng-model="status">
                                          <option  ng-repeat="status in statuses" value="{{status}}">{{status}}</option>
                                      </select>
                                  </div>
-                                <button type="submit" ng-disabled="form.$invalid" class="btn btn-default  borromColour">Change status</button>
+                                <button type="submit" ng-disabled="form.$invalid" class="btn btn-default  borromColour"><spring:message code="loanDetails.button.changeStatus"/></button>
 
                             <form>
                         </div>
@@ -65,31 +65,39 @@
 
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><h3>Oferta wypożyczenia (nr {{loanDetails.idLoan}})</h3></p>
+                            <p><h3><spring:message code="loanDetails.heading.infoLoan"/>:&nbsp  {{loanDetails.idLoan}}</h3></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-user"></i>&nbspOdbiorca: <strong>{{loanDetails.borrower}}</strong></p>
+                            <p><i class="glyphicon glyphicon-user"></i>&nbsp<spring:message code="uniText.borrower"/>:&nbsp  <strong>{{loanDetails.borrower}}</strong>
+                                <span ng-if="loanDetails.phoneNumberOfBorrower"><br><spring:message code="uniText.phoneNumber"/>:&nbsp{{loanDetails.phoneNumberOfBorrower}}</span>
+                            </p>
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-user"></i>&nbspUdostępniający: <strong>{{loanDetails.lender}}</strong></p>
+                            <p><i class="glyphicon glyphicon-user"></i>&nbsp<spring:message code="uniText.lender"/>:&nbsp  <strong>{{loanDetails.lender}}</strong>
+                                <span ng-if="loanDetails.phoneNumberOfLender"><br><spring:message code="uniText.phoneNumber"/>:&nbsp{{loanDetails.phoneNumberOfLender}}</span>
+                            </p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-calendar"></i>&nbspOd: <strong>{{loanDetails.dateFrom}}</strong></p>
+                            <p><i class="glyphicon glyphicon-calendar"></i>&nbsp<spring:message code="uniText.fromUpper"/>:&nbsp  <strong>{{loanDetails.dateFrom}}</strong></p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-1">
-                            <p><i class="glyphicon glyphicon-calendar"></i>&nbspDo: <strong>{{loanDetails.dateTo}}</strong></p>
+                            <p><i class="glyphicon glyphicon-calendar"></i>&nbsp<spring:message code="uniText.toUpper"/>:&nbsp  <strong>{{loanDetails.dateTo}}</strong></p>
                         </div>
                     </div>
 
             </div><%--/Prawa--%>
+            <div class="col-md-1">
+                <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
+            </div>
         </div>
 
         <div class="row">
@@ -108,7 +116,7 @@
                             </div>
                             <div class="col-md-3 col-md-offset-7 text-right">
                                 <button type="button" class="btn btn-block btn-primary borromColour" ng-click="refreshLoanMessages()" style="color: #333333">
-                                    <span class="glyphicon glyphicon-repeat"></span>&nbspRefresh
+                                    <span class="glyphicon glyphicon-repeat"></span>&nbsp<spring:message code="loanDetails.chat.button.refresh"/>
                                 </button>
                             </div>
                         </div>
@@ -124,12 +132,12 @@
                                             <h6>{{chat.sender}}</h6>
                                         </td>
                                         <td>
-                                            <p class="word-wrap:break-word"><small>{{chat.text}}</small></p>
+                                            <p style="white-space: pre;" class="word-wrap:break-word"><small>{{chat.text}}</small></p>
                                         </td>
                                     </tr>
                                     <tr ng-show="messages.length === 0">
                                         <td>
-                                            <p>Brak wiadomosci <strong>Napisz cos!</strong></p>
+                                            <p><strong><spring:message code="loanDetails.chat.text.noMessages"/></strong></p>
                                         </td>
                                     </tr>
                                 </table>
@@ -141,7 +149,7 @@
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" ng-model="varText" placeholder="..."/>
                                 <span class="input-group-btn">
-                                  <button class="btn btn-primary borromColour" style="color: #333333" type="submit" ng-click="sendText(varText)"><strong>Send</strong></button>
+                                  <button class="btn btn-primary borromColour" style="color: #333333" type="submit" ng-click="sendText(varText)"><strong><spring:message code="loanDetails.chat.button.send"/></strong></button>
                                 </span>
                             </div>
                         </form>

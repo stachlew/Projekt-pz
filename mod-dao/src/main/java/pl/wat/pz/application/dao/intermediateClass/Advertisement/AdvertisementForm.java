@@ -13,6 +13,7 @@ public class AdvertisementForm {
     private String region;
     private String category;
 
+
     public AdvertisementForm() {
     }
 
@@ -82,4 +83,6 @@ public class AdvertisementForm {
     public void setCategory(String category) {
         this.category = category;
     }
+
+
 }

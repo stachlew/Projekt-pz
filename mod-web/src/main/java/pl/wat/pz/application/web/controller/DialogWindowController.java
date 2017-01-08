@@ -11,4 +11,8 @@ public class DialogWindowController {
     @RequestMapping(value = "/deleteObservedDialog",method = RequestMethod.GET)
     public String getDeleteObservedDialog(){
         return "dialogWindow/deleteObservedDialog";}
+
+    @RequestMapping(value = "/bigImageDialog",method = RequestMethod.GET)
+    public String getBigImageDialog(){
+        return "dialogWindow/bigImageDialog";}
 }

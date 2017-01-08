@@ -5,6 +5,7 @@ import org.springframework.security.core.GrantedAuthority;
 import pl.wat.pz.application.dao.domain.Role;
 
 import pl.wat.pz.application.dao.domain.User;
+import pl.wat.pz.application.dao.intermediateClass.User.UserForm;
 import pl.wat.pz.application.dao.intermediateClass.User.UserRegistered;
 
 
@@ -20,6 +21,9 @@ public interface UserDetailsService extends org.springframework.security.core.us
     //--Spring Security--//
     org.springframework.security.core.userdetails.User buildUserForAuthentication(pl.wat.pz.application.dao.domain.User user, List<GrantedAuthority> authorities);
     List<GrantedAuthority> buildUserAuthority(Set<Role> userRoles);
+
+    //--------UPDATE--------//
+    void modifyUserByUserForm(UserForm userForm, String username);
 
     //--create--//
     pl.wat.pz.application.dao.domain.User registerNewUserAccount(UserRegistered userRegistered);

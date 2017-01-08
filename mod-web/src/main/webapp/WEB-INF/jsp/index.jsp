@@ -46,8 +46,10 @@
     <script src="/resources/js/controller/loanDetailsController.js"></script>
     <script src="/resources/js/controller/addLoanController.js"></script>
     <script src="/resources/js/controller/editOfferController.js"></script>
+    <script src="/resources/js/controller/editUserController.js"></script>
 
     <script src="/resources/js/controller/dialogController/dialogObservedController.js"></script>
+    <script src="/resources/js/controller/dialogController/dialogImageController.js"></script>
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -82,7 +84,7 @@
         <sec:authorize access="hasRole('ROLE_ANONYMOUS')"><tiles:insertAttribute name="headingGuest" /></sec:authorize>
     </div>
 
-    <div id="menuUser " class="row">
+    <div id="menuUser" class="row">
         <sec:authorize access="hasRole('ROLE_USER')"><tiles:insertAttribute name="menuUser" /></sec:authorize>
     </div>
 

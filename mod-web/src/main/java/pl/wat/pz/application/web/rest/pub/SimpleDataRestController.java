@@ -3,7 +3,9 @@ package pl.wat.pz.application.web.rest.pub;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -47,4 +49,22 @@ public class SimpleDataRestController {
         Locale locale = LocaleContextHolder.getLocale();
         return loanStatusService.findAllLoanStatusName(locale.getLanguage());
     }
+
+    @RequestMapping(value="/getLoanStatusByUser/{loanId}", method= RequestMethod.GET)
+    public @ResponseBody List<String> getLoanStatusByUser(Authentication auth,@PathVariable String loanId) {
+        if(auth!=null && !loanId.isEmpty()) {
+            String lang = LocaleContextHolder.getLocale().getLanguage();
+            String username = auth.getName();
+            try {
+                long loanIdLong = Long.parseLong(loanId.trim());
+                return loanStatusService.findLoanStatusNameAvailableToUser(loanIdLong,username,lang);
+            }
+            catch (NumberFormatException nfe) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+
 }

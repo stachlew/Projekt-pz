@@ -1,6 +1,39 @@
-var app = angular.module('app',['ngRoute','ngCookies','ui.bootstrap','ngAnimate', 'ngSanitize']);
+var app = angular.module('app',['ngRoute','ngCookies','ui.bootstrap','ngAnimate', 'ngSanitize','filters']);
 
+angular.module('filters', []).
+filter('truncate', function () {
+    return function (text, length, end) {
+        if (isNaN(length))
+            length = 10;
 
+        if (end === undefined)
+            end = "...";
+
+        if (text.length <= length || text.length - end.length <= length) {
+            return text;
+        }
+        else {
+            return String(text).substring(0, length-end.length) + end;
+        }
+
+    };
+});
+
+app.directive('fileModel', ['$parse', function ($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function(){
+                scope.$apply(function(){
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+}]);
 
 app.config(['$routeProvider',function($routeProvider){
 
@@ -59,6 +92,11 @@ app.config(['$routeProvider',function($routeProvider){
         .when('/editoffer/:idOffer',{
             templateUrl: 'editOffer',
             controller: 'editOfferController'
+        })
+
+        .when('/editUser',{
+            templateUrl: 'editUser',
+            controller: 'editUserController'
         })
 
         .when('/loandetails/:idLoan',{

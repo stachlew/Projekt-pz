@@ -3,13 +3,13 @@ package pl.wat.pz.application.logic.serviceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
+import pl.wat.pz.application.dao.domain.LoanStatus;
 import pl.wat.pz.application.dao.domain.Message;
 import pl.wat.pz.application.dao.intermediateClass.Message.LoanMessage;
 import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
-import pl.wat.pz.application.dao.repository.LoanRepository;
-import pl.wat.pz.application.dao.repository.MessageRepository;
-import pl.wat.pz.application.dao.repository.MessageStateRepository;
-import pl.wat.pz.application.dao.repository.UserRepository;
+import pl.wat.pz.application.dao.repository.*;
+import pl.wat.pz.application.logic.enumeric.LoanStatusEnum;
+import pl.wat.pz.application.logic.service.LoanStatusService;
 import pl.wat.pz.application.logic.service.MessageService;
 
 import javax.transaction.Transactional;
@@ -29,6 +29,8 @@ public class MessageServiceImpl implements MessageService {
     UserRepository userRepository;
     @Autowired
     MessageStateRepository messageStateRepository;
+    @Autowired
+    LoanStatusRepository loanStatusRepository;
     @Override
     public List<LoanMessage> findByIdLoan(long idLoan,String lang) {
         return convertMessageToLoanMesage(messageRepository.findByIdLoan(idLoan),lang);
@@ -70,6 +72,34 @@ public class MessageServiceImpl implements MessageService {
 
     }
 
+    @Override
+    public void sendAutomaticMessage(long idLoan, String username, String statusName) {
+        LoanStatus loanStatus = loanStatusRepository.findLoanStatusByName(statusName);
+        if(loanStatus.getIdLoanStatus()== LoanStatusEnum.REJECTED.getId()){
+            String messagesString="Użytkownik "+username+" odrzucił propozycje wypożyczenia.\nUser "+ username+ " rejected the offer loan.";
+            messageRepository.addMessages(messagesString,idLoan,username);
+        }
+        else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.ACCEPTED.getId()){
+            String messagesString="Użytkownik "+username+" zaakceptował ofertę.\nUser "+ username+ " accepted the offer.";
+            messageRepository.addMessages(messagesString,idLoan,username);
+
+        }
+        else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.IN_PROGRESS.getId()){
+            String messagesString="Użytkownik "+username+" zmienił status wypożyczenia na: w trakcie.\nUser "+ username+ " changed the status of the loan on: in progress.";
+            messageRepository.addMessages(messagesString,idLoan,username);
+
+        }
+        else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.CANCELED.getId()){
+            String messagesString="Użytkownik "+username+" anulował wypożyczenie.\nUser "+ username+ " canceled loan";
+            messageRepository.addMessages(messagesString,idLoan,username);
+
+        }
+        else if(loanStatus.getIdLoanStatus()== LoanStatusEnum.COMPLETED.getId()){
+            String messagesString="Użytkownik "+username+" zmienił status wypożyczenia na: zakończone.\nUser "+ username+ " changed the status of the loan on: completed";
+            messageRepository.addMessages(messagesString,idLoan,username);
+
+        }
+    }
 
 
 }

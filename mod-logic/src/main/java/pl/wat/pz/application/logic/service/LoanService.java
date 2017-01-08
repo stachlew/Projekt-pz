@@ -12,7 +12,8 @@ import java.util.List;
 public interface LoanService {
     List<LoanHeader> findLoanHeaderByUsernameAndUserIsLender(String username,String lang);
     List<LoanHeader>findLoanHeaderByUsernameAndUserIsBorrower(String username,String lang);
-    List<LoanHeader> findLoanHeaderByUsername(String username,String lang);
+    List<LoanHeader> findLoanHeaderByUsername(String username,int nrPage,String lang);
+    int numberOfPage(String username);
     LoanHeader findOneLoanHeaderByIdLoan(long idLoan,String lang);
     boolean isMemberInLoan(String username, long idLoan);
 
@@ -21,5 +22,5 @@ public interface LoanService {
     List<LoanHeader> convertLoanToLoanHeader(List<Loan> loans,String lang);
 
     void addLoan(LoanForm loanForm, String name);
-    void changeLoanStatus(long idLoan,String statusName);
+    void changeLoanStatus(long idLoan,String statusName,String username);
 }

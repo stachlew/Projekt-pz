@@ -9,9 +9,11 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.wat.pz.application.dao.domain.Region;
 import pl.wat.pz.application.dao.domain.Role;
 
 
+import pl.wat.pz.application.dao.intermediateClass.User.UserForm;
 import pl.wat.pz.application.dao.repository.RegionRepository;
 import pl.wat.pz.application.dao.repository.RoleRepository;
 import pl.wat.pz.application.dao.repository.UserRepository;
@@ -86,6 +88,58 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         }
         List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
         return Result;
+    }
+
+    @Override
+    @Transactional
+    public void modifyUserByUserForm(UserForm userForm, String username) {
+        if(userForm!=null && username!=null){
+            Boolean changed=false;
+            pl.wat.pz.application.dao.domain.User user= userRepository.getOne(username);
+            pl.wat.pz.application.dao.domain.UserDetails userDetails = this.getUserDetailsByUsername(username);
+            if(user!=null){
+                if(userForm.getPassword()!=null){ //pole nie jest puste
+                    if(!userForm.getPassword().equals("")){
+                        String encoded = passwordEncoder.encode(userForm.getPassword());
+                        user.setPassword(encoded);
+                        changed=true;
+                    }
+                }
+                if(userForm.getRegionName()!=null){
+                    Region newRegion;
+                    if(userForm.getRegionName().equals("")){ //zmiana na pusty
+                        newRegion=null;
+                        userDetails.setIdRegion(newRegion);
+                        changed=true;
+                    }
+                    else{   //zmiana na konkretny
+                        newRegion = regionRepository.findOneByName(userForm.getRegionName());
+                        if (newRegion!=null){//wybrano istniejacy region
+                            userDetails.setIdRegion(newRegion);
+                            changed=true;
+                        }
+                    }
+                }
+                if(userForm.getCity()!=null){
+                    userDetails.setCity(userForm.getCity());
+                    changed=true;
+                }
+                if(userForm.getPhone()!=null){
+                    userDetails.setPhone(userForm.getPhone());
+                    changed=true;
+                }
+                if(userForm.getMail()!=null){
+                    if(!userForm.getMail().equals("")){
+                        userDetails.setMail(userForm.getMail());
+                        changed=true;
+                    }
+                }
+                if(changed){
+                    user.setDetails(userDetails);
+                    userRepository.save(user);
+                }
+            }
+        }
     }
 
     @Override

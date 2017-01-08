@@ -7,7 +7,7 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
     $log.info("loanDetailsController");
     $scope.idLoan=$routeParams.idLoan;
     $scope.noLoan = false;
-    $scope.isLoan = false;
+    $scope.loanStatVis = false;
 
     $scope.isLender=false;
 
@@ -20,9 +20,6 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
                     if(response.data){
                         $scope.loanDetails=response.data;
                         $scope.isLoan = true;
-                        if($scope.loanDetails.lender === $scope.userName){
-                            $scope.isLender=true;
-                        }
                     }
                     else{
                         $scope.noLoan = true;
@@ -37,17 +34,22 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
 
 
     $scope.refreshLoanStatuses = function () {
-        $http.get('/rest/pub/simpleData/getLoanStatus')
+        $http.get('/rest/pub/simpleData/getLoanStatusByUser/'+$scope.idLoan)
             .then(
                 function (response) {
                     $scope.statuses = response.data;
+                    if($scope.statuses.length>0){
+                        $scope.loanStatVis=true;
+                    }
+                    else {
+                        $scope.loanStatVis=false;
+                    }
                 },
                 function () {
                     console.log("Error: refreshNotificationsStatuses()");
                 }
             )
     }
-
 
     $scope.changeStatus = function ()
     {
@@ -56,9 +58,6 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
             statusName : $scope.status
         };
 
-        //console.log("Modyfikuje: ");
-        //console.log(newStatus.idLoan);
-        //console.log(newStatus.statusName);
 
         $scope.csfr=$cookies.get('XSRF-TOKEN');
 
@@ -74,6 +73,8 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
             function () {
                 //console.log("STATUS OK");
                 $scope.refreshLoanDetails();
+                $scope.refreshLoanStatuses();
+                $scope.refreshLoanMessages();
             },
             function () {
                 console.log("STATUS FAIL");
@@ -87,6 +88,8 @@ function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
                     if(response.data){
                         $scope.messages=response.data;
                     }
+                    $scope.refreshLoanDetails();
+                    $scope.refreshLoanStatuses();
                 },
                 function () {
                     $scope.loading = false;

@@ -8,6 +8,7 @@ function addItemController($scope,$log,$http,$cookies){
 
     $scope.regions=[""];
     $scope.categories=[""];
+    $scope.responseOfferId=null;
 
     $scope.formVis=true;
     $scope.regOk=false;
@@ -66,7 +67,8 @@ function addItemController($scope,$log,$http,$cookies){
             category : $scope.category
         };
 
-        console.log("newItem: "+newItem.title+" "+newItem.category);
+        //console.log("newItem: "+newItem.title+" "+newItem.category);
+
 
         $scope.csfr=$cookies.get('XSRF-TOKEN');
         var res = $http({
@@ -77,17 +79,44 @@ function addItemController($scope,$log,$http,$cookies){
                 'X-CSRF-TOKEN': $scope.csfr,
                 'Content-Type': 'application/json'
             }
-        });
-
-        res.success(function () {
-            $scope.regOk=true;
-            $scope.formVis=false;
-        });
-        res.error(function () {
-            $scope.regError=true;
-            $scope.formVis=false;
-        });
+        }).then(
+            function (response) {
+                $scope.responseOfferId=response.data.response;
+                //console.log("ID: "+$scope.responseOfferId);
+                $scope.uploadFoto($scope.responseOfferId);
+                $scope.regOk=true;
+                $scope.formVis=false;
+            },
+            function () {
+                $scope.regError=true;
+                $scope.formVis=false;
+            }
+        );
     }
+
+    $scope.uploadFoto = function (idOffer) {
+        //console.log("uploadFoto"+idOffer);
+        var fd = new FormData();
+        fd.append('file', $scope.myFile);
+        //console.log("Plik: "+$scope.myFile);
+        var uploadUrl = "/rest/usr/images/uploadImage/"+idOffer;
+        $scope.csfr=$cookies.get('XSRF-TOKEN');
+
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: {
+                'X-CSRF-TOKEN': $scope.csfr,
+                'Content-Type': undefined}
+        })
+            .success(function(){
+                //console.log("Upload OK");
+            })
+            .error(function(){
+                console.log("Upload FAIL");
+            });
+    }
+
+
 }
 
 

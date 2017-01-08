@@ -1,5 +1,7 @@
 package pl.wat.pz.application.logic.service;
 
+import pl.wat.pz.application.dao.domain.LoanStatus;
+
 import java.util.List;
 
 /**
@@ -7,4 +9,7 @@ import java.util.List;
  */
 public interface LoanStatusService {
     List<String> findAllLoanStatusName(String language);
+    List<String> findLoanStatusNameAvailableToUser(long idLoan,String username,String language);
+    LoanStatus findLoanStatusByName(String name);
+    List<String> convertLoanStatusListToLoanStatusNameList(List<LoanStatus> loanStatusList,String language);
 }

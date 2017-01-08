@@ -86,4 +86,6 @@ public class UserDetails {
     public void setIdRegion(Region idRegion) {
         this.idRegion = idRegion;
     }
+
+
 }

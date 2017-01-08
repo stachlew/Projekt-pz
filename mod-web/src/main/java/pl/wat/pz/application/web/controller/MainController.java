@@ -35,6 +35,9 @@ public class MainController {
     @RequestMapping("/editOffer")
     public String editOffer(){ return "editOffer";    }
 
+    @RequestMapping("/editUser")
+    public String editUser(){ return "editUser";    }
+
     @RequestMapping("/loaned")
     public String userLoaned(){
         return "loaned";

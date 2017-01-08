@@ -19,7 +19,10 @@ import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementFo
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 
+import javax.persistence.Lob;
+import javax.sql.rowset.serial.SerialBlob;
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -42,7 +45,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     public List<AdvertisementHeader> findPageAndSortOfLatest(int nrPage,String lang) {
-        Page<Advertisement> advertisementPage = advertisementRepository.findAll(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
+        Page<Advertisement> advertisementPage = advertisementRepository.findByAdvertisementDeletedFalse(new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "dateAdded")));
         return this.advertisementConvertToAdvertisementHeader(advertisementPage.getContent(),lang);
     }
 
@@ -55,7 +58,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public AdvertisementDetails findOneByIdAdvertisement(Long idAdvertisement,String lang) {
         AdvertisementDetails advertisementDetails = null;
-        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        Advertisement advertisement = advertisementRepository.findByIdAdvertisementAndAdvertisementDeletedFalse(idAdvertisement);
         if(advertisement!=null)
             advertisementDetails = new AdvertisementDetails(advertisement,lang);
 
@@ -63,18 +66,29 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     }
 
-    @Transactional
+    @Override
+    public byte[] findImageByIdAdvertisement(long idAdvertisement) {
+        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        if (advertisement.getImage()!=null) {
+            try {
+                return advertisement.getImage().getBytes(1, (int) advertisement.getImage().length());
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     @Modifying
     @Override
     public void modifyAdvertisementWithAdvertisementDetails(AdvertisementForm advertisementForm, Long idAdvertisement) {
-        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        Advertisement advertisement = advertisementRepository.findByIdAdvertisementAndAdvertisementDeletedFalse(idAdvertisement);
         if (advertisement!=null) {
             advertisement.setBailValue(advertisementForm.getBailValue());
             advertisement.setChargePerDay(advertisementForm.getChargePerDay());
             advertisement.setCity(advertisementForm.getCity());
             advertisement.setDescription(advertisementForm.getDescription());
             advertisement.setTitle(advertisementForm.getTitle());
-            //advertisement.setImage(advertisementForm.getImage());
             advertisement.setIdItemCategory(itemCategoryRepository.findOneByName(advertisementForm.getCategory()));
             advertisement.setIdRegion(regionRepository.findOneByName(advertisementForm.getRegion()));
             advertisementRepository.save(advertisement);
@@ -85,13 +99,38 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Override
     @Transactional
-    public Advertisement saveAdvertisement(Advertisement newAdvertisement) {
-        return advertisementRepository.save(newAdvertisement);
+    @Modifying
+    public long saveAdvertisement(Advertisement newAdvertisement) {
+         advertisementRepository.save(newAdvertisement);
+        long maxIdAdvertisementByUsername = advertisementRepository.findMaxIdAdvertisementByUsername(newAdvertisement.getIdUser().getUsername());
+        return maxIdAdvertisementByUsername;
+
     }
 
     @Override
-    public void delete(Long idAdvertisement) {
-        advertisementRepository.delete(idAdvertisement);
+    @Transactional
+    public void saveImageToAdvertisement(long idAdvertisement, byte[] image) {
+        Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
+        if(image!=null) {
+            try {
+                advertisement.setImage(new SerialBlob(image));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        else {
+            advertisement.setImage(null);
+        }
+    }
+
+    @Override
+    public void delete(Long idAdvertisement,String username) {
+        Advertisement advertisement = advertisementRepository.findByIdAdvertisementAndAdvertisementDeletedFalse(idAdvertisement);
+        if(advertisement.getIdUser().getUsername().equals(username)) {
+            advertisement.setAdvertisementDeleted(true);
+            advertisementRepository.save(advertisement);
+        }
+
     }
 
     @Override

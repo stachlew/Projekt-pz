@@ -4,6 +4,7 @@ import org.hibernate.annotations.ColumnDefault;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.sql.Timestamp;
 
 
@@ -46,9 +47,10 @@ public class Advertisement {
     @Column(length = 512,nullable = true)
     private String description;
 
+    @Lob
     @Column(nullable = true)
     @Basic(fetch = FetchType.LAZY)
-    private byte[] image;
+    private Blob image;
 
     @Column(length = 30,nullable = false)
     private String city;
@@ -65,9 +67,11 @@ public class Advertisement {
     @JoinColumn(name = "id_Item_Category")
     private ItemCategory idItemCategory;
 
+    private boolean advertisementDeleted;
+
     public Advertisement() { }
 
-    public Advertisement(String title, Timestamp dateAdded, double bailValue, double chargePerDay, String description, byte[] image, String city, Region idRegion, User idUser, ItemCategory idItemCategory) {
+    public Advertisement(String title, Timestamp dateAdded, double bailValue, double chargePerDay, String description, Blob image, String city, Region idRegion, User idUser, ItemCategory idItemCategory) {
         this.title=title;
         this.dateAdded = dateAdded;
         this.bailValue = bailValue;
@@ -122,11 +126,11 @@ public class Advertisement {
         this.description = description;
     }
 
-    public byte[] getImage() {
+    public Blob getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(Blob image) {
         this.image = image;
     }
 
@@ -176,5 +180,13 @@ public class Advertisement {
 
     public void setIdItemCategory(ItemCategory idItemCategory) {
         this.idItemCategory = idItemCategory;
+    }
+
+    public boolean isAdvertisementDeleted() {
+        return advertisementDeleted;
+    }
+
+    public void setAdvertisementDeleted(boolean advertisementDeleted) {
+        this.advertisementDeleted = advertisementDeleted;
     }
 }

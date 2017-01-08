@@ -1,9 +1,9 @@
 angular.module('app')
     .controller('offerController',offerController);
 
-offerController.$inject=['$scope', '$log','$routeParams','$http'];
+offerController.$inject=['$scope', '$log','$routeParams','$http','$modal'];
 
-function offerController($scope,$log,$routeParams,$http){
+function offerController($scope,$log,$routeParams,$http,$modal){
     $log.info("offerController");
     $scope.offerId=$routeParams.idOffer;
     $scope.noOffer = false;
@@ -72,6 +72,35 @@ function offerController($scope,$log,$routeParams,$http){
                 }
             )
     }
+
+    $scope.open = function () {
+        //otwarcie okienka
+        var modalInstance = $modal.open({
+            templateUrl: 'dialogWindow/bigImageDialog',
+            controller: dialogImageController,
+            resolve: {
+                idOffer: function () { return $scope.offerId;},
+                title: function () { return $scope.offer.title;}
+            }
+        });
+
+        //funkcja zwroconych rezultatow
+        modalInstance.result.then(
+            function () {
+
+            },
+            function () {
+
+            }
+        );
+    };
+
+    $scope.showImage= function () {
+        $scope.open();
+    }
+
+
+
 
 
 

@@ -1,5 +1,7 @@
 package pl.wat.pz.application.dao.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import pl.wat.pz.application.dao.domain.Loan;
@@ -18,5 +20,8 @@ public interface LoanRepository extends JpaRepository<Loan,Long> {
     List<Loan> findByUsernameAndUserIsBorrower(String username);
 
     @Query("select l from Loan l where l.idBorrower.username=?1 or l.idAdvertisement.idUser.username=?1")
-    List<Loan> findByUsername(String username);
+    Page<Loan> findByUsername(String username, Pageable pageable);
+
+    @Query("SELECT count(l) from Loan l where l.idBorrower.username=?1 or l.idAdvertisement.idUser.username=?1")
+    int countByUsername(String username);
 }

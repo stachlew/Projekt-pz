@@ -2,6 +2,9 @@ package pl.wat.pz.application.logic.serviceImpl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Service;
 import pl.wat.pz.application.dao.domain.Loan;
@@ -24,6 +27,7 @@ import java.util.List;
  */
 @Service("LoanService")
 public class LoanServiceImpl implements LoanService {
+    private static final int sizeOfPage =8;
     @Autowired
     LoanRepository loanRepository;
     @Autowired
@@ -48,13 +52,25 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public List<LoanHeader> findLoanHeaderByUsername(String username, String lang) {
-        List<LoanHeader> loanHeaders = convertLoanToLoanHeader(loanRepository.findByUsername(username), lang);
+    public List<LoanHeader> findLoanHeaderByUsername(String username,int nrPage, String lang) {
+        Page<Loan> loanPage = loanRepository.findByUsername(username, new PageRequest(nrPage, sizeOfPage, new Sort(Sort.Direction.DESC, "idLoan")));
+        List<LoanHeader> loanHeaders = convertLoanToLoanHeader(loanPage.getContent(), lang);
         for (LoanHeader l:loanHeaders
              ) {
                 l.setMessageWithStatusTwo(messageService.isMessageWithStatusUnread(l.getIdLoan(),username));
         }
         return loanHeaders;
+    }
+
+    @Override
+    public int numberOfPage(String username) {
+        int countedPages;
+        int countedLoans = loanRepository.countByUsername(username);
+        countedPages=countedLoans/sizeOfPage;
+        if(countedLoans%sizeOfPage!=0){
+            countedPages++;
+        }
+        return  countedPages;
     }
 
     @Override
@@ -101,9 +117,10 @@ public class LoanServiceImpl implements LoanService {
     @Override
     @Transactional
     @Modifying
-    public void changeLoanStatus(long idLoan, String statusName) {
+    public void changeLoanStatus(long idLoan, String statusName,String username) {
         Loan loan = loanRepository.findOne(idLoan);
         loan.setIdLoanStatus(loanStatusRepository.findLoanStatusByName(statusName));
+        messageService.sendAutomaticMessage(idLoan,username,statusName);
         loanRepository.save(loan);
     }
 

@@ -23,5 +23,7 @@ public interface MessageService {
 
     void readAllMessagesByUsernameInLoan(long idLoan,String username);
 
+    void sendAutomaticMessage(long idLoan, String username, String statusName);
+
 
 }
