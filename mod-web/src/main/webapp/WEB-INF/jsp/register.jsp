@@ -57,13 +57,14 @@
 
                 <div class="form-group">
                     <label for="city"><spring:message code="uniText.city"/></label>
-                    <input type="text" name="city" id="city" class="form-control" ng-model="user.city"/>
+                    <input type="text" name="city" id="city" class="form-control" ng-model="user.city" ng-maxlength="30"/>
+                    <span ng-show="form.city.$error.maxlength" class="help-block">Max &nbsp <spring:message code="validate.length"/>&nbsp: 30</span>
                 </div>
 
                 <div class="form-group">
                     <label for="phone"><spring:message code="uniText.phoneNumber"/></label>
-                    <input type="text" name="phone" id="phone" class="form-control" ng-pattern="regexNumber" ng-model="user.phone" ng-maxlength="20"/>
-                    <span ng-show="form.phone.$error.maxlength" class="help-block">Max &nbsp <spring:message code="validate.length"/>&nbsp: 20</span>
+                    <input type="text" name="phone" id="phone" class="form-control" ng-pattern="regexNumber" ng-model="user.phone" ng-maxlength="15"/>
+                    <span ng-show="form.phone.$error.maxlength" class="help-block">Max &nbsp <spring:message code="validate.length"/>&nbsp: 15</span>
                     <span ng-show="!form.phone.$error.maxlength && form.phone.$invalid" class="help-block"><spring:message code="validate.onlyDigits"/>!</span>
                 </div>
 
