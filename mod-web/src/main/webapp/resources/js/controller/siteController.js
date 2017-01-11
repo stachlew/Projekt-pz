@@ -1,15 +1,20 @@
 angular.module('app')
     .controller('siteController',siteController);
 
-siteController.$inject=['$scope','$location', '$log','$cookies','$http'];
+siteController.$inject=['$scope','$location', '$log','$cookies','$http','$anchorScroll'];
 
-function siteController($scope,$location,$log,$cookies,$http){
+function siteController($scope,$location,$log,$cookies,$http,$anchorScroll){
     $log.info("siteController");
     $scope.userName = $cookies.get('cookieUsername');
     $scope.logged=false;
     $scope.newNotifications=false;
+
+    //Zmienne do pamieci wyszukiwania
     $scope.siteFlagSearched=false;
     $scope.siteListSearched=null;
+    $scope.sitePageNo=1;
+
+
 
     $scope.$on('$routeChangeStart', function () {
         if($scope.logged){
@@ -68,6 +73,10 @@ function siteController($scope,$location,$log,$cookies,$http){
 
     $scope.goLink = function(linkId){
         $location.path(linkId);
+    }
+
+    $scope.scrollTo = function (id) {
+        $anchorScroll(id);
     }
 
 

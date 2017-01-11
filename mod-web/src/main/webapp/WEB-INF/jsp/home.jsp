@@ -3,8 +3,7 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <script src="/resources/js/homeRedirect.js/"></script>
 
-
-<div class="well well-sm"> <%--Wyszukiwarka--%>
+<div id="#up" class="well well-sm"> <%--Wyszukiwarka--%>
         <form class="form-horizontal" role="form" ng-submit="search()" novalidate>
             <div class="form-group" style="margin-bottom: 0">
                 <div class="col-sm-7">
@@ -144,15 +143,26 @@
     <div class="list-group" ng-show="areSearched">
 
         <div class="row">
-            <div class="col-md-4 col-md-offset-4 text-center">
+            <div class="col-md-4">
+                <span class="linkBorrom"><a ng-click="returnLatest()"><spring:message code="home.content.text.returnToNew"/>&nbsp<i class="glyphicon glyphicon-remove-circle"></i></a></span>
+            </div>
+            <div class="col-md-4 text-center">
                 <span><spring:message code="home.content.text.searchedAdsCount"/>: {{countSearched}}</span>
             </div>
             <div class="col-md-4 text-right">
-                <span class="linkBorrom"><a ng-click="returnLatest()"><spring:message code="home.content.text.returnToNew"/>&nbsp<i class="glyphicon glyphicon-remove-circle"></i></a></span>
+            <span>
+                <ul style="font-size:1.3em;" class="list-inline" style="margin: 4px">
+                    <li><a  ng-click="pageSearchPrev()"> <i class="glyphicon glyphicon-triangle-left"></i> </a></li>
+                    <li style="width: 70px"><input style="height: 100%" min="1" max={{pageCounted}} type="number" class="form-control" ng-model="sitePageNo"></li>
+                    <li> z {{pageCounted}}</li>
+                    <li><a ng-click="updatePartSearchedList(sitePageNo)"> <i class="glyphicon glyphicon-repeat"></i> </a></li>
+                    <li><a ng-click="pageSearchNext()"> <i class="glyphicon glyphicon-triangle-right"></i> </a></li>
+                </ul>
+            </span>
             </div>
         </div>
 
-        <a class="list-group-item borromColour" ng-repeat="ob in searchedOffers" >
+        <a class="list-group-item borromColour" ng-repeat="ob in subSearchedOffers" >
             <div class="row">
                 <div class="col-md-2">
                     <img style="height:160px;width: 210px" class="img-rounded" ng-src="rest/pub/images/getImage/{{ob.idAdvertisement}}" alt="Offer foto" />
@@ -183,7 +193,34 @@
                 </div>
             </div>
         </a>
+
+        <div class="row">
+            <br><br><br>
+            <div class="col-md-4">
+                <span class="linkBorrom"><a ng-click="returnLatest()"><spring:message code="home.content.text.returnToNew"/>&nbsp<i class="glyphicon glyphicon-remove-circle"></i></a></span>
+            </div>
+            <div class="col-md-4 text-center">
+                <span>
+                    <a style="font-size:1.8em;" href="" ng-click="scrollTo('#headingUser')">
+                        <i class="glyphicon glyphicon-triangle-top"></i>
+                    </a>
+                </span>
+            </div>
+            <div class="col-md-4 text-right">
+            <span>
+                <ul style="font-size:1.3em;" class="list-inline" style="margin: 4px">
+                    <li><a  ng-click="pageSearchPrev()"> <i class="glyphicon glyphicon-triangle-left"></i> </a></li>
+                    <li style="width: 70px"><input style="height: 100%" min="1" max={{pageCounted}} type="number" class="form-control" ng-model="sitePageNo"></li>
+                    <li> z {{pageCounted}}</li>
+                    <li><a ng-click="updatePartSearchedList(sitePageNo)"> <i class="glyphicon glyphicon-repeat"></i> </a></li>
+                    <li><a ng-click="pageSearchNext()"> <i class="glyphicon glyphicon-triangle-right"></i> </a></li>
+                </ul>
+            </span>
+            </div>
+        </div>
+
     </div>
+
 
         <%--Ladowanie--%>
     <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/>

@@ -1,33 +1,63 @@
 angular.module('app')
     .controller('homeController',homeController);
 
-homeController.$inject=['$scope','$location', '$log','$http','$cookies'];
+homeController.$inject=['$scope', '$log','$http','$cookies'];
 
-function homeController($scope,$location,$log,$http,$cookies){
+function homeController($scope,$log,$http,$cookies){
     $log.info("homeController");
+    $scope.regions=[""];
+    $scope.categories=[""];
+    $scope.regexNumber = '[0-9]*';
+    $scope.regionName;
 
     $scope.advanced=false;
 
     $scope.zeroSearched = false;
     $scope.areSearched = false;
 
-    $scope.regions=[""];
-    $scope.categories=[""];
+    var pageSize=10;
 
-    $scope.regexNumber = '[0-9]*';
-    $scope.regionName;
-
+    $scope.pageCounted=0;
     $scope.countSearched=0;
+    $scope.subSearchedOffers=null;
 
+
+    $scope.countPages = function () {
+        var pages = Math.floor($scope.countSearched/pageSize);
+        var rem = $scope.countSearched% pageSize;
+        if(rem>0){
+            $scope.pageCounted=pages+1;
+        }
+        else {
+            $scope.pageCounted=pages;
+        }
+    }
+
+    $scope.updatePartSearchedList = function (No) {
+        $scope.countPages();
+        var NoIdx = No-1;
+        var pages = $scope.pageCounted;
+        if(NoIdx<pages){
+            var first = NoIdx*pageSize;
+            var last = first + pageSize;
+            $scope.subSearchedOffers=$scope.$parent.siteListSearched.slice(first,last)
+            $scope.$parent.sitePageNo=$scope.sitePageNo;
+        }
+    }
+
+    //jesli istnieje wyszukiwanie w pamieci
     if($scope.$parent.siteFlagSearched==true){
+        $scope.sitePageNo=$scope.$parent.sitePageNo;
         $scope.searchedOffers=$scope.$parent.siteListSearched;
         $scope.countSearched=$scope.searchedOffers.length;
+        $scope.updatePartSearchedList($scope.sitePageNo);
         $scope.latest = false;
         $scope.zeroSearched = false;
         $scope.areSearched = true;
     }else{
         $scope.latest = true;
     }
+
 
     $scope.refreshHome = function () {
         $scope.loading = true;
@@ -99,6 +129,8 @@ function homeController($scope,$location,$log,$http,$cookies){
 
     $scope.search = function ()
     {
+        $scope.sitePageNo=1;
+        $scope.$parent.sitePageNo=$scope.sitePageNo;
         var searchProperties = {
             title : $scope.title,
             category : $scope.category,
@@ -128,7 +160,6 @@ function homeController($scope,$location,$log,$http,$cookies){
         }).then(
             function (response) {
                 $scope.loading = false;
-                //console.log("STATUS OK");
                 $scope.searchedOffers = response.data;
                 $scope.countSearched=$scope.searchedOffers.length;
                 if($scope.countSearched == 0){
@@ -136,11 +167,12 @@ function homeController($scope,$location,$log,$http,$cookies){
                     $scope.$parent.siteFlagSearched=false;
                 }
                 else{
+                    $scope.$parent.siteFlagSearched=true;
+                    $scope.$parent.siteListSearched=response.data;
+                    $scope.updatePartSearchedList($scope.sitePageNo);
                     $scope.latest = false;
                     $scope.zeroSearched = false;
                     $scope.areSearched = true;
-                    $scope.$parent.siteFlagSearched=true;
-                    $scope.$parent.siteListSearched=response.data;
                 }
             },
             function () {
@@ -148,6 +180,21 @@ function homeController($scope,$location,$log,$http,$cookies){
                 $scope.zeroSearched = true;
                 console.log("STATUS FAIL");
             });
+    }
+
+
+
+    $scope.pageSearchPrev = function () {
+        if($scope.sitePageNo>1){
+            $scope.sitePageNo=$scope.sitePageNo-1;
+            $scope.updatePartSearchedList($scope.sitePageNo);
+        }
+    }
+    $scope.pageSearchNext = function () {
+        if($scope.sitePageNo<$scope.pageCounted){
+            $scope.sitePageNo=$scope.sitePageNo+1;
+            $scope.updatePartSearchedList($scope.sitePageNo);
+        }
     }
 
 }
