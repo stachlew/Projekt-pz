@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import pl.wat.pz.application.dao.intermediateClass.User.UserRegistered;
 
 import pl.wat.pz.application.logic.service.UserDetailsService;
-
-
-
+import pl.wat.pz.application.web.wrapper.BooleanResponse;
+import pl.wat.pz.application.dao.domain.User;
 
 @Controller
 public class RegisterController {
@@ -24,10 +23,13 @@ public class RegisterController {
     public String getRegister(){ return "register";}
 
     @RequestMapping(value="/register/createUser", method= RequestMethod.POST)
-    @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void createUser(@RequestBody UserRegistered userRegistered) {
-        userDetailsService.registerNewUserAccount(userRegistered);
+    public @ResponseBody BooleanResponse createUser(@RequestBody UserRegistered userRegistered) {
+        if(!userDetailsService.exist(userRegistered.getUsername())){
+            User newUser = userDetailsService.registerNewUserAccount(userRegistered);
+            if(newUser!=null)
+                return new BooleanResponse(true);
+        }
+        return new BooleanResponse(false);
     }
-
 
 }

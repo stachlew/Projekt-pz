@@ -15,6 +15,7 @@ import pl.wat.pz.application.logic.service.ItemCategoryService;
 import pl.wat.pz.application.logic.service.LoanStatusService;
 import pl.wat.pz.application.logic.service.RegionService;
 import pl.wat.pz.application.logic.service.UserDetailsService;
+import pl.wat.pz.application.web.wrapper.BooleanResponse;
 
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +32,9 @@ public class SimpleDataRestController {
 
     @Autowired
     LoanStatusService loanStatusService;
+
+    @Autowired
+    UserDetailsService userDetailsService;
 
     @RequestMapping(value="/getRegions", method= RequestMethod.GET)
     public @ResponseBody List<String> getRegions() {
@@ -64,6 +68,13 @@ public class SimpleDataRestController {
             }
         }
         return null;
+    }
+
+    @RequestMapping(value="/checkExistUsername/{username}", method= RequestMethod.GET)
+    public @ResponseBody
+    BooleanResponse checkFreeUsername(@PathVariable String username) {
+        boolean usernameExist = userDetailsService.exist(username);
+        return new BooleanResponse(usernameExist);
     }
 
 

@@ -13,10 +13,12 @@
 
                 <div class="form-group">
                     <label for="username"><spring:message code="register.label.username"/>*</label>
-                    <input type="text" name="username" id="username" class="form-control" ng-model="user.username" ng-minlength="4" ng-maxlength="20" required />
-                    <span ng-show="form.username.$valid" class="help-block"><i class="glyphicon glyphicon-ok"></i></span>
+                    <input type="text" name="username" id="username" class="form-control" ng-pattern="regexUsername" ng-blur="checkUsername(user)" ng-model="user.username" ng-minlength="4" ng-maxlength="20" required />
+                    <span ng-show="showUsernameExist && !flagUsernameExist" class="help-block"><i class="glyphicon glyphicon-ok"></i>&nbsp<spring:message code="register.text.usernameFree"/>!</span>
                     <span ng-show="form.username.$touched && form.username.$error.required" class="help-block"><spring:message code="validate.inputRequired"/></span>
                     <span ng-show="form.username.$touched && form.username.$error.minlength || form.username.$error.maxlength" class="help-block"><spring:message code="register.label.username"/>:&nbsp <spring:message code="validate.length"/> 4-20</span>
+                    <span ng-show="form.username.$touched && form.username.$invalid && !form.username.$error.required && !form.username.$error.minlength && !form.username.$error.maxlength " class="help-block"><spring:message code="validate.alfaNumPattern"/>!</span>
+                    <span ng-show="showUsernameExist && flagUsernameExist" class="help-block"><spring:message code="register.text.usernameExist"/>!</span>
                 </div>
 
                 <div class="form-group">
@@ -78,7 +80,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group">
-                    <button type="submit" ng-disabled="form.$invalid" class="btn btn-lg btn-default btn-block borromColour"><spring:message code="register.button.register"/></button>
+                    <button type="submit" ng-disabled="form.$invalid || flagUsernameExist" class="btn btn-lg btn-default btn-block borromColour"><spring:message code="register.button.register"/></button>
                 </div>
             </div>
         </div>

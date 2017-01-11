@@ -6,14 +6,14 @@ import java.sql.Date;
  * Created by Marian on 2016-12-29.
  */
 public class LoanForm {
-    private long idAdvertisement;
+    private String idAdvertisement;
     private Date dateFrom;
     private Date dateTo;
 
     public LoanForm() {
     }
 
-    public void setidAdvertisement(long idAdvertisement) {
+    public void setidAdvertisement(String idAdvertisement) {
         this.idAdvertisement = idAdvertisement;
     }
 
@@ -25,7 +25,7 @@ public class LoanForm {
         this.dateTo = dateTo;
     }
 
-    public long getidAdvertisement() {
+    public String getidAdvertisement() {
         return idAdvertisement;
     }
 

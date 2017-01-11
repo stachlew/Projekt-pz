@@ -108,10 +108,15 @@ public class LoanServiceImpl implements LoanService {
     public void addLoan(LoanForm loanForm, String name) {
         Loan loan=new Loan(loanForm);
         loan.setIdBorrower(userRepository.findOne(name));
-        loan.setIdAdvertisement(advertisementRepository.findOne(loanForm.getidAdvertisement()));
-        loan.setIdLoanStatus(loanStatusRepository.findOne(2L));
-       loanRepository.save(loan);
+        Long loanId=null;
+        try{
+            loanId = Long.parseLong(loanForm.getidAdvertisement());
+        }catch (NumberFormatException e){
 
+        }
+        loan.setIdAdvertisement(advertisementRepository.findOne(loanId));
+        loan.setIdLoanStatus(loanStatusRepository.findOne(2L));
+        loanRepository.save(loan);
     }
 
     @Override
