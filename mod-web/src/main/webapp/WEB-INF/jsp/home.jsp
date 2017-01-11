@@ -107,9 +107,6 @@
 
 <div class="well well-sm">
 
-    <%--Ladowanie--%>
-    <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/></div>
-
     <%--Brak znalezionych--%>
     <div ng-show="zeroSearched">
         <div class="row">
@@ -121,7 +118,7 @@
 
     </div>
     <%--Najnowsze--%>
-    <div class="flex-row row" ng-init="refreshHome()" ng-show="latest">
+    <div class="flex-row row" ng-init="refreshHome()" ng-if="latest">
 
         <div class="col-md-3 col-sm-4 col-xs-12"  ng-repeat="ad in adsList" ng-click="goOffer(ad.idAdvertisement)">
             <div class="thumbnail borromColour">
@@ -145,6 +142,16 @@
 
     <%--Wyszukiwanie--%>
     <div class="list-group" ng-show="areSearched">
+
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4 text-center">
+                <span><spring:message code="home.content.text.searchedAdsCount"/>: {{countSearched}}</span>
+            </div>
+            <div class="col-md-4 text-right">
+                <span class="linkBorrom"><a ng-click="returnLatest()"><spring:message code="home.content.text.returnToNew"/>&nbsp<i class="glyphicon glyphicon-remove-circle"></i></a></span>
+            </div>
+        </div>
+
         <a class="list-group-item borromColour" ng-repeat="ob in searchedOffers" >
             <div class="row">
                 <div class="col-md-2">
@@ -176,5 +183,9 @@
                 </div>
             </div>
         </a>
+    </div>
+
+        <%--Ladowanie--%>
+    <div class="text-center"><img src="/resources/image/loader.gif" ng-show="loading" height="42" width="42"/>
     </div>
 </div>

@@ -3,10 +3,12 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
 <div class="well well-sm">
-    <div ng-click="goEditUser()" class ="userInfo linkBorrom">
-        <spring:message code="tile.menu.button.loggedAs"/>
-        {{userName}}
-        <i class="glyphicon glyphicon-user"></i>
+    <div class ="userInfo">
+        <span ng-click="goEditUser()" class="linkBorrom">
+            <spring:message code="tile.menu.button.loggedAs"/>
+            {{userName}}
+            <i class="glyphicon glyphicon-user"></i>
+        </span>
     </div>
     <ul class="nav nav-justified">
         <li role="presentation">

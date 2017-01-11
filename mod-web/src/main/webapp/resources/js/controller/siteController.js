@@ -8,6 +8,8 @@ function siteController($scope,$location,$log,$cookies,$http){
     $scope.userName = $cookies.get('cookieUsername');
     $scope.logged=false;
     $scope.newNotifications=false;
+    $scope.siteFlagSearched=false;
+    $scope.siteListSearched=null;
 
     $scope.$on('$routeChangeStart', function () {
         if($scope.logged){
@@ -67,6 +69,7 @@ function siteController($scope,$location,$log,$cookies,$http){
     $scope.goLink = function(linkId){
         $location.path(linkId);
     }
+
 
     $scope.isLogged = function () {
         $http.get('/rest/pub/login/isLogged')

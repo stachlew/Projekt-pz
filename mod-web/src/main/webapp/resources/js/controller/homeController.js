@@ -8,7 +8,6 @@ function homeController($scope,$location,$log,$http,$cookies){
 
     $scope.advanced=false;
 
-    $scope.latest = true;
     $scope.zeroSearched = false;
     $scope.areSearched = false;
 
@@ -17,6 +16,18 @@ function homeController($scope,$location,$log,$http,$cookies){
 
     $scope.regexNumber = '[0-9]*';
     $scope.regionName;
+
+    $scope.countSearched=0;
+
+    if($scope.$parent.siteFlagSearched==true){
+        $scope.searchedOffers=$scope.$parent.siteListSearched;
+        $scope.countSearched=$scope.searchedOffers.length;
+        $scope.latest = false;
+        $scope.zeroSearched = false;
+        $scope.areSearched = true;
+    }else{
+        $scope.latest = true;
+    }
 
     $scope.refreshHome = function () {
         $scope.loading = true;
@@ -79,6 +90,8 @@ function homeController($scope,$location,$log,$http,$cookies){
     }
 
     $scope.returnLatest = function () {
+        $scope.$parent.siteFlagSearched=false;
+        $scope.$parent.siteListSearched=null;
         $scope.latest = true;
         $scope.zeroSearched = false;
         $scope.areSearched = false;
@@ -96,18 +109,6 @@ function homeController($scope,$location,$log,$http,$cookies){
             bailValueFrom : $scope.bailValueFrom,
             bailValueTo : $scope.bailValueTo
         };
-        console.log("IDZIE: "+$scope.city);
-
-        /*console.log("Szukaj zaawansowano: ");
-        console.log(searchProperties.title);
-        console.log(searchProperties.category);
-        console.log(searchProperties.region);
-        console.log(searchProperties.city);
-        console.log(searchProperties.chargePerDayFrom);
-        console.log(searchProperties.chargePerDayTo);
-        console.log(searchProperties.bailValueFrom);
-        console.log(searchProperties.bailValueTo);
-        */
 
         $scope.loading = true;
         $scope.latest = false;
@@ -129,15 +130,17 @@ function homeController($scope,$location,$log,$http,$cookies){
                 $scope.loading = false;
                 //console.log("STATUS OK");
                 $scope.searchedOffers = response.data;
-                if($scope.searchedOffers.length == 0){
+                $scope.countSearched=$scope.searchedOffers.length;
+                if($scope.countSearched == 0){
                     $scope.zeroSearched = true;
-                    //console.log("ile: "+$scope.searchedOffers.length);
+                    $scope.$parent.siteFlagSearched=false;
                 }
                 else{
                     $scope.latest = false;
                     $scope.zeroSearched = false;
                     $scope.areSearched = true;
-                    //console.log("ile: "+$scope.searchedOffers.length);
+                    $scope.$parent.siteFlagSearched=true;
+                    $scope.$parent.siteListSearched=response.data;
                 }
             },
             function () {
