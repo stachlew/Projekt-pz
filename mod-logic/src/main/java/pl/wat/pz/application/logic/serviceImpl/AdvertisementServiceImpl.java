@@ -69,11 +69,13 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     @Override
     public byte[] findImageByIdAdvertisement(long idAdvertisement) {
         Advertisement advertisement = advertisementRepository.findOne(idAdvertisement);
-        if (advertisement.getImage()!=null) {
-            try {
-                return advertisement.getImage().getBytes(1, (int) advertisement.getImage().length());
-            } catch (SQLException e) {
-                e.printStackTrace();
+        if(advertisement!=null){
+            if (advertisement.getImage()!=null) {
+                try {
+                    return advertisement.getImage().getBytes(1, (int) advertisement.getImage().length());
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         return null;

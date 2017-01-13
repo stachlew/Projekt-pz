@@ -53,7 +53,7 @@ function registerController($scope,$location,$log,$http,$cookies){
             function (response) {
                 var flag = response.data.flag;
                 if(flag==true){
-                    console.log("Response true OK");
+                    //console.log("Response true OK");
                     $scope.regOk=true;
                     $scope.formVis=false;
                 }else{
@@ -72,7 +72,7 @@ function registerController($scope,$location,$log,$http,$cookies){
     $scope.checkUsername = function (user) {
         $scope.showUsernameExist=false;
         if (user.username !== undefined && user.username !== null) {
-            console.log("IF "+user.username);
+            //console.log("IF "+user.username);
             $http.get('/rest/pub/simpleData/checkExistUsername/'+user.username)
                 .then(
                     function (response) {

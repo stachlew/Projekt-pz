@@ -25,13 +25,13 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="bailValue"><spring:message code="uniText.bailValue"/>&nbsp <spring:message code="uniText.PLNperDay"/></label>
+                    <label for="bailValue"><spring:message code="uniText.bailValue"/>&nbsp <spring:message code="uniText.pln"/></label>
                     <input type="number" step="0.01" name="bailValue" id="bailValue" class="form-control" ng-model="offer.bailValue" ng-maxlength="10"/>
                     <span ng-show="form.bailValue.$touched && form.bailValue.$error.maxlength" class="help-block">Max &nbsp <spring:message code="validate.length"/>&nbsp: 10</span>
                 </div>
 
                 <div class="form-group">
-                    <label for="chargePerDay"><spring:message code="uniText.price"/>&nbsp <spring:message code="uniText.pln"/></label>
+                    <label for="chargePerDay"><spring:message code="uniText.price"/>&nbsp <spring:message code="uniText.PLNperDay"/></label>
                     <input type="number" step="0.01" name="chargePerDay" id="chargePerDay" class="form-control" ng-model="offer.chargePerDay" ng-maxlength="10"/>
                     <span ng-show="form.chargePerDay.$touched && form.chargePerDay.$error.maxlength" class="help-block">Max &nbsp <spring:message code="validate.length"/>&nbsp: 10</span>
                 </div>

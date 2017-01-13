@@ -10,7 +10,7 @@
         <div class="col-md-4 col-md-offset-4 text-center">
             <span class="text-right"><img src="/resources/image/loader.gif" ng-show="loading" height="25" width="25"/></span>
         </div>
-        <div class="col-md-4 text-right">
+        <div class="col-md-4 text-right" ng-hide="noItems">
             <span>
                 <ul class="list-inline" style="margin: 4px">
                     <li><a  ng-click="pagePrev()"> <i class="glyphicon glyphicon-triangle-left"></i> </a></li>

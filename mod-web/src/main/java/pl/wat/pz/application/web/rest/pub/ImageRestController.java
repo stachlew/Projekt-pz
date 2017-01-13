@@ -6,6 +6,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import pl.wat.pz.application.dao.domain.Advertisement;
+import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementDetails;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 import pl.wat.pz.application.web.wrapper.BooleanResponse;
 
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Locale;
 
 @Controller
 public class ImageRestController {
@@ -46,26 +49,36 @@ public class ImageRestController {
 
     @RequestMapping(value = "rest/usr/images/deleteImage/{offerId}",method = RequestMethod.GET)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void deleteImage(@PathVariable String offerId, Authentication auth){
+    public void deleteImage(@PathVariable String offerId,Locale locale, Authentication auth){
         Long longOfferId = null;
+        String lang = locale.getLanguage();
         try {
             longOfferId = Long.parseLong(offerId);
         }catch (NumberFormatException e){
             System.out.println("NumberFormatException uploadImage()");
         }
-        advertisementService.saveImageToAdvertisement(longOfferId,null);
+        AdvertisementDetails ad = advertisementService.findOneByIdAdvertisement(longOfferId,lang);
+        if(ad!=null){
+            if(ad.getUsername().equals(auth.getName())){
+                advertisementService.saveImageToAdvertisement(longOfferId,null);
+            }
+        }
     }
 
     @RequestMapping(value = "rest/usr/images/uploadImage/{offerId}",method = RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void uploadImage(@PathVariable String offerId, Authentication auth, @RequestParam("file") MultipartFile file) {
+    public void uploadImage(@PathVariable String offerId,Locale locale, Authentication auth, @RequestParam("file") MultipartFile file) {
+        String lang = locale.getLanguage();
         if(!file.isEmpty()){
-            // SPRAWDŹ - WERYFIKACJA CZY TO OBRAZEK
             try{
                 Long longOfferId = Long.parseLong(offerId);
-                byte[] bytes = file.getBytes();
-                advertisementService.saveImageToAdvertisement(longOfferId,bytes);
-
+                AdvertisementDetails ad = advertisementService.findOneByIdAdvertisement(longOfferId,lang);
+                if(ad!=null){
+                    if(ad.getUsername().equals(auth.getName())){
+                        byte[] bytes = file.getBytes();
+                        advertisementService.saveImageToAdvertisement(longOfferId,bytes);
+                    }
+                }
                 /*
                 //Zapis na lokalnym dla testu
                 File serverFile = new File("D:\\LocalRepoGit\\Projekt-pz\\mod-web\\src\\main\\resources\\stockFoto"
@@ -75,8 +88,6 @@ public class ImageRestController {
                 stream.write(bytes);
                 stream.close();
                 */
-
-
             }catch (Exception e){
                 System.out.println("Exception uploadImage");
             }

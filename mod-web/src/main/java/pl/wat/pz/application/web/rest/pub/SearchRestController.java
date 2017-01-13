@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHeader;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementSearchForm;
 import pl.wat.pz.application.logic.service.AdvertisementService;
 import pl.wat.pz.application.web.validator.AdvertisementSearchFormValidator;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,22 +34,14 @@ public class SearchRestController {
         AdvertisementSearchFormValidator advertisementSearchFormValidator = new AdvertisementSearchFormValidator();
         advertisementSearchFormValidator.validate(form, result);
 
-        /*
-        System.out.println("Odebralem");
-        System.out.println("title "+form.getTitle());
-        System.out.println("category "+form.getCategory());
-        System.out.println("region "+form.getRegion());
-        System.out.println("city "+form.getCity());
-        System.out.println("chargePerDayFrom "+form.getChargePerDayFrom());
-        System.out.println("chargePerDayTo "+form.getChargePerDayTo());
-        System.out.println("bailValueFrom "+form.getBailValueFrom());
-        System.out.println("bailValueTo "+form.getBailValueTo());
-        */
 
-        // CO TUTAJ?
-        //if(!result.hasErrors()) {
+        if(!result.hasErrors()) {
             return advertisementService.findByFilter(form,lang);
-        //}
+        }
+        else{
+            List<AdvertisementHeader> list = new ArrayList<>();
+            return list;
+        }
     }
 
 

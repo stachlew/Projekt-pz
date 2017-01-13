@@ -17,8 +17,9 @@ http://www.springframework.org/schema/security/spring-security.xsd
         <security:intercept-url pattern="/notifications/**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/observed/**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/addItem/**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/loanDetails/**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/editOffer/**" access="hasRole('ROLE_USER')"/>
         <security:intercept-url pattern="/rest/usr/**" access="hasRole('ROLE_USER')"/>
-        <!--<security:intercept-url pattern="/register/createUser" access="hasRole('ROLE_ANONYMOUS')" method="POST"/>-->
 
         <security:form-login login-page="/login"
                              default-target-url="/"
