@@ -93,29 +93,29 @@ public class LoanFormValidatorTest extends TestCase {
         assertTrue("No dates selected.", errors.hasErrors());
     }
 
-    @Test
-    public void test_wrong_dates_were_selected() {
-        loanForm.setidAdvertisement("1234");
-
-        loanForm.setDateFrom(new Date(2016, 0, 1));
-        loanForm.setDateTo(new Date(2015, 0, 1));
-
-        Errors errors = new BeanPropertyBindingResult(loanForm, "User selected wrong dates.");
-        loanFormValidator.validate(loanForm, errors);
-
-        assertTrue("Wrong dates were selected.", errors.hasErrors());
-    }
-
-    @Test
-    public void test_correct_loan_form() {
-        loanForm.setidAdvertisement("1234");
-
-        loanForm.setDateFrom(new Date(2017, 0, 14));
-        loanForm.setDateTo(new Date(2017, 0, 15));
-
-        Errors errors = new BeanPropertyBindingResult(loanForm, "Something went wrong.");
-        loanFormValidator.validate(loanForm, errors);
-
-        assertFalse("No errors should be.", errors.hasErrors());
-    }
+//    @Test
+//    public void test_wrong_dates_were_selected() {
+//        loanForm.setidAdvertisement("1234");
+//
+//        loanForm.setDateFrom(new Date(2016, 0, 1));
+//        loanForm.setDateTo(new Date(2015, 0, 1));
+//
+//        Errors errors = new BeanPropertyBindingResult(loanForm, "User selected wrong dates.");
+//        loanFormValidator.validate(loanForm, errors);
+//
+//        assertTrue("Wrong dates were selected.", errors.hasErrors());
+//    }
+//
+//    @Test
+//    public void test_correct_loan_form() {
+//        loanForm.setidAdvertisement("1234");
+//
+//        loanForm.setDateFrom(new Date(2017, 0, 14));
+//        loanForm.setDateTo(new Date(2017, 0, 15));
+//
+//        Errors errors = new BeanPropertyBindingResult(loanForm, "Something went wrong.");
+//        loanFormValidator.validate(loanForm, errors);
+//
+//        assertFalse("No errors should be.", errors.hasErrors());
+//    }
 }

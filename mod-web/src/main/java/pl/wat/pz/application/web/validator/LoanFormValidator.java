@@ -40,26 +40,26 @@ public class LoanFormValidator implements Validator {
         if(loanForm.getDateTo() == null) {
             errors.rejectValue("dateTo", "Empty dateTo.");
         }
-        if(loanForm.getDateFrom() != null && loanForm.getDateTo() != null) {
-
-            long df = loanForm.getDateFrom().getTime();
-            long dt = loanForm.getDateTo().getTime();
-
-            Date dateFrom = new Date(df);
-            Date dateTo = new Date(dt);
-
-            Calendar calendar = Calendar.getInstance();
-            Date sqlDate = new Date(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));;
-
-            if(dateFrom.compareTo(sqlDate) == -1) {
-                errors.rejectValue("dateFrom", "Wrong dateFrom.");
-            }
-            if(dateTo.compareTo(sqlDate) == -1) {
-                errors.rejectValue("dateTo", "Wrong dateTo.");
-            }
-            if(dateFrom.compareTo(dateTo) == 1) {
-                errors.rejectValue("dateTo", "Wrong dateTo.");
-            }
-        }
+//        if(loanForm.getDateFrom() != null && loanForm.getDateTo() != null) {
+//
+//            long df = loanForm.getDateFrom().getTime();
+//            long dt = loanForm.getDateTo().getTime();
+//
+//            Date dateFrom = new Date(df);
+//            Date dateTo = new Date(dt);
+//
+//            Calendar calendar = Calendar.getInstance();
+//            Date sqlDate = new Date(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));;
+//
+//            if(dateFrom.compareTo(sqlDate) == -1) {
+//                errors.rejectValue("dateFrom", "Wrong dateFrom.");
+//            }
+//            if(dateTo.compareTo(sqlDate) == -1) {
+//                errors.rejectValue("dateTo", "Wrong dateTo.");
+//            }
+//            if(dateFrom.compareTo(dateTo) == 1) {
+//                errors.rejectValue("dateTo", "Wrong dateTo.");
+//            }
+//        }
     }
 }
