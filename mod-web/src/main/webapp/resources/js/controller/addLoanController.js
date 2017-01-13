@@ -4,7 +4,7 @@ angular.module('app')
 addLoanController.$inject=['$scope','$log','$http','$cookies','$routeParams'];
 
 function addLoanController($scope,$log,$http,$cookies,$routeParams){
-    $log.info("addLoanController");
+    //$log.info("addLoanController");
     $scope.offerId=$routeParams.offerId;
 
     $scope.isOffer=false;

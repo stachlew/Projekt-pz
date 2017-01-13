@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<div class="well well-sm">
+<div id="#headingUser" class="well well-sm">
     <ul class="nav nav-justified">
         <li role="presentation">
             <h4>

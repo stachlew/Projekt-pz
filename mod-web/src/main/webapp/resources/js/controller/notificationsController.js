@@ -4,8 +4,7 @@ angular.module('app')
 notificationsController.$inject=['$scope', '$log','$http'];
 
 function notificationsController($scope,$log,$http){
-    $log.info("notificationsController");
-    $log.info("loanedController");
+    //$log.info("notificationsController");
 
     $scope.noItems = false;
     $scope.loading = false;

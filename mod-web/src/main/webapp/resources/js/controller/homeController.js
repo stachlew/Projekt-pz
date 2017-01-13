@@ -4,7 +4,7 @@ angular.module('app')
 homeController.$inject=['$scope', '$log','$http','$cookies'];
 
 function homeController($scope,$log,$http,$cookies){
-    $log.info("homeController");
+    //$log.info("homeController");
     $scope.regions=[""];
     $scope.categories=[""];
     $scope.regexNumber = '[0-9]*';

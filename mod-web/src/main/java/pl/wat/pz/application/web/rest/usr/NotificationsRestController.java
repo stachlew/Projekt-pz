@@ -13,7 +13,7 @@ import pl.wat.pz.application.dao.intermediateClass.Loan.LoanHeader;
 import pl.wat.pz.application.logic.service.LoanService;
 import pl.wat.pz.application.web.wrapper.BooleanResponse;
 import pl.wat.pz.application.web.wrapper.StringResponse;
-
+import org.apache.log4j.Logger;
 import java.util.List;
 
 @Controller
@@ -25,6 +25,7 @@ public class NotificationsRestController {
     @RequestMapping(value="/getNotifications/{pageNo}", method= RequestMethod.GET)
     public @ResponseBody
     List<LoanHeader> getLoan(Authentication auth, @PathVariable String pageNo) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         String username = auth.getName();
         String locale = LocaleContextHolder.getLocale().getLanguage();
         try{
@@ -34,6 +35,7 @@ public class NotificationsRestController {
             }
             return null;
         }catch (NumberFormatException e){
+            logger.error("getLoan() NumberFormatException "+pageNo);
             return null;
         }
     }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import pl.wat.pz.application.dao.intermediateClass.User.UserForm;
 import pl.wat.pz.application.logic.service.UserDetailsService;
 import pl.wat.pz.application.web.validator.UserFormValidator;
+import org.apache.log4j.Logger;
 
 @Controller
 @RequestMapping(value = "rest/usr/account")
@@ -26,13 +27,13 @@ public class AccountRestController {
     @RequestMapping(value = "/updateAccount",method = RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void updateOffer(@RequestBody UserForm userForm, Authentication auth, BindingResult result){
-        //UserForm USF = new UserForm("123","test@test.pl","919191919","Testowo","mazowieckie");
+        Logger logger = Logger.getLogger(this.getClass().toString());
         UserFormValidator userFormValidator = new UserFormValidator();
         userFormValidator.validate(userForm, result);
 
         if(auth!=null && userForm!=null){
             if(result.hasErrors()) {
-                System.out.println(result.getAllErrors());
+                logger.error("updateOffer() result.hasErrors() "+result.getAllErrors());
             }
             else {
                 String username = auth.getName();

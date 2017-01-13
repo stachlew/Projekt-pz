@@ -4,6 +4,6 @@ angular.module('app')
 loginController.$inject=['$scope','$location', '$log'];
 
 function loginController($scope,$location,$log){
-    $log.info("loginController");
+    //$log.info("loginController");
 }
 

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.apache.log4j.Logger;
 
 import pl.wat.pz.application.dao.domain.ItemCategory;
 import pl.wat.pz.application.logic.service.ItemCategoryService;
@@ -56,6 +57,7 @@ public class SimpleDataRestController {
 
     @RequestMapping(value="/getLoanStatusByUser/{loanId}", method= RequestMethod.GET)
     public @ResponseBody List<String> getLoanStatusByUser(Authentication auth,@PathVariable String loanId) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         if(auth!=null && !loanId.isEmpty()) {
             String lang = LocaleContextHolder.getLocale().getLanguage();
             String username = auth.getName();
@@ -64,6 +66,7 @@ public class SimpleDataRestController {
                 return loanStatusService.findLoanStatusNameAvailableToUser(loanIdLong,username,lang);
             }
             catch (NumberFormatException nfe) {
+                logger.error("getLoanStatusByUser() NumberFormatException "+loanId);
                 return null;
             }
         }

@@ -4,7 +4,7 @@ angular.module('app')
 editUserController.$inject=['$scope', '$log','$http','$cookies'];
 
 function editUserController($scope,$log,$http,$cookies){
-    $log.info("editUserController");
+    //$log.info("editUserController");
 
     $scope.regions=[""];
     $scope.formVis=true;

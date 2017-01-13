@@ -18,6 +18,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Locale;
+import org.apache.log4j.Logger;
 
 @Controller
 public class ImageRestController {
@@ -28,6 +29,7 @@ public class ImageRestController {
     @RequestMapping(value = "rest/pub/images/getImage/{offerId}",method = RequestMethod.GET)
     public void findImage(HttpServletResponse resp, @PathVariable String offerId){
         Path path = FileSystems.getDefault().getPath("","D:\\LocalRepoGit\\Projekt-pz\\mod-web\\src\\main\\resources\\stockFoto\\noFoto.jpg");
+        Logger logger = Logger.getLogger(this.getClass().toString());
 
         try{
             byte [] dbImage = null;
@@ -40,10 +42,10 @@ public class ImageRestController {
             resp.getOutputStream().write(dbImage);
         }
         catch (IOException ioe){
-            System.out.println("IOException");
+            logger.error("findImage() IOException "+offerId);
         }
         catch (NumberFormatException nfe){
-            System.out.println("NumberFormatException");
+            logger.error("findImage() NumberFormatException "+offerId);
         }
     }
 
@@ -51,11 +53,13 @@ public class ImageRestController {
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void deleteImage(@PathVariable String offerId,Locale locale, Authentication auth){
         Long longOfferId = null;
+        Logger logger = Logger.getLogger(this.getClass().toString());
+
         String lang = locale.getLanguage();
         try {
             longOfferId = Long.parseLong(offerId);
         }catch (NumberFormatException e){
-            System.out.println("NumberFormatException uploadImage()");
+            logger.error("deleteImage() NumberFormatException "+offerId);
         }
         AdvertisementDetails ad = advertisementService.findOneByIdAdvertisement(longOfferId,lang);
         if(ad!=null){
@@ -69,6 +73,7 @@ public class ImageRestController {
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void uploadImage(@PathVariable String offerId,Locale locale, Authentication auth, @RequestParam("file") MultipartFile file) {
         String lang = locale.getLanguage();
+        Logger logger = Logger.getLogger(this.getClass().toString());
         if(!file.isEmpty()){
             try{
                 Long longOfferId = Long.parseLong(offerId);
@@ -89,7 +94,7 @@ public class ImageRestController {
                 stream.close();
                 */
             }catch (Exception e){
-                System.out.println("Exception uploadImage");
+                logger.error("uploadImage() Exception "+offerId);
             }
         }
     }

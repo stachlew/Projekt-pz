@@ -25,6 +25,7 @@ import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Locale;
+import org.apache.log4j.Logger;
 
 @Controller
 
@@ -41,14 +42,14 @@ public class AddItemController {
     @RequestMapping(value = "/addItem/createItem", method= RequestMethod.POST)
     public @ResponseBody
     StringResponse createItem(@RequestBody AdvertisementForm advertisementForm, Authentication auth, BindingResult result){
+        Logger logger = Logger.getLogger(this.getClass().toString());
 
         if(auth!=null){
             AdvertisementFormValidator advertisementFormValidator = new AdvertisementFormValidator();
             advertisementFormValidator.validate(advertisementForm, result);
             if(result.hasErrors()) {
-                System.out.println(result.getAllErrors());
+                logger.error("createItem() result.hasErrors() "+ result.getAllErrors());
             }
-            /////////////////////////////////////////////////////////////////////
             else {
                 Locale locale = LocaleContextHolder.getLocale();
                 Timestamp addDate = new Timestamp(Calendar.getInstance().getTime().getTime());

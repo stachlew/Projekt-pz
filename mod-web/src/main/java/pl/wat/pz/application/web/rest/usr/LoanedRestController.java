@@ -8,7 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-
+import org.apache.log4j.Logger;
 import pl.wat.pz.application.dao.domain.Advertisement;
 import pl.wat.pz.application.dao.domain.LoanStatus;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
@@ -60,6 +60,7 @@ public class LoanedRestController {
     @RequestMapping(value="/clearNotifications/{loanId}", method= RequestMethod.GET)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void clearNotifications(Authentication auth, @PathVariable String loanId){
+        Logger logger = Logger.getLogger(this.getClass().toString());
         String username = auth.getName();
         String lang = LocaleContextHolder.getLocale().getLanguage();
         LoanHeader loanHeader;
@@ -68,6 +69,7 @@ public class LoanedRestController {
             loanIdLong = Long.parseLong(loanId.trim());
         }
         catch (NumberFormatException e){
+            logger.error("clearNotifications() NumberFormatException "+loanId);
         }
         loanHeader = loanService.findOneLoanHeaderByIdLoan(loanIdLong,lang);
         if(loanHeader!=null){
@@ -81,6 +83,7 @@ public class LoanedRestController {
     @RequestMapping(value="/details/{loanId}", method= RequestMethod.GET)
     public @ResponseBody
     LoanHeader getLoanDetails(Authentication auth,@PathVariable String loanId) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         LoanHeader loanHeader;
         String locale = LocaleContextHolder.getLocale().getLanguage();
         String username = auth.getName();
@@ -94,6 +97,7 @@ public class LoanedRestController {
                 }
             }
         } catch (NumberFormatException nfe) {
+            logger.error("getLoanDetails() NumberFormatException "+loanId);
             return null;
         }
         return null;
@@ -102,6 +106,7 @@ public class LoanedRestController {
     @RequestMapping(value="/messages/{loanId}", method= RequestMethod.GET)
     public @ResponseBody
     List<LoanMessage> getLoanDetailsMessages(Authentication auth,@PathVariable String loanId) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         String locale = LocaleContextHolder.getLocale().getLanguage();
         String username = auth.getName();
         try {
@@ -110,6 +115,7 @@ public class LoanedRestController {
                 return messageService.findByIdLoan(loanIdLong,locale);
             }
         } catch (NumberFormatException nfe) {
+            logger.error("getLoanDetailsMessages() NumberFormatException "+loanId);
             return null;
         }
         return null;
@@ -118,11 +124,12 @@ public class LoanedRestController {
     @RequestMapping(value = "/messages/createMessage", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void createItem(@RequestBody MessageForm messageForm, Authentication auth, BindingResult result){
+        Logger logger = Logger.getLogger(this.getClass().toString());
         MessageFormValidator messageFormValidator = new MessageFormValidator();
         messageFormValidator.validate(messageForm, result);
 
         if(result.hasErrors()) {
-            System.out.println(result.getAllErrors());
+            logger.error("createItem() result.hasErrors() "+result.getAllErrors());
         }
         else {
             if(loanService.isMemberInLoan(auth.getName(),messageForm.getIdLoan())){
@@ -135,11 +142,12 @@ public class LoanedRestController {
     @RequestMapping(value = "/createLoanRequest", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void createLoanRequest(@RequestBody LoanForm loanForm, Authentication auth, BindingResult result){
+        Logger logger = Logger.getLogger(this.getClass().toString());
         LoanFormValidator loanFormValidator = new LoanFormValidator();
         loanFormValidator.validate(loanForm, result);
 
         if(result.hasErrors()) {
-            System.out.println(result.getAllErrors());
+            logger.error("createLoanRequest() result.hasErrors() "+result.getAllErrors());
         }
         else {
             loanService.addLoan(loanForm, auth.getName());
@@ -149,11 +157,12 @@ public class LoanedRestController {
     @RequestMapping(value = "/changeLoanStatus", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void changeLoanRequest(@RequestBody LoanStatusForm form, Authentication auth, BindingResult result){
+        Logger logger = Logger.getLogger(this.getClass().toString());
         LoanStatusFormValidator loanStatusFormValidator = new LoanStatusFormValidator();
         loanStatusFormValidator.validate(form, result);
 
         if(result.hasErrors()) {
-            System.out.println(result.getAllErrors());
+            logger.error("changeLoanRequest() result.hasErrors() "+result.getAllErrors());
         }
         else {
             String lang = LocaleContextHolder.getLocale().getLanguage();
@@ -167,7 +176,7 @@ public class LoanedRestController {
                 }
             }
             catch (NumberFormatException nfe){
-
+                logger.error("changeLoanRequest() NumberFormatException "+result.getAllErrors());
             }
         }
     }

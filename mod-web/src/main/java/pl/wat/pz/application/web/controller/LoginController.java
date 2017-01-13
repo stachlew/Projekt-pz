@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.apache.log4j.Logger;
 @Controller
 public class LoginController {
 
@@ -35,10 +35,13 @@ public class LoginController {
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public String logout (HttpServletRequest request, HttpServletResponse response) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null){
+            String username = auth.getName();
             new SecurityContextLogoutHandler().logout(request, response, auth);
             deleteCookiesFromList(request,response);
+            logger.info("logout() LOG-OUT: "+ username);
         }
         return "redirect:/#login";
     }

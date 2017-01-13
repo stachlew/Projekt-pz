@@ -4,7 +4,8 @@ angular.module('app')
 offerController.$inject=['$scope', '$log','$routeParams','$http','$modal'];
 
 function offerController($scope,$log,$routeParams,$http,$modal){
-    $log.info("offerController");
+    //$log.info("offerController");
+
     $scope.offerId=$routeParams.idOffer;
     $scope.noOffer = false;
     $scope.isOffer = false;

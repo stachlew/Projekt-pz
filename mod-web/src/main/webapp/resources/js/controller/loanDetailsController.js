@@ -4,7 +4,7 @@ angular.module('app')
 loanDetailsController.$inject=['$scope', '$log','$routeParams','$http','$cookies'];
 
 function loanDetailsController($scope,$log,$routeParams,$http,$cookies){
-    $log.info("loanDetailsController");
+    //$log.info("loanDetailsController");
     $scope.idLoan=$routeParams.idLoan;
     $scope.noLoan = false;
     $scope.loanStatVis = false;

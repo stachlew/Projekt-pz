@@ -13,7 +13,7 @@ import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementHe
 import pl.wat.pz.application.logic.service.AdvertisementService;
 import java.util.List;
 import java.util.Locale;
-
+import org.apache.log4j.Logger;
 
 @Controller
 @RequestMapping(value = "rest/usr/myOffer")
@@ -32,6 +32,7 @@ public class MyAdsRestController {
     @RequestMapping(value = "/updateOffer/{idOffer}",method = RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void updateOffer(@RequestBody AdvertisementForm advertisementForm, @PathVariable String idOffer, Authentication auth, BindingResult result){
+        Logger logger = Logger.getLogger(this.getClass().toString());
         if(auth!=null && !result.hasErrors()){
             String username = auth.getName();
             Locale locale = LocaleContextHolder.getLocale();
@@ -42,20 +43,21 @@ public class MyAdsRestController {
                     advertisementService.modifyAdvertisementWithAdvertisementDetails(advertisementForm,offerIdLong);
                 }
             } catch (NumberFormatException nfe) {
-
+                logger.error("updateOffer() NumberFormatException "+ idOffer);
             }
         }
     }
     @RequestMapping(value = "/delete/{idOffer}",method = RequestMethod.GET)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void deleteOffer(@PathVariable String idOffer, Authentication auth){
+        Logger logger = Logger.getLogger(this.getClass().toString());
         if(auth!=null){
             String username = auth.getName();
             try {
                 Long offerIdLong = Long.parseLong(idOffer.trim());
                 advertisementService.delete(offerIdLong,username);
             } catch (NumberFormatException nfe) {
-
+                logger.error("deleteOffer() NumberFormatException "+ idOffer);
             }
         }
     }

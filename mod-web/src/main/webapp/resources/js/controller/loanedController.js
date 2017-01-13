@@ -4,7 +4,7 @@ angular.module('app')
 loanedController.$inject=['$scope', '$log','$http'];
 
 function loanedController($scope,$log,$http){
-    $log.info("loanedController");
+    //$log.info("loanedController");
 
     $scope.noBorromFrom= false;
     $scope.noBorrowFromItems = false;

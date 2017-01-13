@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import org.apache.log4j.Logger;
 
 @Component
 public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
@@ -16,9 +17,10 @@ public class MyAuthenticationSuccessHandler extends SimpleUrlAuthenticationSucce
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
                                         Authentication authentication) throws IOException, ServletException {
-
+        Logger logger = Logger.getLogger(this.getClass().toString());
         String username = authentication.getName();
         response.addCookie(new Cookie("cookieUsername", username));
+        logger.info("onAuthenticationSuccess() LOG-IN: "+ username);
         //setDefaultTargetUrl("/home");
         super.onAuthenticationSuccess(request, response, authentication);
     }

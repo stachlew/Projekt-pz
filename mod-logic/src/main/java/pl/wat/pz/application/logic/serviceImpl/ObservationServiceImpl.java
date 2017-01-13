@@ -15,6 +15,7 @@ import pl.wat.pz.application.logic.service.ObservationService;
 
 import java.util.LinkedList;
 import java.util.List;
+import org.apache.log4j.Logger;
 
 /**
  * Created by Małgosia on 2016-12-08.
@@ -49,8 +50,15 @@ public class ObservationServiceImpl implements ObservationService {
 
     @Override
     public void saveObservation(String username, String adId) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         User user = userRepository.findOne(username);
-        Long idAd = new Long(adId);
+        long idAd=0;
+        try{
+            idAd = Long.parseLong(adId);
+        }
+        catch (NumberFormatException e){
+            logger.error("saveObservation() NumberFormatException "+adId);
+        }
         Advertisement advert = advertisementRepository.findOne(idAd);
         ObservationId observationId = new ObservationId(advert,user);
         if(!observationRepository.exists(observationId)){
@@ -61,8 +69,15 @@ public class ObservationServiceImpl implements ObservationService {
 
     @Override
     public boolean isObserved(String username, String adId) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         User user = userRepository.findOne(username);
-        Long idAd = new Long(adId);
+        long idAd=0;
+        try{
+            idAd = Long.parseLong(adId);
+        }
+        catch (NumberFormatException e){
+            logger.error("isObserved() NumberFormatException "+adId);
+        }
         Advertisement advert = advertisementRepository.findOne(idAd);
         ObservationId observationId = new ObservationId(advert,user);
         if(observationRepository.exists(observationId))

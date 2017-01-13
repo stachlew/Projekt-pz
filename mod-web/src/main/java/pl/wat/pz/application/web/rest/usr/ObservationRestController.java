@@ -14,6 +14,7 @@ import pl.wat.pz.application.web.wrapper.BooleanResponse;
 
 import java.util.List;
 import java.util.Locale;
+import org.apache.log4j.Logger;
 
 @Controller
 @RequestMapping(value = "rest/usr/observation")
@@ -32,9 +33,15 @@ public class ObservationRestController {
     @RequestMapping(value="/deleteObs/{idAdvertisement}", method= RequestMethod.GET)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void deleteObs(@PathVariable(value = "idAdvertisement") String idAdvertisement, Authentication auth) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
         String username = auth.getName();
-        Long idAd = new Long(idAdvertisement);
-        observationService.deleteObservation(idAd,username);
+        try {
+            Long idAd = new Long(idAdvertisement);
+            observationService.deleteObservation(idAd,username);
+        }
+        catch (NumberFormatException e){
+            logger.error("deleteObs() NumberFormatException" + idAdvertisement);
+        }
     }
 
     @RequestMapping(value="/createObs/{idAdvertisement}", method= RequestMethod.GET)

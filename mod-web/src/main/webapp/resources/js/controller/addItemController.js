@@ -4,7 +4,7 @@ angular.module('app')
 addItemController.$inject=['$scope','$log','$http','$cookies'];
 
 function addItemController($scope,$log,$http,$cookies){
-    $log.info("addItemController");
+    //$log.info("addItemController");
 
     $scope.regions=[""];
     $scope.categories=[""];

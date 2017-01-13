@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementDetails;
 import pl.wat.pz.application.logic.service.AdvertisementService;
-
+import org.apache.log4j.Logger;
 import java.util.Locale;
 
 
@@ -24,6 +24,8 @@ public class OfferRestController {
     @RequestMapping(value="/{offerId}", method= RequestMethod.GET)
     public @ResponseBody
     AdvertisementDetails getDetails(@PathVariable String offerId) {
+        Logger logger = Logger.getLogger(this.getClass().toString());
+
         AdvertisementDetails advertisementDetails;
         try {
             long offerIdLong = Long.parseLong(offerId.trim());
@@ -31,6 +33,7 @@ public class OfferRestController {
             advertisementDetails=advertisementService.findOneByIdAdvertisement(offerIdLong,locale.getLanguage());
         } catch (NumberFormatException nfe) {
             advertisementDetails=null;
+            logger.error("getDetails() NumberFormatException "+offerId);
         }
         return advertisementDetails;
     }

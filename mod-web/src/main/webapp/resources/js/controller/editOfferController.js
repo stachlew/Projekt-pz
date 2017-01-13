@@ -4,7 +4,7 @@ angular.module('app')
 editOfferController.$inject=['$scope', '$log','$routeParams','$http','$cookies'];
 
 function editOfferController($scope,$log,$routeParams,$http,$cookies){
-    $log.info("editOfferController");
+    //$log.info("editOfferController");
     $scope.offerId=$routeParams.idOffer;
     $scope.formVis=true;
 

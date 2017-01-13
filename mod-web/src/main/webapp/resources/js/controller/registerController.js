@@ -4,7 +4,7 @@ angular.module('app')
 registerController.$inject=['$scope','$location', '$log','$http','$cookies'];
 
 function registerController($scope,$location,$log,$http,$cookies){
-    $log.info("registerController");
+    //$log.info("registerController");
 
     $scope.regions=[""];
     $scope.formVis=true;

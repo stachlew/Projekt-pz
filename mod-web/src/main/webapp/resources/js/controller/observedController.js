@@ -4,7 +4,7 @@ angular.module('app')
 observedController.$inject=['$scope', '$log','$http','$modal'];
 
 function observedController($scope,$log,$http,$modal){
-    $log.info("observedController");
+    //$log.info("observedController");
     $scope.noObs=false;
     $scope.loading=false;
 

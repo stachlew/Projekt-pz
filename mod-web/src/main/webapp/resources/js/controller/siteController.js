@@ -4,7 +4,8 @@ angular.module('app')
 siteController.$inject=['$scope','$location', '$log','$cookies','$http','$anchorScroll'];
 
 function siteController($scope,$location,$log,$cookies,$http,$anchorScroll){
-    $log.info("siteController");
+    //$log.info("siteController");
+
     $scope.userName = $cookies.get('cookieUsername');
     $scope.logged=false;
     $scope.newNotifications=false;

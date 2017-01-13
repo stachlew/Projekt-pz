@@ -4,7 +4,7 @@ angular.module('app')
 myAdsController.$inject=['$scope','$location', '$log','$http'];
 
 function myAdsController($scope,$location,$log,$http){
-    $log.info("myAdsController");
+    //$log.info("myAdsController");
     $scope.noAds = false;
     $scope.firstOpen=true;
 
