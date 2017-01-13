@@ -6,6 +6,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import pl.wat.pz.application.dao.domain.Advertisement;
@@ -19,6 +20,9 @@ import pl.wat.pz.application.dao.intermediateClass.Message.MessageForm;
 import pl.wat.pz.application.logic.service.LoanService;
 import pl.wat.pz.application.logic.service.LoanStatusService;
 import pl.wat.pz.application.logic.service.MessageService;
+import pl.wat.pz.application.web.validator.LoanFormValidator;
+import pl.wat.pz.application.web.validator.LoanStatusFormValidator;
+import pl.wat.pz.application.web.validator.MessageFormValidator;
 
 import javax.xml.transform.sax.SAXSource;
 import java.sql.Timestamp;
@@ -113,34 +117,58 @@ public class LoanedRestController {
 
     @RequestMapping(value = "/messages/createMessage", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void createItem(@RequestBody MessageForm messageForm, Authentication auth){
-        if(loanService.isMemberInLoan(auth.getName(),messageForm.getIdLoan())){
-            if(messageForm.getText().length()>0)
-                messageService.saveMessage(messageService.convertMessageFormToMessage(messageForm,auth.getName()));
+    public void createItem(@RequestBody MessageForm messageForm, Authentication auth, BindingResult result){
+        MessageFormValidator messageFormValidator = new MessageFormValidator();
+        messageFormValidator.validate(messageForm, result);
+
+        if(result.hasErrors()) {
+            System.out.println(result.getAllErrors());
+        }
+        else {
+            if(loanService.isMemberInLoan(auth.getName(),messageForm.getIdLoan())){
+                if(messageForm.getText().length()>0)
+                    messageService.saveMessage(messageService.convertMessageFormToMessage(messageForm,auth.getName()));
+            }
         }
     }
 
     @RequestMapping(value = "/createLoanRequest", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void createLoanRequest(@RequestBody LoanForm loanForm, Authentication auth){
-        loanService.addLoan(loanForm, auth.getName());
+    public void createLoanRequest(@RequestBody LoanForm loanForm, Authentication auth, BindingResult result){
+        LoanFormValidator loanFormValidator = new LoanFormValidator();
+        loanFormValidator.validate(loanForm, result);
+
+        if(result.hasErrors()) {
+            System.out.println(result.getAllErrors());
+        }
+        else {
+            loanService.addLoan(loanForm, auth.getName());
+        }
     }
 
     @RequestMapping(value = "/changeLoanStatus", method= RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void changeLoanRequest(@RequestBody LoanStatusForm form, Authentication auth){
-        String lang = LocaleContextHolder.getLocale().getLanguage();
-        try {
-            Long longIdLoan = Long.parseLong(form.getIdLoan());
-            LoanHeader header = loanService.findOneLoanHeaderByIdLoan(longIdLoan,lang);
+    public void changeLoanRequest(@RequestBody LoanStatusForm form, Authentication auth, BindingResult result){
+        LoanStatusFormValidator loanStatusFormValidator = new LoanStatusFormValidator();
+        loanStatusFormValidator.validate(form, result);
 
-            List<String> loanStatusNameAvailableToUser = loanStatusService.findLoanStatusNameAvailableToUser(longIdLoan, auth.getName(), lang);
-            if(loanStatusNameAvailableToUser.contains(form.getStatusName())){
-                loanService.changeLoanStatus(longIdLoan,form.getStatusName(),auth.getName());
-            }
+        if(result.hasErrors()) {
+            System.out.println(result.getAllErrors());
         }
-        catch (NumberFormatException nfe){
+        else {
+            String lang = LocaleContextHolder.getLocale().getLanguage();
+            try {
+                Long longIdLoan = Long.parseLong(form.getIdLoan());
+                LoanHeader header = loanService.findOneLoanHeaderByIdLoan(longIdLoan,lang);
 
+                List<String> loanStatusNameAvailableToUser = loanStatusService.findLoanStatusNameAvailableToUser(longIdLoan, auth.getName(), lang);
+                if(loanStatusNameAvailableToUser.contains(form.getStatusName())){
+                    loanService.changeLoanStatus(longIdLoan,form.getStatusName(),auth.getName());
+                }
+            }
+            catch (NumberFormatException nfe){
+
+            }
         }
     }
 

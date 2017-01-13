@@ -5,6 +5,7 @@ import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementDetails;
 import pl.wat.pz.application.dao.intermediateClass.Advertisement.AdvertisementForm;
@@ -30,8 +31,8 @@ public class MyAdsRestController {
 
     @RequestMapping(value = "/updateOffer/{idOffer}",method = RequestMethod.POST)
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
-    public void updateOffer(@RequestBody AdvertisementForm advertisementForm, @PathVariable String idOffer, Authentication auth){
-        if(auth!=null){
+    public void updateOffer(@RequestBody AdvertisementForm advertisementForm, @PathVariable String idOffer, Authentication auth, BindingResult result){
+        if(auth!=null && !result.hasErrors()){
             String username = auth.getName();
             Locale locale = LocaleContextHolder.getLocale();
             try {

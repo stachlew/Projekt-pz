@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -23,8 +24,8 @@ public class RegisterController {
     public String getRegister(){ return "register";}
 
     @RequestMapping(value="/register/createUser", method= RequestMethod.POST)
-    public @ResponseBody BooleanResponse createUser(@RequestBody UserRegistered userRegistered) {
-        if(!userDetailsService.exist(userRegistered.getUsername())){
+    public @ResponseBody BooleanResponse createUser(@RequestBody UserRegistered userRegistered, BindingResult result) {
+        if(!userDetailsService.exist(userRegistered.getUsername()) && !result.hasErrors()){
             User newUser = userDetailsService.registerNewUserAccount(userRegistered);
             if(newUser!=null)
                 return new BooleanResponse(true);

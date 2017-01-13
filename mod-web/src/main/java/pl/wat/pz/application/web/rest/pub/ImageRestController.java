@@ -60,6 +60,7 @@ public class ImageRestController {
     @ResponseStatus(value= HttpStatus.NO_CONTENT)
     public void uploadImage(@PathVariable String offerId, Authentication auth, @RequestParam("file") MultipartFile file) {
         if(!file.isEmpty()){
+            // SPRAWDŹ - WERYFIKACJA CZY TO OBRAZEK
             try{
                 Long longOfferId = Long.parseLong(offerId);
                 byte[] bytes = file.getBytes();
