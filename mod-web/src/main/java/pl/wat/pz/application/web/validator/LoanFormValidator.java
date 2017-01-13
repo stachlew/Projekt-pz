@@ -5,6 +5,7 @@ import org.springframework.validation.Validator;
 import pl.wat.pz.application.dao.intermediateClass.Loan.LoanForm;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.Calendar;
 
 public class LoanFormValidator implements Validator {
@@ -41,31 +42,23 @@ public class LoanFormValidator implements Validator {
         }
         if(loanForm.getDateFrom() != null && loanForm.getDateTo() != null) {
 
-            boolean isDateFromCorrect = true;
             long df = loanForm.getDateFrom().getTime();
             long dt = loanForm.getDateTo().getTime();
 
-
             Date dateFrom = new Date(df);
             Date dateTo = new Date(dt);
-            Date sqlDate = new Date(Calendar.getInstance().getTime().getTime());
 
-            if(!(dateFrom.getYear() >= sqlDate.getYear() && dateFrom.getMonth() >= sqlDate.getMonth()
-                    && dateFrom.getDay() >= sqlDate.getDay())) {
+            Calendar calendar = Calendar.getInstance();
+            Date sqlDate = new Date(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));;
+
+            if(dateFrom.compareTo(sqlDate) == -1) {
                 errors.rejectValue("dateFrom", "Wrong dateFrom.");
-                isDateFromCorrect = false;
             }
-            if(!(dateTo.getYear() >= sqlDate.getYear() && dateTo.getMonth() >= sqlDate.getMonth()
-                    && dateTo.getDay() >= sqlDate.getDay())) {
+            if(dateTo.compareTo(sqlDate) == -1) {
                 errors.rejectValue("dateTo", "Wrong dateTo.");
             }
-            else {
-                if(isDateFromCorrect) {
-                    if(!(dateTo.getYear() >= dateFrom.getYear() && dateTo.getMonth() >= dateTo.getMonth()
-                            && dateTo.getDay() >= dateTo.getDay())) {
-                        errors.rejectValue("dateFrom", "Wrong date range.");
-                    }
-                }
+            if(dateFrom.compareTo(dateTo) == 1) {
+                errors.rejectValue("dateTo", "Wrong dateTo.");
             }
         }
     }

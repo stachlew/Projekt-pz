@@ -17,11 +17,10 @@ public class UserFormValidator implements Validator {
     public void validate(Object target, Errors errors) {
         UserForm userForm = (UserForm) target;
 
-        if(userForm.getPassword() == null) {
-            errors.rejectValue("password", "Empty password.");
-        }
-        else if(userForm.getPassword().length() > 255) {
-            errors.rejectValue("password", "Too long password.");
+        if(userForm.getPassword() != null) {
+            if(userForm.getPassword().length() > 255) {
+                errors.rejectValue("password", "Too long password.");
+            }
         }
 
         if(userForm.getMail() != null) {

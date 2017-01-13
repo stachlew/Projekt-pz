@@ -22,14 +22,6 @@ public class UserFormValidatorTest extends TestCase {
     }
 
     @Test
-    public void test_empty_password_is_given() {
-        Errors errors = new BeanPropertyBindingResult(userForm, "Password is empty");
-        userFormValidator.validate(userForm, errors);
-
-        assertTrue("Password is empty", errors.hasErrors());
-    }
-
-    @Test
     public void test_entered_password_is_too_long() {
         userForm.setPassword("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque " +
                 "tincidunt placerat enim non tempor. Pellentesque rutrum eu massa nec efficitur. Cras " +

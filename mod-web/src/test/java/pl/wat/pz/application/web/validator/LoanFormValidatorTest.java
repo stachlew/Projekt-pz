@@ -109,8 +109,9 @@ public class LoanFormValidatorTest extends TestCase {
     @Test // POPRAWIĆ !!!
     public void test_correct_loan_form() {
         loanForm.setidAdvertisement("1234");
-        loanForm.setDateFrom(new Date(Calendar.getInstance().getTime().getTime()));
-        loanForm.setDateTo(new Date(Calendar.getInstance().getTime().getTime()));
+
+        loanForm.setDateFrom(new Date(2017, 0, 14));
+        loanForm.setDateTo(new Date(2017, 0, 16));
 
         Errors errors = new BeanPropertyBindingResult(loanForm, "Something went wrong.");
         loanFormValidator.validate(loanForm, errors);
