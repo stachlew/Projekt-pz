@@ -35,6 +35,16 @@ public class UserFormValidatorTest extends TestCase {
     }
 
     @Test
+    public void test_entered_password_is_too_short() {
+        userForm.setPassword("pas");
+
+        Errors errors = new BeanPropertyBindingResult(userForm, "Password is too short");
+        userFormValidator.validate(userForm, errors);
+
+        assertTrue("Password is too short", errors.hasErrors());
+    }
+
+    @Test
     public void test_wrong_email_was_entered() {
         userForm.setPassword("pass");
 

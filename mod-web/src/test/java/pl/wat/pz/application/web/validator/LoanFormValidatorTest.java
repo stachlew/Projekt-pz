@@ -93,7 +93,7 @@ public class LoanFormValidatorTest extends TestCase {
         assertTrue("No dates selected.", errors.hasErrors());
     }
 
-    @Test // POPRAWIĆ !!!
+    @Test
     public void test_wrong_dates_were_selected() {
         loanForm.setidAdvertisement("1234");
 
@@ -106,12 +106,12 @@ public class LoanFormValidatorTest extends TestCase {
         assertTrue("Wrong dates were selected.", errors.hasErrors());
     }
 
-    @Test // POPRAWIĆ !!!
+    @Test
     public void test_correct_loan_form() {
         loanForm.setidAdvertisement("1234");
 
         loanForm.setDateFrom(new Date(2017, 0, 14));
-        loanForm.setDateTo(new Date(2017, 0, 16));
+        loanForm.setDateTo(new Date(2017, 0, 15));
 
         Errors errors = new BeanPropertyBindingResult(loanForm, "Something went wrong.");
         loanFormValidator.validate(loanForm, errors);

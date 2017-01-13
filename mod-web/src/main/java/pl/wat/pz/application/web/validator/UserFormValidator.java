@@ -21,6 +21,9 @@ public class UserFormValidator implements Validator {
             if(userForm.getPassword().length() > 255) {
                 errors.rejectValue("password", "Too long password.");
             }
+            else if(userForm.getPassword().length() < 4) {
+                errors.rejectValue("password", "Too short password.");
+            }
         }
 
         if(userForm.getMail() != null) {
